@@ -1,5 +1,6 @@
 package com.icuapp.ui.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -76,7 +77,8 @@ public class HomeActivity extends AppCompatActivity
         if (id == R.id.home) {
             // Handle the camera action
         } else if (id == R.id.patientList) {
-
+            Intent intent = new Intent(this, PatientListActivity.class);
+            startActivity(intent);
         } else if (id == R.id.logout) {
 
         }
