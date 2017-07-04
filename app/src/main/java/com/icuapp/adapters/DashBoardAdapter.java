@@ -2,9 +2,11 @@ package com.icuapp.adapters;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.AnimationDrawable;
 import android.os.Handler;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,6 +14,7 @@ import android.view.ViewGroup;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.icuapp.customesViews.CustomTextView;
 import com.icuapp.model.Movie;
 import com.icuapp.R;
 import com.icuapp.model.Patients;
@@ -63,11 +66,13 @@ public class DashBoardAdapter extends RecyclerView.Adapter<DashBoardAdapter.Dash
                 vitalInfo) {
             String name = dataObject.getName();
             String value = dataObject.getValue();
-            if (name.equalsIgnoreCase("Pleth")) {
+            double formattedValue = Double.parseDouble(dataObject.getValue());
+            if (name.equalsIgnoreCase("Pleth") || name.equalsIgnoreCase("SPO2")) {
                 viewHolder.countPleth.setText(value);
-            } else if (name.equalsIgnoreCase("SPO2")) {
-                viewHolder.countResp.setText(value);
-
+                if (formattedValue < Double.parseDouble("" + 80)) {
+                    viewHolder.vitalsMainTagCount.setBackgroundResource(R.drawable.curve_fill_red_bg);
+                    viewHolder.vitalsMainTagCount.setText("***SPO2 <80");
+                }
             } else if (name.equalsIgnoreCase("Resp")) {
                 viewHolder.countResp.setText(value);
             } else if (name.equalsIgnoreCase("CVP")) {
@@ -78,6 +83,10 @@ public class DashBoardAdapter extends RecyclerView.Adapter<DashBoardAdapter.Dash
                 viewHolder.countPap.setText(value);
             } else if (name.equalsIgnoreCase("Pulse")) {
                 viewHolder.countPulse.setText(value);
+                if (formattedValue > 120) {
+                    viewHolder.vitalsMainTagCount.setBackgroundColor(ContextCompat.getColor(mContext, R.color.yellow));
+                    viewHolder.vitalsMainTagCount.setTextColor(ContextCompat.getColor(mContext, R.color.black));
+                }
             } else if (name.equalsIgnoreCase("Systolic Pressure")) {
                 viewHolder.countSystolicPressure.setText(value);
             } else if (name.equalsIgnoreCase("T1")) {
@@ -87,27 +96,6 @@ public class DashBoardAdapter extends RecyclerView.Adapter<DashBoardAdapter.Dash
             }
         }
 
-        /*
-        if (patientObject.isAnimated()) {
-            holder.mcountOfSPO2.setBackgroundColor(Color.YELLOW);
-            holder.mcountOfSPO2.setTextColor(Color.BLACK);
-        } else {
-            holder.mcountOfSPO2.setBackgroundColor(Color.BLACK);
-            holder.mcountOfSPO2.setTextColor(mContext.getResources().getColor(R.color.parrot_green_color));
-        }
-
-        handler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                if (patientObject.isAnimated()) {
-                    movie.setAnimated(false);
-                } else {
-                    movie.setAnimated(true);
-                }
-                notifyItemChanged(position);
-                //  drawable.start();
-            }
-        }, 500);*/
     }
 
     @Override
@@ -118,12 +106,14 @@ public class DashBoardAdapter extends RecyclerView.Adapter<DashBoardAdapter.Dash
     public class DashBoardViewHolder extends RecyclerView.ViewHolder {
         public TextView patientName, countPleth, countResp, countCvp, countIcp, countPap, countSystolicPressure, countT1, countT2;
         public TextView countPulse, bedNo;
+        public CustomTextView vitalsMainTagCount;
+
 
         public DashBoardViewHolder(View view) {
             super(view);
             patientName = (TextView) view.findViewById(R.id.patientName);
             bedNo = (TextView) view.findViewById(R.id.bedNo);
-            countPleth = (TextView) view.findViewById(R.id.countPleth);
+            countPleth = (TextView) view.findViewById(R.id.countPleth); // THIS IS SP02
             countResp = (TextView) view.findViewById(R.id.countResp);
             countCvp = (TextView) view.findViewById(R.id.countCvp);
             countIcp = (TextView) view.findViewById(R.id.countIcp);
@@ -132,6 +122,7 @@ public class DashBoardAdapter extends RecyclerView.Adapter<DashBoardAdapter.Dash
             countT1 = (TextView) view.findViewById(R.id.countt1);
             countT2 = (TextView) view.findViewById(R.id.countt2);
             countPulse = (TextView) view.findViewById(R.id.countPulse);
+            vitalsMainTagCount = (CustomTextView) view.findViewById(R.id.vitalsMainTagCount);
         }
     }
 }
