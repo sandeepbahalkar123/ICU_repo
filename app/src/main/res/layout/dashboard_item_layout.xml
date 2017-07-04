@@ -1,65 +1,90 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <LinearLayout
         android:layout_width="match_parent"
+        android:layout_marginTop="@dimen/dp10"
         android:layout_height="wrap_content"
+        android:background="@color/white"
         android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:layout_marginLeft="@dimen/dp10"
+            android:layout_marginRight="@dimen/dp10"
             android:orientation="horizontal">
 
-            <TextView
+            <com.icuapp.customesViews.CustomTextView
                 android:id="@+id/bedNo"
                 android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="0.5"
-                android:background="@color/black"
+                android:layout_height="wrap_content"
                 android:gravity="center_vertical"
                 android:paddingLeft="@dimen/dp2"
+                android:layout_weight="0.5"
                 android:text="Bed No. 0"
-                android:textColor="@color/white" />
+                android:textStyle="bold"
+                android:textSize="20sp"
+                app:customFont="@string/roboto_bold"
+                android:textColor="@color/tagColor" />
 
-            <TextView
+            <com.icuapp.customesViews.CustomTextView
                 android:id="@+id/patientName"
                 android:layout_width="0dp"
+                android:layout_gravity="left"
                 android:layout_height="match_parent"
-                android:layout_weight="0.5"
-                android:background="@color/black"
                 android:gravity="center_vertical"
-                android:paddingLeft="@dimen/dp4"
+                android:paddingLeft="@dimen/dp8"
                 android:text="Barbara"
-                android:textColor="@color/white" />
+                android:layout_weight="0.7"
+                android:textSize="20sp"
+                app:customFont="@string/roboto_bold"
+                android:textColor="@color/grey_800" />
 
-            <Button
+            <com.icuapp.customesViews.CustomTextView
                 android:id="@+id/order"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="0.5"
-                android:background="@color/Red"
+                android:background="@drawable/curve_fill_blue_bg"
                 android:paddingLeft="@dimen/dp4"
                 android:text="Order"
+                app:customFont="@string/roboto_bold"
+                android:gravity="center"
+                android:layout_weight="0.5"
+                android:textSize="@dimen/sp16"
                 android:textColor="@color/white" />
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:background="@color/white"
             android:orientation="horizontal">
 
-            <TextView
+            <com.icuapp.customesViews.CustomTextView
                 android:id="@+id/vitalsCount"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="0.5"
-                android:background="@color/reset_yellow"
-                android:paddingLeft="@dimen/dp4"
-                android:text="***SPO2"
-                android:textColor="@color/white" />
+                android:layout_weight="2"
+                android:layout_marginTop="@dimen/dp2"
+                android:layout_marginLeft="@dimen/dp10"
+                android:layout_marginBottom="@dimen/dp6"
+                android:background="@drawable/curve_fill_yellow_bg"
+                android:paddingLeft="@dimen/dp8"
+                app:customFont="@string/roboto_medium"
+                android:paddingTop="@dimen/dp4"
+                android:paddingRight="@dimen/dp4"
+                android:drawablePadding="@dimen/dp16"
+                android:drawableRight="@drawable/down_arrow"
+                android:textSize="@dimen/sp15"
+                android:paddingBottom="@dimen/dp4"
+                android:text="***SPO2 High"
+                android:textColor="@color/black" />
+
         </LinearLayout>
 
         <HorizontalScrollView

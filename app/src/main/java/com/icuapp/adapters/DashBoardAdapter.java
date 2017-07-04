@@ -8,6 +8,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.icuapp.model.Movie;
@@ -23,17 +24,20 @@ public class DashBoardAdapter extends RecyclerView.Adapter<DashBoardAdapter.MyVi
     private Activity activity;
     private List<Movie> moviesList;
     private  int i;
+
     final AnimationDrawable drawable = new AnimationDrawable();
     final Handler handler = new Handler();
    private Timer myTimer = new Timer();
     public class MyViewHolder extends RecyclerView.ViewHolder {
         public TextView title;
         public TextView mcountOfSPO2;
+
  
         public MyViewHolder(View view) {
             super(view);
             title = (TextView) view.findViewById(R.id.patientName);
             mcountOfSPO2 = (TextView) view.findViewById(R.id.countSpo2);
+
 
         }
     }

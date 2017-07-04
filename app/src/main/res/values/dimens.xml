@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
 
     <dimen name="title_padding">20dp</dimen>
@@ -5,7 +6,6 @@
     <dimen name="recycler_divider_width">1dp</dimen>
     <dimen name="header_height">200dp</dimen>
     <dimen name="header_height_huge">1500dp</dimen>
-
     <dimen name="nav_header_vertical_spacing">16dp</dimen>
     <dimen name="nav_header_height">160dp</dimen>
     <dimen name="activity_horizontal_margin">16dp</dimen>
@@ -68,4 +68,12 @@
     <dimen name="tab_padding_bottom">16dp</dimen>
     <dimen name="tab_label">14sp</dimen>
     <dimen name="custom_tab_layout_height">72dp</dimen>
+    <dimen name="fab_margin_right">48dp</dimen>
+    <dimen name="uhid">8dp</dimen>
+    <dimen name="margin_tiny">5dp</dimen>
+    <dimen name="text_medium">20sp</dimen>
+    <dimen name="button_height">40dp</dimen>
+    <dimen name="filenotfoundmessagetextsize">24sp</dimen>
+    <dimen name="dp42">42dp</dimen>
+
 </resources>
