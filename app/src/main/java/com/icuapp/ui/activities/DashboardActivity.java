@@ -3,6 +3,7 @@ package com.icuapp.ui.activities;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
@@ -15,23 +16,19 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-
 import com.icuapp.R;
 import com.icuapp.adapters.DashBoardAdapter;
-import com.icuapp.model.Movie;
-import com.icuapp.model.vitals.VitalsMainModel;
 import com.icuapp.util.AppConstants;
 
-import java.util.ArrayList;
-import java.util.List;
 
 public class DashboardActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
-    private List<Movie> movieList = new ArrayList<>();
     private RecyclerView recyclerView;
     Context mContext;
 
     private DashBoardAdapter mAdapter;
+    private Handler mHandler;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,73 +45,31 @@ public class DashboardActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        AppConstants.getAllVitalList(this);
         recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
+        // use this setting to improve performance if you know that changes
+        // in content do not change the layout size of the RecyclerView
+        recyclerView.setHasFixedSize(true);
 
-        mAdapter = new DashBoardAdapter(movieList,DashboardActivity.this,mContext);
-        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
-        recyclerView.setLayoutManager(mLayoutManager);
-        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(recyclerView.getContext(),
-               DividerItemDecoration.VERTICAL);
-        recyclerView.addItemDecoration(dividerItemDecoration);
-        RecyclerView.ItemAnimator animator = recyclerView.getItemAnimator();
-        if (animator instanceof SimpleItemAnimator) {
-            ((SimpleItemAnimator) animator).setSupportsChangeAnimations(false);
-        }
-        recyclerView.setAdapter(mAdapter);
+        // use a linear layout manager
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        prepareMovieData();
+        mHandler = new Handler();
+
+        Runnable updateUI = new Runnable() {
+            @Override
+            public void run() {
+                //Do something after 100ms
+                mAdapter = new DashBoardAdapter(DashboardActivity.this, AppConstants.getSelectedPatientList());
+                recyclerView.setAdapter(mAdapter);
+                mHandler.postDelayed(this, 2000);
+            }
+        };
+
+        mHandler.postDelayed(updateUI, 2000); // The first call to the updateCurrentTime Runnable with a 2 second delay
     }
-    private void prepareMovieData() {
-        Movie movie = new Movie("Mad Max: Fury Road", "Action & Adventure", "2015");
-        movieList.add(movie);
 
-        movie = new Movie("Inside Out", "Animation, Kids & Family", "2015");
-        movieList.add(movie);
-
-        movie = new Movie("Star Wars: Episode VII - The Force Awakens", "Action", "2015");
-        movieList.add(movie);
-
-        movie = new Movie("Shaun the Sheep", "Animation", "2015");
-        movieList.add(movie);
-
-        movie = new Movie("The Martian", "Science Fiction & Fantasy", "2015");
-        movieList.add(movie);
-
-        movie = new Movie("Mission: Impossible Rogue Nation", "Action", "2015");
-        movieList.add(movie);
-
-        movie = new Movie("Up", "Animation", "2009");
-        movieList.add(movie);
-
-        movie = new Movie("Star Trek", "Science Fiction", "2009");
-        movieList.add(movie);
-
-        movie = new Movie("The LEGO Movie", "Animation", "2014");
-        movieList.add(movie);
-
-        movie = new Movie("Iron Man", "Action & Adventure", "2008");
-        movieList.add(movie);
-
-        movie = new Movie("Aliens", "Science Fiction", "1986");
-        movieList.add(movie);
-
-        movie = new Movie("Chicken Run", "Animation", "2000");
-        movieList.add(movie);
-
-        movie = new Movie("Back to the Future", "Science Fiction", "1985");
-        movieList.add(movie);
-
-        movie = new Movie("Raiders of the Lost Ark", "Action & Adventure", "1981");
-        movieList.add(movie);
-
-        movie = new Movie("Goldfinger", "Action & Adventure", "1965");
-        movieList.add(movie);
-
-        movie = new Movie("Guardians of the Galaxy", "Science Fiction & Fantasy", "2014");
-        movieList.add(movie);
-
-        mAdapter.notifyDataSetChanged();
-    }
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -124,10 +79,16 @@ public class DashboardActivity extends AppCompatActivity
             super.onBackPressed();
         }
     }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+    }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-      getMenuInflater().inflate(R.menu.main, menu);
+        getMenuInflater().inflate(R.menu.main, menu);
         return true;
     }
 

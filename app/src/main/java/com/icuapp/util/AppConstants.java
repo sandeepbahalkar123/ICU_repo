@@ -27,7 +27,7 @@ public class AppConstants {
     public AppConstants(Context context) {
     }
 
-    public static ArrayList<Patients> getPatientList() {
+    public static ArrayList<Patients> getAllPatientList() {
         if (allPatients == null) {
             allPatients = new ArrayList<>();
             for (int i = 1; i <= 15; i++) {
@@ -36,6 +36,20 @@ public class AppConstants {
             }
         }
         return allPatients;
+    }
+
+    public static ArrayList<Patients> getSelectedPatientList() {
+        ArrayList<Patients> allPatientList = getAllPatientList();
+        ArrayList<Patients> mSelectedPatients = new ArrayList<>();
+
+        for (Patients data :
+                allPatientList) {
+            if (data.isChecked())
+                mSelectedPatients.add(data);
+        }
+
+        return mSelectedPatients;
+
     }
 
     public static VitalsMainModel getAllVitalList(Context mContext) {
@@ -70,5 +84,11 @@ public class AppConstants {
         AppConstants.definedVitalsConstants.put("Systolic Pressure", "Systolic Pressure");
         AppConstants.definedVitalsConstants.put("T1", "T1");
         AppConstants.definedVitalsConstants.put("T2", "T2");
+    }
+
+    public static ArrayList<VitalDetails> getVitalInfo(int timeValue) {
+        HashMap<Integer, ArrayList<VitalDetails>> vitalList = allVitals.getVitalList();
+        ArrayList<VitalDetails> vitalDetailses = vitalList.get(timeValue);
+        return vitalDetailses;
     }
 }

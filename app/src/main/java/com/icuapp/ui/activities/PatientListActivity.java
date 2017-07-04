@@ -52,8 +52,6 @@ public class PatientListActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        mPatientsList = AppConstants.getPatientList();
-
         // use this setting to improve performance if you know that changes
         // in content do not change the layout size of the RecyclerView
         mRecyclerView.setHasFixedSize(true);
@@ -62,7 +60,7 @@ public class PatientListActivity extends AppCompatActivity {
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         // create an Object for Adapter
-        mAdapter = new PatientListAdapter(mPatientsList);
+        mAdapter = new PatientListAdapter();
 
         // set the adapter object to the Recyclerview
         mRecyclerView.setAdapter(mAdapter);
