@@ -14,6 +14,7 @@ import android.widget.TextView;
 
 import com.icuapp.model.Movie;
 import com.icuapp.R;
+import com.icuapp.util.CommonMethods;
 
 import java.util.List;
 import java.util.Timer;
@@ -33,14 +34,14 @@ public class DashBoardAdapter extends RecyclerView.Adapter<DashBoardAdapter.MyVi
     public class MyViewHolder extends RecyclerView.ViewHolder {
         public TextView title;
         public TextView mcountOfSPO2;
+        public TextView mVitalsCount;
 
  
         public MyViewHolder(View view) {
             super(view);
             title = (TextView) view.findViewById(R.id.patientName);
             mcountOfSPO2 = (TextView) view.findViewById(R.id.countPulse);
-
-
+            mVitalsCount = (TextView) view.findViewById(R.id.vitalsCount);
         }
     }
 
@@ -60,6 +61,7 @@ public class DashBoardAdapter extends RecyclerView.Adapter<DashBoardAdapter.MyVi
  
     @Override
     public void onBindViewHolder(final MyViewHolder holder, final int position) {
+
         final Movie movie = moviesList.get(position);
 
         if(movie.isAnimated()){
@@ -70,6 +72,12 @@ public class DashBoardAdapter extends RecyclerView.Adapter<DashBoardAdapter.MyVi
             holder.mcountOfSPO2.setBackgroundColor(Color.BLACK);
             holder.mcountOfSPO2.setTextColor(mContext.getResources().getColor(R.color.parrot_green_color));
        }
+        holder.mVitalsCount.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                CommonMethods.showAlertDialog(mContext,"Bed No,1");
+            }
+        });
 
         handler.postDelayed(new Runnable() {
             @Override

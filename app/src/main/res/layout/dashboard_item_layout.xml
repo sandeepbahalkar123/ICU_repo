@@ -96,7 +96,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/sp16"
+                android:layout_margin="@dimen/dp16"
                 android:orientation="horizontal">
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -334,6 +334,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/dp20"
+                    android:layout_marginRight="@dimen/dp16"
                     android:orientation="vertical">
 
                     <com.icuapp.customesViews.CustomTextView

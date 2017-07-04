@@ -22,7 +22,7 @@ public class AppConstants {
     private static ArrayList<Patients> allPatients = null;
     private static VitalsMainModel allVitals = null;
 
-    private static HashMap<String, String> definedVitalsConstants;
+    private static HashMap<String, String> definedVitalsConstants = new HashMap<>();
 
     public AppConstants(Context context) {
     }
