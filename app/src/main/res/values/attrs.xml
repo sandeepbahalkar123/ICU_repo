@@ -15,9 +15,6 @@
 -->
 <resources>
 
-    <declare-styleable name="TextView">
-        <attr name="fontName" format="string"/>
-    </declare-styleable>
 
     <declare-styleable name="CircleLayout">
         <attr name="isRotating" format="boolean" />
@@ -39,5 +36,11 @@
         <attr name="shadow_color" format="color"/>
         <attr name="shadow_radius" format="float"/>
     </declare-styleable>
+    <declare-styleable name="TextView">
+        <attr name="fontName" format="string" />
+    </declare-styleable>
 
+    <declare-styleable name="CustomTextView">
+        <attr name="customFont" format="string" />
+    </declare-styleable>
 </resources>
