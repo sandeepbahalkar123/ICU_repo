@@ -20,14 +20,15 @@ import android.widget.Toast;
 
 import com.icuapp.R;
 import com.icuapp.model.Patients;
+import com.icuapp.util.AppConstants;
 
 public class PatientListAdapter extends
         RecyclerView.Adapter<PatientListAdapter.ViewHolder> {
 
     private List<Patients> mPatientList;
 
-    public PatientListAdapter(List<Patients> mPatientList) {
-        this.mPatientList = mPatientList;
+    public PatientListAdapter() {
+        this.mPatientList = AppConstants.getAllPatientList();
     }
 
     // Create new views
@@ -64,7 +65,7 @@ public class PatientListAdapter extends
 
                 contact.setChecked(cb.isChecked());
                 mPatientList.get(pos).setChecked(cb.isChecked());
-
+                AppConstants.getAllPatientList().get(pos).setChecked(cb.isChecked());
                 Toast.makeText(
                         v.getContext(),
                         "Clicked on Checkbox: " + cb.getText() + " is "
@@ -97,11 +98,6 @@ public class PatientListAdapter extends
                     .findViewById(R.id.chkSelected);
         }
 
-    }
-
-    // method to access in activity after updating selection
-    public List<Patients> getUpdatedPatientList() {
-        return mPatientList;
     }
 
 }

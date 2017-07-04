@@ -1,0 +1,368 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp10"
+        android:background="@color/white"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp10"
+            android:layout_marginRight="@dimen/dp10"
+            android:background="@color/white"
+            android:orientation="horizontal">
+
+            <com.icuapp.customesViews.CustomTextView
+                android:id="@+id/bedNo"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.5"
+                android:gravity="center_vertical"
+                android:paddingLeft="@dimen/dp2"
+                android:text="Bed No. 0"
+                android:textColor="@color/tagColor"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:customFont="@string/roboto_bold" />
+
+            <com.icuapp.customesViews.CustomTextView
+                android:id="@+id/patientName"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="left"
+                android:layout_weight="0.7"
+                android:gravity="center_vertical"
+                android:paddingLeft="@dimen/dp8"
+                android:text="Barbara"
+                android:textColor="@color/grey_800"
+                android:textSize="20sp"
+                app:customFont="@string/roboto_bold" />
+
+            <com.icuapp.customesViews.CustomTextView
+                android:id="@+id/order"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.5"
+                android:background="@drawable/curve_fill_blue_bg"
+                android:gravity="center"
+                android:paddingTop="@dimen/dp4"
+                android:paddingBottom="@dimen/dp4"
+                android:text="Order"
+                android:textColor="@color/white"
+                android:textSize="@dimen/sp16"
+                app:customFont="@string/roboto_regular" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:orientation="horizontal">
+
+            <com.icuapp.customesViews.CustomTextView
+                android:id="@+id/vitalsCount"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/dp6"
+                android:layout_marginLeft="@dimen/dp10"
+                android:layout_marginTop="@dimen/dp2"
+                android:layout_weight="2"
+                android:background="@drawable/curve_fill_yellow_bg"
+                android:drawablePadding="@dimen/dp16"
+                android:drawableRight="@drawable/down_arrow"
+                android:paddingBottom="@dimen/dp4"
+                android:paddingLeft="@dimen/dp8"
+                android:paddingRight="@dimen/dp4"
+                android:paddingTop="@dimen/dp4"
+                android:text="***SPO2 High"
+                android:textColor="@color/black"
+                android:textSize="@dimen/sp15"
+                app:customFont="@string/roboto_medium" />
+
+        </LinearLayout>
+
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/black">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/sp16"
+                android:orientation="horizontal">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <com.icuapp.customesViews.CustomTextView
+                        android:id="@+id/pulse"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="left"
+                        android:text="Pulse"
+                        android:textColor="@color/parrot_green_color"
+                        android:textSize="@dimen/sp12"
+                        android:textStyle="bold"
+                        app:customFont="@string/roboto_regular" />
+
+                    <com.icuapp.customesViews.CustomTextView
+                        android:id="@+id/countPulse"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="right"
+                        android:layout_marginLeft="@dimen/dp18"
+                        android:text="1"
+                        android:textColor="@color/parrot_green_color"
+                        android:textSize="@dimen/sp30"
+                        app:customFont="@string/roboto_bold" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/dp20"
+                    android:orientation="vertical">
+
+                    <com.icuapp.customesViews.CustomTextView
+                        android:id="@+id/pleth"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="left"
+                        android:text="PVC"
+                        android:textColor="@color/parrot_green_color"
+                        android:textSize="@dimen/sp12"
+                        android:textStyle="bold"
+                        app:customFont="@string/roboto_regular" />
+
+                    <com.icuapp.customesViews.CustomTextView
+                        android:id="@+id/countPleth"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="right"
+                        android:layout_marginLeft="@dimen/dp18"
+                        android:text="1"
+                        android:textColor="@color/parrot_green_color"
+                        android:textSize="@dimen/sp30"
+                        app:customFont="@string/roboto_bold" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/dp20"
+                    android:orientation="vertical">
+
+                    <com.icuapp.customesViews.CustomTextView
+                        android:id="@+id/resp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="left"
+                        android:text="Resp"
+                        android:textStyle="bold"
+                        android:textColor="@color/blue_color"
+                        android:textSize="@dimen/sp12"
+                        app:customFont="@string/roboto_regular" />
+
+                    <com.icuapp.customesViews.CustomTextView
+                        android:id="@+id/countResp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="right"
+                        android:layout_marginLeft="@dimen/dp18"
+                        android:text="81"
+                        android:textColor="@color/blue_color"
+                        android:textSize="@dimen/sp30"
+                        app:customFont="@string/roboto_bold" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/dp20"
+                    android:orientation="vertical">
+
+                    <com.icuapp.customesViews.CustomTextView
+                        android:id="@+id/cvp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="left"
+                        android:text="CVP"
+                        android:textColor="@color/blue_color"
+                        android:textSize="@dimen/sp12"
+                        app:customFont="@string/roboto_regular" />
+
+                    <com.icuapp.customesViews.CustomTextView
+                        android:id="@+id/countCvp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="right"
+                        android:layout_marginLeft="@dimen/dp18"
+                        android:text="81"
+                        android:textColor="@color/blue_color"
+                        android:textSize="@dimen/sp30"
+                        app:customFont="@string/roboto_bold" />
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/dp20"
+                    android:orientation="vertical">
+
+                    <com.icuapp.customesViews.CustomTextView
+                        android:id="@+id/icp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="left"
+                        android:text="ICP"
+                        android:textColor="@color/rr_yellow_color"
+                        android:textSize="@dimen/sp12"
+                        app:customFont="@string/roboto_regular" />
+
+                    <com.icuapp.customesViews.CustomTextView
+                        android:id="@+id/countIcp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="right"
+                        android:layout_marginLeft="@dimen/dp18"
+                        android:text="81"
+                        android:textColor="@color/rr_yellow_color"
+                        android:textSize="@dimen/sp30"
+                        app:customFont="@string/roboto_bold" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/dp20"
+                    android:orientation="vertical">
+
+                    <com.icuapp.customesViews.CustomTextView
+                        android:id="@+id/pap"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="left"
+                        android:text="PAP"
+                        android:textColor="@color/Red"
+                        android:textSize="@dimen/sp12"
+                        app:customFont="@string/roboto_regular" />
+
+                    <com.icuapp.customesViews.CustomTextView
+                        android:id="@+id/countPap"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="right"
+                        android:layout_marginLeft="@dimen/dp18"
+                        android:text="81"
+                        android:textColor="@color/Red"
+                        android:textSize="@dimen/sp30"
+                        app:customFont="@string/roboto_bold" />
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/dp20"
+                    android:orientation="vertical">
+
+                    <com.icuapp.customesViews.CustomTextView
+                        android:id="@+id/systolicPressure"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="left"
+                        android:text="SysPressure"
+                        android:textColor="@color/rr_yellow_color"
+                        android:textSize="@dimen/sp12"
+                        app:customFont="@string/roboto_regular" />
+
+                    <com.icuapp.customesViews.CustomTextView
+                        android:id="@+id/countSystolicPressure"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="right"
+                        android:layout_marginLeft="@dimen/dp18"
+                        android:text="81"
+                        android:textColor="@color/rr_yellow_color"
+                        android:textSize="@dimen/sp30"
+                        app:customFont="@string/roboto_bold" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/dp20"
+                    android:orientation="vertical">
+
+                    <com.icuapp.customesViews.CustomTextView
+                        android:id="@+id/t1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="left"
+                        android:text="T1"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/sp12"
+                        app:customFont="@string/roboto_regular" />
+
+                    <com.icuapp.customesViews.CustomTextView
+                        android:id="@+id/countt1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="right"
+                        android:layout_marginLeft="@dimen/dp18"
+                        android:text="81"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/sp30"
+                        app:customFont="@string/roboto_bold" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/dp20"
+                    android:orientation="vertical">
+
+                    <com.icuapp.customesViews.CustomTextView
+                        android:id="@+id/t2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="left"
+                        android:text="T2"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/sp12"
+                        app:customFont="@string/roboto_regular" />
+
+                    <com.icuapp.customesViews.CustomTextView
+                        android:id="@+id/countt2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="right"
+                        android:layout_marginLeft="@dimen/dp18"
+                        android:text="81"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/sp30"
+                        app:customFont="@string/roboto_bold" />
+
+                </LinearLayout>
+
+
+
+            </LinearLayout>
+        </HorizontalScrollView>
+    </LinearLayout>
+
+</LinearLayout>
