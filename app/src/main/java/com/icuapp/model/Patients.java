@@ -9,7 +9,6 @@ import java.util.ArrayList;
 public class Patients {
 
 
-    private static ArrayList<Patients> allPatients = null;
 
     private String patientName;
     private String bedNo;
@@ -45,14 +44,5 @@ public class Patients {
         this.isChecked = isChecked;
     }
 
-    public static ArrayList<Patients> getPatientList() {
-        if (allPatients == null) {
-            allPatients = new ArrayList<>();
-            for (int i = 1; i <= 15; i++) {
-                Patients st = new Patients("Patient " + i, "" + i, false);
-                allPatients.add(st);
-            }
-        }
-        return allPatients;
-    }
+
 }

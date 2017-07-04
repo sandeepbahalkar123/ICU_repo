@@ -15,6 +15,7 @@ import android.widget.Toast;
 import com.icuapp.R;
 import com.icuapp.adapters.PatientListAdapter;
 import com.icuapp.model.Patients;
+import com.icuapp.util.AppConstants;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -51,7 +52,7 @@ public class PatientListActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        mPatientsList = Patients.getPatientList();
+        mPatientsList = AppConstants.getPatientList();
 
         // use this setting to improve performance if you know that changes
         // in content do not change the layout size of the RecyclerView
