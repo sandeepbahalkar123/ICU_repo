@@ -54,7 +54,8 @@
     <color name="dose_completed">#666666</color>
     <color name="background_grey">#EDEDED</color>
     <color name="accent">#FF4081</color>
-
-
+    <color name="parrot_green_color">#07b709</color>
+    <color name="blue_color">#29aae1</color>
+    <color name="rr_yellow_color">#baaa45</color>
 </resources>
 

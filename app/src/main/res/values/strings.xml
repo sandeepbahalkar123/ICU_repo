@@ -16,6 +16,7 @@
 
     <string name="roboto_bold">roboto_bold.ttf</string>
     <string name="roboto_medium">roboto_medium.ttf</string>
+    <string name="roboto_regular">roboto_regular.ttf</string>
     <!-- Strings related to login -->
     <string name="error_empty_fields">Please enter username/password</string>
     <string name="demo_user">Demo</string>
