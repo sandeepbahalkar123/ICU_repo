@@ -1,18 +1,17 @@
-package com.icuapp;
+package com.icuapp.ui.activities;
 
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
-import android.view.View;
-import android.widget.HorizontalScrollView;
+
+import com.icuapp.R;
 
 /**
  * Created by hardikj on 03/07/17.
  */
 
-public class PatientDetailMain extends AppCompatActivity implements TabLayout.OnTabSelectedListener {
+public class PatientDetails extends AppCompatActivity implements TabLayout.OnTabSelectedListener {
 
     private TabLayout tabLayout;
     private ViewPager viewPager;

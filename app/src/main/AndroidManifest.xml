@@ -18,9 +18,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".PatientDetailMain" />
-        <activity android:name=".ECGGraphDetail" />
-        <activity android:name=".VitalHistoryDetail"/>
+        <activity android:name=".ui.activities.PatientDetails" />
+        <activity android:name=".ui.activities.ECGGraphDetail" />
+        <activity android:name=".ui.activities.VitalHistoryDetail"/>
 
         <activity
             android:name=".ui.activities.LoginActivity"

@@ -1,8 +1,13 @@
-package com.icuapp;
+package com.icuapp.ui.activities;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
+
+import com.icuapp.ui.fragment.ECGGraphsList;
+import com.icuapp.ui.fragment.OrderHistory;
+import com.icuapp.ui.fragment.VitalGraphsList;
+import com.icuapp.ui.fragment.VitalHistoryList;
 
 /**
  * Created by hardikj on 03/07/17.

@@ -1,4 +1,4 @@
-package com.icuapp;
+package com.icuapp.ui.fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,28 +9,25 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.TextView;
 
-import java.text.SimpleDateFormat;
+import com.icuapp.R;
+import com.icuapp.ui.activities.ECGGraphDetail;
+
 import java.util.Calendar;
+import java.text.SimpleDateFormat;
 
 /**
  * Created by hardikj on 03/07/17.
  */
 
-public class VitalHistoryList extends Fragment {
+public class ECGGraphsList extends Fragment {
 
     String[] arrayDate = new String[8];
-    private TextView textViewName;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         //Get Subtract Time from current time with no of counts.
-
-//        textViewName = (TextView) getView().findViewById(R.id.tvName);
-//        textViewName.setText("Rhythm");
-
         getDate(8,-15);
         View view = inflater.inflate(R.layout.ecg_graphs, container, false);
         ArrayAdapter adapter = new ArrayAdapter<String>(getActivity(),
@@ -43,7 +40,7 @@ public class VitalHistoryList extends Fragment {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                startActivity(new Intent(getActivity(), VitalHistoryDetail.class));
+                startActivity(new Intent(getActivity(), ECGGraphDetail.class));
             }
         });
         return view;
