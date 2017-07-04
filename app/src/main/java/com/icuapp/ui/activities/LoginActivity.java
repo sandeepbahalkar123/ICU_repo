@@ -40,7 +40,7 @@ public class LoginActivity extends AppCompatActivity {
     @OnClick(R.id.loginButton)
     public void doLogin() {
         if (!validate()) {
-            Intent intentObj = new Intent(LoginActivity.this, HomeActivity.class);
+            Intent intentObj = new Intent(LoginActivity.this, DashboardActivity.class);
             intentObj.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
             intentObj.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             intentObj.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);

@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_marginTop="@dimen/dp10"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:layout_marginLeft="@dimen/dp10"
+            android:layout_marginRight="@dimen/dp10"
+            android:orientation="horizontal">
+
+            <com.icuapp.customesViews.CustomTextView
+                android:id="@+id/bedNo"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:paddingLeft="@dimen/dp2"
+                android:layout_weight="0.5"
+                android:text="Bed No. 0"
+                android:textStyle="bold"
+                android:textSize="20sp"
+                app:customFont="@string/roboto_bold"
+                android:textColor="@color/tagColor" />
+
+            <com.icuapp.customesViews.CustomTextView
+                android:id="@+id/patientName"
+                android:layout_width="0dp"
+                android:layout_gravity="left"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:paddingLeft="@dimen/dp8"
+                android:text="Barbara"
+                android:layout_weight="0.7"
+                android:textSize="20sp"
+                app:customFont="@string/roboto_bold"
+                android:textColor="@color/grey_800" />
+
+            <com.icuapp.customesViews.CustomTextView
+                android:id="@+id/order"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/curve_fill_blue_bg"
+                android:paddingLeft="@dimen/dp4"
+                android:text="Order"
+                app:customFont="@string/roboto_bold"
+                android:gravity="center"
+                android:layout_weight="0.5"
+                android:textSize="@dimen/sp16"
+                android:textColor="@color/white" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:orientation="horizontal">
+
+            <com.icuapp.customesViews.CustomTextView
+                android:id="@+id/vitalsCount"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:layout_marginTop="@dimen/dp2"
+                android:layout_marginLeft="@dimen/dp10"
+                android:layout_marginBottom="@dimen/dp6"
+                android:background="@drawable/curve_fill_yellow_bg"
+                android:paddingLeft="@dimen/dp8"
+                app:customFont="@string/roboto_medium"
+                android:paddingTop="@dimen/dp4"
+                android:paddingRight="@dimen/dp4"
+                android:drawablePadding="@dimen/dp16"
+                android:drawableRight="@drawable/down_arrow"
+                android:textSize="@dimen/sp15"
+                android:paddingBottom="@dimen/dp4"
+                android:text="***SPO2 High"
+                android:textColor="@color/black" />
+
+        </LinearLayout>
+
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/black">
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="SPO2"
+                android:id="@+id/spo2"
+                android:textColor="@color/white" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Resp"
+                android:id="@+id/resp"
+                android:textColor="@color/white" />
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="CVP"
+            android:id="@+id/cvp"
+            android:textColor="@color/white" />
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="ICP"
+            android:id="@+id/icp"
+            android:textColor="@color/white" />
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="PAP"
+            android:id="@+id/pap"
+            android:textColor="@color/white" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="81"
+            android:layout_margin="@dimen/dp4"
+            android:id="@+id/countSpo2"
+            android:paddingLeft="@dimen/dp10"
+            android:textColor="@color/white" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="94"
+            android:paddingLeft="@dimen/dp10"
+            android:id="@+id/countResp"
+            android:textColor="@color/white" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="71"
+            android:paddingLeft="@dimen/dp10"
+            android:id="@+id/countCvp"
+            android:textColor="@color/white" />
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="69"
+            android:paddingLeft="@dimen/dp10"
+            android:id="@+id/countIcp"
+            android:textColor="@color/white" />
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="108"
+            android:paddingLeft="@dimen/dp10"
+            android:id="@+id/countPap"
+            android:textColor="@color/white" />
+
+    </LinearLayout>
+
+</LinearLayout>
+        </HorizontalScrollView>
+    </LinearLayout>
+
+</LinearLayout>
