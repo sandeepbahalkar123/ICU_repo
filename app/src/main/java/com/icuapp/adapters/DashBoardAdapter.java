@@ -1,6 +1,7 @@
 package com.icuapp.adapters;
 
 import android.app.Activity;
+import android.content.Context;
 import android.graphics.Color;
 import android.graphics.drawable.AnimationDrawable;
 import android.os.Handler;
@@ -24,6 +25,7 @@ public class DashBoardAdapter extends RecyclerView.Adapter<DashBoardAdapter.MyVi
     private Activity activity;
     private List<Movie> moviesList;
     private  int i;
+    Context mContext;
 
     final AnimationDrawable drawable = new AnimationDrawable();
     final Handler handler = new Handler();
@@ -36,13 +38,14 @@ public class DashBoardAdapter extends RecyclerView.Adapter<DashBoardAdapter.MyVi
         public MyViewHolder(View view) {
             super(view);
             title = (TextView) view.findViewById(R.id.patientName);
-            mcountOfSPO2 = (TextView) view.findViewById(R.id.countSpo2);
+            mcountOfSPO2 = (TextView) view.findViewById(R.id.countPulse);
 
 
         }
     }
 
-    public DashBoardAdapter(List<Movie> moviesList, Activity activity) {
+    public DashBoardAdapter(List<Movie> moviesList, Activity activity, Context context) {
+        this.mContext = context;
         this.activity = activity;
         this.moviesList = moviesList;
     }
@@ -60,10 +63,12 @@ public class DashBoardAdapter extends RecyclerView.Adapter<DashBoardAdapter.MyVi
         final Movie movie = moviesList.get(position);
 
         if(movie.isAnimated()){
-          holder.mcountOfSPO2.setBackgroundColor(Color.YELLOW);
+       holder.mcountOfSPO2.setBackgroundColor(Color.YELLOW);
+            holder.mcountOfSPO2.setTextColor(Color.BLACK);
         }
         else {
             holder.mcountOfSPO2.setBackgroundColor(Color.BLACK);
+            holder.mcountOfSPO2.setTextColor(mContext.getResources().getColor(R.color.parrot_green_color));
        }
 
         handler.postDelayed(new Runnable() {

@@ -1,5 +1,6 @@
 package com.icuapp.ui.activities;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -26,14 +27,14 @@ public class DashboardActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
     private List<Movie> movieList = new ArrayList<>();
     private RecyclerView recyclerView;
-
+    Context mContext;
 
     private DashBoardAdapter mAdapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        mContext = DashboardActivity.this;
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle(getString(R.string.dashboard));
@@ -47,7 +48,7 @@ public class DashboardActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
         recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
 
-        mAdapter = new DashBoardAdapter(movieList,DashboardActivity.this);
+        mAdapter = new DashBoardAdapter(movieList,DashboardActivity.this,mContext);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerView.setLayoutManager(mLayoutManager);
         DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(recyclerView.getContext(),
