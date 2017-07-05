@@ -61,7 +61,7 @@ public class DashBoardAdapter extends RecyclerView.Adapter<DashBoardAdapter.Dash
     @Override
     public void onBindViewHolder(final DashBoardViewHolder viewHolder, final int position) {
         final Patients patientObject = mSelectedPatients.get(position);
-        ArrayList<VitalDetails> vitalInfo = AppConstants.getVitalInfo(CommonMethods.generateEvenNumber());
+        ArrayList<VitalDetails> vitalInfo = AppConstants.getVitalInfo(CommonMethods.generateRandomEvenNumber());
 
         viewHolder.patientName.setText(patientObject.getPatientName());
         viewHolder.bedNo.setText("Bed No.:" + patientObject.getBedNo());
