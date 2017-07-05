@@ -44,5 +44,12 @@ public class Patients {
         this.isChecked = isChecked;
     }
 
-
+    @Override
+    public String toString() {
+        return "Patients{" +
+                "patientName='" + patientName + '\'' +
+                ", bedNo='" + bedNo + '\'' +
+                ", isChecked=" + isChecked +
+                '}';
+    }
 }

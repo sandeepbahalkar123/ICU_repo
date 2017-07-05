@@ -41,4 +41,13 @@ public class VitalDetails {
     public void setAnimated(boolean animated) {
         this.animated = animated;
     }
+
+    @Override
+    public String toString() {
+        return "VitalDetails{" +
+                "name='" + name + '\'' +
+                ", value='" + value + '\'' +
+                ", animated=" + animated +
+                '}';
+    }
 }

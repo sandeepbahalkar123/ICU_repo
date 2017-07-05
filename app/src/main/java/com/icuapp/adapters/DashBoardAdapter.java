@@ -2,34 +2,24 @@ package com.icuapp.adapters;
 
 import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
 import android.graphics.Color;
-import android.graphics.drawable.AnimationDrawable;
-import android.os.CountDownTimer;
 import android.os.Handler;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.AlphaAnimation;
-import android.view.animation.Animation;
-import android.widget.ListView;
 import android.widget.TextView;
 
 import com.icuapp.customesViews.CustomTextView;
-import com.icuapp.model.Movie;
 import com.icuapp.R;
 import com.icuapp.model.Patients;
+import com.icuapp.model.vitals.VitalCriticalDataOfPatient;
 import com.icuapp.model.vitals.VitalDetails;
 import com.icuapp.util.AppConstants;
 import com.icuapp.util.CommonMethods;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Timer;
 
 
 public class DashBoardAdapter extends RecyclerView.Adapter<DashBoardAdapter.DashBoardViewHolder> {
@@ -60,11 +50,15 @@ public class DashBoardAdapter extends RecyclerView.Adapter<DashBoardAdapter.Dash
 
     @Override
     public void onBindViewHolder(final DashBoardViewHolder viewHolder, final int position) {
+
+        CommonMethods.printLog("DashBoardAdapter", "" + AppConstants.vitalCriticalDataReportOfPatient);
+
         final Patients patientObject = mSelectedPatients.get(position);
         ArrayList<VitalDetails> vitalInfo = AppConstants.getVitalInfo(CommonMethods.generateRandomEvenNumber());
 
         viewHolder.patientName.setText(patientObject.getPatientName());
         viewHolder.bedNo.setText("Bed No.:" + patientObject.getBedNo());
+
 
         for (VitalDetails dataObject :
                 vitalInfo) {
@@ -75,8 +69,21 @@ public class DashBoardAdapter extends RecyclerView.Adapter<DashBoardAdapter.Dash
                 viewHolder.countPleth.setText(value);
                 if (formattedValue < Double.parseDouble("" + 90)) {
                     viewHolder.vitalsMainTagCount.setBackgroundResource(R.drawable.curve_fill_red_bg);
-                    viewHolder.vitalsMainTagCount.setText("***SPO2 <80");
+                    viewHolder.vitalsMainTagCount.setText("***SPO2 <80 " + CommonMethods.convertMilliSecondsToDate(System.currentTimeMillis(), "HH:mm"));
                     loadAnimation(viewHolder.countPleth, dataObject);
+                    //------------
+                    VitalCriticalDataOfPatient vitalCriticalDataOfPatient = AppConstants.vitalCriticalDataReportOfPatient.get(patientObject.getBedNo());
+                    if (vitalCriticalDataOfPatient != null) {
+                        vitalCriticalDataOfPatient.setPatient(patientObject);
+                        vitalCriticalDataOfPatient.setVitalInfo(vitalInfo);
+                        vitalCriticalDataOfPatient.setPelthOrSPO2CriticalTimeStamp(CommonMethods.convertMilliSecondsToDate(System.currentTimeMillis(), "HH:mm:ss"));
+                        AppConstants.vitalCriticalDataReportOfPatient.put(patientObject.getBedNo(), vitalCriticalDataOfPatient);
+                    } else {
+                        AppConstants.vitalCriticalDataReportOfPatient.put(patientObject.getBedNo(),
+                                new VitalCriticalDataOfPatient(patientObject, vitalInfo, CommonMethods.convertMilliSecondsToDate(System.currentTimeMillis(), "HH:mm:ss"), null));
+                    }
+                    //---------------
+
                 }
             } else if (name.equalsIgnoreCase("Resp")) {
                 viewHolder.countResp.setText(value);
@@ -91,6 +98,20 @@ public class DashBoardAdapter extends RecyclerView.Adapter<DashBoardAdapter.Dash
                 if (formattedValue > 120) {
                     viewHolder.vitalsMainTagCount.setBackgroundColor(ContextCompat.getColor(mContext, R.color.yellow));
                     viewHolder.vitalsMainTagCount.setTextColor(ContextCompat.getColor(mContext, R.color.black));
+
+                    //------------------
+                    VitalCriticalDataOfPatient vitalCriticalDataOfPatient = AppConstants.vitalCriticalDataReportOfPatient.get(patientObject.getBedNo());
+
+                    if (vitalCriticalDataOfPatient != null) {
+                        vitalCriticalDataOfPatient.setPatient(patientObject);
+                        vitalCriticalDataOfPatient.setVitalInfo(vitalInfo);
+                        vitalCriticalDataOfPatient.setHRCriticalTimeStamp(CommonMethods.convertMilliSecondsToDate(System.currentTimeMillis(), "HH:mm:ss"));
+                        AppConstants.vitalCriticalDataReportOfPatient.put(patientObject.getBedNo(), vitalCriticalDataOfPatient);
+                    } else {
+                        AppConstants.vitalCriticalDataReportOfPatient.put(patientObject.getBedNo(),
+                                new VitalCriticalDataOfPatient(patientObject, vitalInfo, null, CommonMethods.convertMilliSecondsToDate(System.currentTimeMillis(), "HH:mm:ss")));
+                    }
+                    //------------------
                 }
             } else if (name.equalsIgnoreCase("Systolic Pressure")) {
                 viewHolder.countSystolicPressure.setText(value);

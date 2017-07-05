@@ -53,4 +53,8 @@ public class CommonMethods {
         return df.format(currentDate);
 
     }
+
+    public static void printLog(String tag, String data) {
+        Log.e(tag, "" + data);
+    }
 }
