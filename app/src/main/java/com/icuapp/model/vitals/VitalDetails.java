@@ -16,6 +16,8 @@ public class VitalDetails {
     @Expose
     private String value;
 
+    private boolean animated;
+
     public String getName() {
         return name;
     }
@@ -32,4 +34,11 @@ public class VitalDetails {
         this.value = value;
     }
 
+    public boolean isAnimated() {
+        return animated;
+    }
+
+    public void setAnimated(boolean animated) {
+        this.animated = animated;
+    }
 }

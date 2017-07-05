@@ -89,6 +89,10 @@ public class AppConstants {
     public static ArrayList<VitalDetails> getVitalInfo(int timeValue) {
         HashMap<Integer, ArrayList<VitalDetails>> vitalList = allVitals.getVitalList();
         ArrayList<VitalDetails> vitalDetailses = vitalList.get(timeValue);
+        for (VitalDetails data:
+                vitalDetailses ) {
+            data.setAnimated(false);
+        }
         return vitalDetailses;
     }
 }

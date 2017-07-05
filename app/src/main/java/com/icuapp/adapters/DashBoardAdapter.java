@@ -5,12 +5,15 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.AnimationDrawable;
+import android.os.CountDownTimer;
 import android.os.Handler;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -39,6 +42,7 @@ public class DashBoardAdapter extends RecyclerView.Adapter<DashBoardAdapter.Dash
     public DashBoardAdapter(Context context, ArrayList<Patients> mSelectedPatients) {
         this.mContext = context;
         this.mSelectedPatients = mSelectedPatients;
+
     }
 
 
@@ -69,9 +73,10 @@ public class DashBoardAdapter extends RecyclerView.Adapter<DashBoardAdapter.Dash
             double formattedValue = Double.parseDouble(dataObject.getValue());
             if (name.equalsIgnoreCase("Pleth") || name.equalsIgnoreCase("SPO2")) {
                 viewHolder.countPleth.setText(value);
-                if (formattedValue < Double.parseDouble("" + 80)) {
+                if (formattedValue < Double.parseDouble("" + 90)) {
                     viewHolder.vitalsMainTagCount.setBackgroundResource(R.drawable.curve_fill_red_bg);
                     viewHolder.vitalsMainTagCount.setText("***SPO2 <80");
+                    loadAnimation(viewHolder.countPleth, dataObject);
                 }
             } else if (name.equalsIgnoreCase("Resp")) {
                 viewHolder.countResp.setText(value);
@@ -124,5 +129,36 @@ public class DashBoardAdapter extends RecyclerView.Adapter<DashBoardAdapter.Dash
             countPulse = (TextView) view.findViewById(R.id.countPulse);
             vitalsMainTagCount = (CustomTextView) view.findViewById(R.id.vitalsMainTagCount);
         }
+    }
+
+    private void loadAnimation(final View view, final VitalDetails dataObject) {
+        /*Animation anim = new AlphaAnimation(0.0f, 1.0f);
+        anim.setDuration(100);
+        anim.setStartOffset(20);
+        anim.setRepeatMode(Animation.REVERSE);
+        anim.setRepeatCount(Animation.INFINITE);
+        view.startAnimation(anim);*/
+
+        final Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                if (dataObject.isAnimated()) {
+                    view.setBackgroundColor(ContextCompat.getColor(mContext, R.color.Red));
+                    //  view.setTextColor(Color.WHITE);
+                } else {
+                    view.setBackgroundColor(Color.BLACK);
+                    //    view.setTextColor(mContext.getResources().getColor(R.color.parrot_green_color));
+                }
+
+                if (dataObject.isAnimated()) {
+                    dataObject.setAnimated(false);
+                } else {
+                    dataObject.setAnimated(true);
+                }
+                handler.postDelayed(this, 300);
+                //  drawable.start();
+            }
+        }, 200);
     }
 }
