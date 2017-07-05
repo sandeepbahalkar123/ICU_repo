@@ -82,7 +82,7 @@ public class DashBoardAdapter extends RecyclerView.Adapter<DashBoardAdapter.Dash
                 viewHolder.countPleth.setText(value);
                 if (formattedValue < Double.parseDouble("" + 90)) {
 
-                    viewHolder.vitalsMainTagCount.setBackgroundResource(R.drawable.curve_fill_red_bg);
+
                     viewHolder.vitalsMainTagCount.setText("***SPO2 <80 " + CommonMethods.convertMilliSecondsToDate(System.currentTimeMillis(), "HH:mm"));
                     loadAnimation(viewHolder.countPleth, dataObject);
                     //------------
