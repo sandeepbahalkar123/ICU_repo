@@ -126,7 +126,7 @@ public class DashboardActivity extends AppCompatActivity
         if (id == R.id.home) {
             // Handle the camera action
         } else if (id == R.id.patientList) {
-            Intent intent = new Intent(this, PatientListActivity.class);
+            Intent intent = new Intent(this, PatientListContainerActivity.class);
             startActivity(intent);
         } else if (id == R.id.logout) {
 

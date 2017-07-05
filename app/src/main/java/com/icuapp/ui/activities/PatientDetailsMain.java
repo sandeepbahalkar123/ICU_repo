@@ -11,7 +11,7 @@ import com.icuapp.R;
  * Created by hardikj on 03/07/17.
  */
 
-public class PatientDetails extends AppCompatActivity implements TabLayout.OnTabSelectedListener {
+public class PatientDetailsMain extends AppCompatActivity implements TabLayout.OnTabSelectedListener {
 
     private TabLayout tabLayout;
     private ViewPager viewPager;

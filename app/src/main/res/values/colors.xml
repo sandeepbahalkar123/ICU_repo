@@ -57,5 +57,7 @@
     <color name="parrot_green_color">#07b709</color>
     <color name="blue_color">#29aae1</color>
     <color name="rr_yellow_color">#baaa45</color>
+    <color name="loginHeader">#00ACDA</color>
+
 </resources>
 

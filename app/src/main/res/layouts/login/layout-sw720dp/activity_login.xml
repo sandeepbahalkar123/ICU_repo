@@ -6,6 +6,15 @@
     android:fitsSystemWindows="true"
     android:orientation="vertical">
 
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.5"
+        android:paddingLeft="40dp"
+        android:paddingRight="40dp"
+        android:src="@drawable/logo"
+        android:background="@color/loginHeader"/>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="@dimen/dp0"
@@ -14,30 +23,26 @@
         android:gravity="center"
         android:orientation="horizontal">
 
-        <View
-            android:layout_width="@dimen/dp0"
-            android:layout_height="match_parent"
-            android:layout_weight="0.5" />
+        <!--<View-->
+        <!--android:layout_width="@dimen/dp0"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:layout_weight="0.5" />-->
 
         <LinearLayout
-            android:layout_width="@dimen/dp0"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
             android:layout_weight="1"
             android:gravity="center"
             android:orientation="vertical">
-
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:src="@mipmap/ic_launcher" />
 
             <!--  Name Label -->
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/dp12"
+                android:layout_marginRight="12dp"
+                android:layout_marginLeft="12dp"
                 android:textColorHint="@color/white">
 
                 <EditText
@@ -55,7 +60,9 @@
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/dp12"
+                android:layout_marginTop="0dp"
+                android:layout_marginLeft="12dp"
+                android:layout_marginRight="12dp"
                 android:textColorHint="@color/white">
 
                 <EditText
@@ -74,18 +81,25 @@
                 android:id="@+id/loginButton"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/dp12"
-                android:background="@color/login_button"
+                android:layout_marginLeft="12dp"
+                android:layout_marginRight="12dp"
+                android:layout_marginTop="15dp"
+                android:background="@color/loginHeader"
                 android:text="@string/login"
                 android:textColor="@color/white" />
+
+            <TextView android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="@string/forgotPass"> </TextView>
 
 
         </LinearLayout>
 
-        <View
-            android:layout_width="@dimen/dp0"
-            android:layout_height="match_parent"
-            android:layout_weight="0.5" />
+        <!--<View-->
+        <!--android:layout_width="@dimen/dp0"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:layout_weight="0.5" />-->
     </LinearLayout>
 
 </LinearLayout>

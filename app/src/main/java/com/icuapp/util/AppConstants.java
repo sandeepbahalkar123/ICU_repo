@@ -30,8 +30,25 @@ public class AppConstants {
     public static ArrayList<Patients> getAllPatientList() {
         if (allPatients == null) {
             allPatients = new ArrayList<>();
-            for (int i = 1; i <= 15; i++) {
-                Patients st = new Patients("Patient " + i, "" + i, false);
+            ArrayList<String> arrayPatientName = new ArrayList<>();
+            arrayPatientName.add("Anant Singh ");
+            arrayPatientName.add("Ashutosh Pareek");
+            arrayPatientName.add("Atul Bhalerao");
+            arrayPatientName.add("Avnish Mall");
+            arrayPatientName.add("Datta Patil");
+            arrayPatientName.add("Deepak Sharma");
+            arrayPatientName.add("Dhiren Lokwani");
+            arrayPatientName.add("Dinesh Jagtap");
+            arrayPatientName.add("Kumar Ankit");
+            arrayPatientName.add("Kuldeep Jain");
+            arrayPatientName.add("Lomesh Pansuriya");
+            arrayPatientName.add("Mahesh Saraf");
+            arrayPatientName.add("Shiv Kumar Swami");
+            arrayPatientName.add("Shivam Dubey");
+            arrayPatientName.add("Yogesh Dhamal");
+
+            for (int i = 1; i <= 14; i++) {
+                Patients st = new Patients(arrayPatientName.get(i), "" + i, false);
                 allPatients.add(st);
             }
         }
@@ -89,8 +106,8 @@ public class AppConstants {
     public static ArrayList<VitalDetails> getVitalInfo(int timeValue) {
         HashMap<Integer, ArrayList<VitalDetails>> vitalList = allVitals.getVitalList();
         ArrayList<VitalDetails> vitalDetailses = vitalList.get(timeValue);
-        for (VitalDetails data:
-                vitalDetailses ) {
+        for (VitalDetails data :
+                vitalDetailses) {
             data.setAnimated(false);
         }
         return vitalDetailses;
