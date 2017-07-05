@@ -81,28 +81,26 @@ public class DashBoardAdapter extends RecyclerView.Adapter<DashBoardAdapter.Dash
             if (name.equalsIgnoreCase("Pleth") || name.equalsIgnoreCase("SPO2")) {
                 viewHolder.countPleth.setText(value);
                 if (formattedValue < Double.parseDouble("" + 90)) {
-
-
-                    viewHolder.vitalsMainTagCount.setText("***SPO2 <80 " + CommonMethods.convertMilliSecondsToDate(System.currentTimeMillis(), "HH:mm"));
                     loadAnimation(viewHolder.countPleth, dataObject);
                     //------------
+                    String currentTime = CommonMethods.convertMilliSecondsToDate(System.currentTimeMillis(), "HH:mm:ss");
                     VitalCriticalDataOfPatient vitalCriticalDataOfPatient = AppConstants.vitalCriticalDataReportOfPatient.get(patientObject.getBedNo());
                     if (vitalCriticalDataOfPatient != null) {
                         vitalCriticalDataOfPatient.setPatient(patientObject);
                         vitalCriticalDataOfPatient.setVitalInfo(vitalInfo);
-                        vitalCriticalDataOfPatient.setPelthOrSPO2CriticalTimeStamp(CommonMethods.convertMilliSecondsToDate(System.currentTimeMillis(), "HH:mm:ss"));
+                        vitalCriticalDataOfPatient.setPelthOrSPO2CriticalTimeStamp(currentTime);
                         AppConstants.vitalCriticalDataReportOfPatient.put(patientObject.getBedNo(), vitalCriticalDataOfPatient);
                     } else {
                         AppConstants.vitalCriticalDataReportOfPatient.put(patientObject.getBedNo(),
-                                new VitalCriticalDataOfPatient(patientObject, vitalInfo, CommonMethods.convertMilliSecondsToDate(System.currentTimeMillis(), "HH:mm:ss"), null));
+                                new VitalCriticalDataOfPatient(patientObject, vitalInfo, currentTime, null));
                     }
                     //---------------
 
                     viewHolder.mVitalsLinearLayout.setVisibility(View.VISIBLE);
+                    viewHolder.vitalsMainTagCount.setText("***SPO2 <80 " +currentTime.substring(0,5));
                     viewHolder.mVitalsLinearLayout.setBackground(mContext.getResources().getDrawable(R.drawable.curve_fill_red_bg));
-                    viewHolder.vitalsMainTagCount.setText("***SPO2 <80");
                     loadAnimation(viewHolder.countPleth, dataObject);
-                    dialogList.add("***SPO2 <80");
+                    dialogList.add("***SPO2 <80 " +currentTime.substring(0,5));
 
                 }
             } else if (name.equalsIgnoreCase("Resp")) {
@@ -116,10 +114,11 @@ public class DashBoardAdapter extends RecyclerView.Adapter<DashBoardAdapter.Dash
             } else if (name.equalsIgnoreCase("Pulse")) {
                 viewHolder.countPulse.setText(value);
                 if (formattedValue > 80) {
+                    String currentTimeHr = CommonMethods.convertMilliSecondsToDate(System.currentTimeMillis(), "HH:mm:ss");
+
                     viewHolder.mVitalsLinearLayout.setVisibility(View.VISIBLE);
                     viewHolder.mVitalsLinearLayout.setBackground(mContext.getResources().getDrawable(R.drawable.curve_fill_yellow_bg));
                     viewHolder.vitalsMainTagCount.setTextColor(ContextCompat.getColor(mContext, R.color.black));
-
 
                     //------------------
                     VitalCriticalDataOfPatient vitalCriticalDataOfPatient = AppConstants.vitalCriticalDataReportOfPatient.get(patientObject.getBedNo());
@@ -127,29 +126,24 @@ public class DashBoardAdapter extends RecyclerView.Adapter<DashBoardAdapter.Dash
                     if (vitalCriticalDataOfPatient != null) {
                         vitalCriticalDataOfPatient.setPatient(patientObject);
                         vitalCriticalDataOfPatient.setVitalInfo(vitalInfo);
-                        vitalCriticalDataOfPatient.setHRCriticalTimeStamp(CommonMethods.convertMilliSecondsToDate(System.currentTimeMillis(), "HH:mm:ss"));
+                        vitalCriticalDataOfPatient.setHRCriticalTimeStamp(currentTimeHr);
                         AppConstants.vitalCriticalDataReportOfPatient.put(patientObject.getBedNo(), vitalCriticalDataOfPatient);
                     } else {
                         AppConstants.vitalCriticalDataReportOfPatient.put(patientObject.getBedNo(),
-                                new VitalCriticalDataOfPatient(patientObject, vitalInfo, null, CommonMethods.convertMilliSecondsToDate(System.currentTimeMillis(), "HH:mm:ss")));
+                                new VitalCriticalDataOfPatient(patientObject, vitalInfo, null, currentTimeHr));
                     }
                     //------------------
 
-                    viewHolder.vitalsMainTagCount.setText("***Pulse > 120");
-                    dialogList.add("***Pulse > 120");
+                    viewHolder.vitalsMainTagCount.setText("**HR High > 120"+ " "+currentTimeHr.substring(0,5));
+                    loadAnimationHr(viewHolder.countPulse, dataObject);
+                    dialogList.add("**HR High > 120"+ " "+currentTimeHr.substring(0,5));
+
 
                 }
             } else if (name.equalsIgnoreCase("Systolic Pressure")) {
                 viewHolder.countSystolicPressure.setText(value);
             } else if (name.equalsIgnoreCase("T1")) {
                 viewHolder.countT1.setText(value);
-                if (formattedValue > 38) {
-                    viewHolder.mVitalsLinearLayout.setVisibility(View.VISIBLE);
-                    viewHolder.mVitalsLinearLayout.setBackground(mContext.getResources().getDrawable(R.drawable.curve_fill_blue_bg));
-                    viewHolder.vitalsMainTagCount.setTextColor(ContextCompat.getColor(mContext, R.color.black));
-                    viewHolder.vitalsMainTagCount.setText("* T Rect High > 38.0");
-                    dialogList.add("* T Rect High > 38.0");
-                }
             } else if (name.equalsIgnoreCase("T2")) {
                 viewHolder.countT2.setText(value);
             }
@@ -209,9 +203,13 @@ public class DashBoardAdapter extends RecyclerView.Adapter<DashBoardAdapter.Dash
             public void run() {
                 if (dataObject.isAnimated()) {
                     view.setBackgroundColor(ContextCompat.getColor(mContext, R.color.Red));
+                    TextView textView = (TextView) view.findViewById(R.id.countPleth);
+                    textView.setTextColor(ContextCompat.getColor(mContext,R.color.white));
                     //  view.setTextColor(Color.WHITE);
                 } else {
                     view.setBackgroundColor(Color.BLACK);
+                    TextView textView = (TextView) view.findViewById(R.id.countPleth);
+                    textView.setTextColor(ContextCompat.getColor(mContext,R.color.parrot_green_color));
                     //    view.setTextColor(mContext.getResources().getColor(R.color.parrot_green_color));
                 }
 
@@ -225,4 +223,40 @@ public class DashBoardAdapter extends RecyclerView.Adapter<DashBoardAdapter.Dash
             }
         }, 200);
     }
+    private void loadAnimationHr(final View view, final VitalDetails dataObject) {
+        /*Animation anim = new AlphaAnimation(0.0f, 1.0f);
+        anim.setDuration(100);
+        anim.setStartOffset(20);
+        anim.setRepeatMode(Animation.REVERSE);
+        anim.setRepeatCount(Animation.INFINITE);
+        view.startAnimation(anim);*/
+
+        final Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                if (dataObject.isAnimated()) {
+                    view.setBackgroundColor(ContextCompat.getColor(mContext, R.color.yellow));
+
+                    TextView textView = (TextView) view.findViewById(R.id.countPulse);
+                    textView.setTextColor(ContextCompat.getColor(mContext,R.color.black));
+
+                } else {
+                    view.setBackgroundColor(Color.BLACK);
+                    TextView textView = (TextView) view.findViewById(R.id.countPulse);
+                    textView.setTextColor(ContextCompat.getColor(mContext,R.color.parrot_green_color));
+                    //    view.setTextColor(mContext.getResources().getColor(R.color.parrot_green_color));
+                }
+
+                if (dataObject.isAnimated()) {
+                    dataObject.setAnimated(false);
+                } else {
+                    dataObject.setAnimated(true);
+                }
+                handler.postDelayed(this, 300);
+                //  drawable.start();
+            }
+        }, 200);
+    }
+
 }
