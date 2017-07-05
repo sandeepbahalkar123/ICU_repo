@@ -44,6 +44,23 @@ public class PatientListContainerActivity extends AppCompatActivity implements T
         PatientListContainerViewPager adapter = new PatientListContainerViewPager(getSupportFragmentManager(), tabLayout.getTabCount());
         viewPager.setAdapter(adapter);
         tabLayout.addOnTabSelectedListener(this);
+        viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+                tabLayout.setScrollPosition(position,0f,true);
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                tabLayout.setScrollPosition(position,0f,true);
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
     }
 
     @Override
