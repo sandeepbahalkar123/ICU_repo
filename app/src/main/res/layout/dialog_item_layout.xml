@@ -1,22 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_margin="@dimen/dp4"
-    android:layout_height="wrap_content" >
+    android:layout_height="wrap_content">
 
 
-    <com.icuapp.customesViews.CustomTextView
-        android:id="@+id/title"
-        android:layout_marginLeft="@dimen/dp4"
-        android:layout_marginRight="@dimen/dp4"
-        android:background="@drawable/curve_edge_white"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_toRightOf="@+id/icon"
-        android:text="Abcdddd"
-        android:layout_gravity="center_vertical"
-        android:textColor="@color/black"
-        android:textSize="16dp" />
+    <LinearLayout
+        android:id="@+id/dialogLinearLayout"
+        android:layout_width="@dimen/dp0"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:gravity="center_vertical|left"
+        android:orientation="horizontal">
+
+        <com.icuapp.customesViews.CustomTextView
+            android:id="@+id/vitalTypeName"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="@dimen/dp6"
+            android:drawableRight="@drawable/down_arrow"
+            android:gravity="center_vertical"
+            android:layout_marginRight="@dimen/dp6"
+            android:textColor="@color/black"
+            android:textSize="@dimen/sp15"
+            app:customFont="@string/roboto_regular" />
+
+    </LinearLayout>
+
 
 
 

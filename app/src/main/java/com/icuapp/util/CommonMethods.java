@@ -39,7 +39,7 @@ public class CommonMethods {
         }
     }
 
-    public static Dialog showAlertDialog(Context activity, String dialogHeader) {
+    public static Dialog showAlertDialog(Context activity, String dialogHeader, ArrayList<String> dialogList) {
         final String[] titles = new String[]{"Strawberry",
                 "Banana", "Orange", "Mixed"};
         List<RowItem> rowItems;
@@ -58,7 +58,7 @@ public class CommonMethods {
         if (dialogHeader != null)
             ((TextView) dialog.findViewById(R.id.patientDetails)).setText(dialogHeader);
         ListView listViewDialogList = (ListView) dialog.findViewById(R.id.lvDialogueList);
-        CustomBaseAdapter adapter = new CustomBaseAdapter(activity, rowItems);
+        CustomBaseAdapter adapter = new CustomBaseAdapter(activity, dialogList,dialogHeader,dialog);
         listViewDialogList.setAdapter(adapter);
 
         dialog.findViewById(R.id.button_close).setOnClickListener(new View.OnClickListener() {

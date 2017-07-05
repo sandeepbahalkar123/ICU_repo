@@ -1,5 +1,6 @@
 package com.icuapp.ui.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.graphics.drawable.VectorDrawableCompat;
@@ -22,7 +23,9 @@ public class DialogVitalDetailView extends AppCompatActivity {
         setContentView(R.layout.dialog_vital_detail_view_layout);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("Bed No.1");
+        Intent intent = getIntent();
+        String mToolBarTitle = intent.getStringExtra("TITLE");
+        getSupportActionBar().setTitle(mToolBarTitle);
 
         toolbar.setNavigationIcon(VectorDrawableCompat.create(getResources(), R.drawable.ic_arrow_back_white_24dp, null));
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {

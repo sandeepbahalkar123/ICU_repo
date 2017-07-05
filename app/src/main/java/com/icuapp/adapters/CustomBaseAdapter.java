@@ -1,34 +1,41 @@
 package com.icuapp.adapters;
 
 import android.app.Activity;
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
+import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.icuapp.R;
-import com.icuapp.model.RowItem;
 import com.icuapp.ui.activities.DialogVitalDetailView;
 
-import java.util.List;
+import java.util.ArrayList;
 
 public class CustomBaseAdapter extends BaseAdapter {
-    Context context;
-    List<RowItem> rowItems;
+    private Context context;
+    private ArrayList<String> rowItems;
+    private String mToolBarTitle;
+    private  Dialog mDialog;
      
-    public CustomBaseAdapter(Context context, List<RowItem> items) {
+    public CustomBaseAdapter(Context context, ArrayList<String> items, String toolBarTitle, Dialog dialog) {
         this.context = context;
         this.rowItems = items;
+        this.mToolBarTitle = toolBarTitle;
+        this.mDialog = dialog;
     }
      
     /*private view holder class*/
     private class ViewHolder {
 
-        TextView txtTitle;
+        TextView mTxtTitle;
+        LinearLayout mDialogLinearLayout;
 
     }
  
@@ -40,20 +47,35 @@ public class CustomBaseAdapter extends BaseAdapter {
         if (convertView == null) {
             convertView = mInflater.inflate(R.layout.dialog_item_layout, null);
             holder = new ViewHolder();
-            holder.txtTitle = (TextView) convertView.findViewById(R.id.title);
+            holder.mTxtTitle = (TextView) convertView.findViewById(R.id.vitalTypeName);
+            holder.mDialogLinearLayout = (LinearLayout)convertView.findViewById(R.id.dialogLinearLayout) ;
             convertView.setTag(holder);
         }
         else {
             holder = (ViewHolder) convertView.getTag();
         }
-         
-        RowItem rowItem = (RowItem) getItem(position);
-        holder.txtTitle.setText(rowItem.getTitle());
-     holder.txtTitle.setOnClickListener(new View.OnClickListener() {
+        String vitalName = rowItems.get(position);
+        if(vitalName.equals("***SPO2 <80")){
+            holder.mDialogLinearLayout.setBackgroundColor(ContextCompat.getColor(context, R.color.Red));
+
+        }else if(vitalName.equals("***Pulse > 120")){
+            holder.mDialogLinearLayout.setBackgroundColor(ContextCompat.getColor(context, R.color.yellow));
+
+        }else if(vitalName.equals("* T Rect High > 38.0")){
+            holder.mDialogLinearLayout.setBackgroundColor(ContextCompat.getColor(context, R.color.notification_header_text));
+
+        }
+
+
+        holder.mTxtTitle.setText(rowItems.get(position));
+     holder.mTxtTitle.setOnClickListener(new View.OnClickListener() {
          @Override
          public void onClick(View v) {
+             mDialog.dismiss();
              Intent intent = new Intent(context, DialogVitalDetailView.class);
+             intent.putExtra("TITLE",mToolBarTitle);
              context.startActivity(intent);
+
 
          }
      });

@@ -16,8 +16,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/dp10"
             android:layout_marginRight="@dimen/dp10"
-            android:background="@color/white"
-            android:orientation="horizontal">
+            android:background="@color/white">
 
             <com.icuapp.customesViews.CustomTextView
                 android:id="@+id/bedNo"
@@ -61,30 +60,40 @@
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@color/white"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_marginBottom="@dimen/dp4"
+            android:layout_marginLeft="@dimen/dp10"
+            android:layout_marginTop="@dimen/dp4"
             android:orientation="horizontal">
 
-            <com.icuapp.customesViews.CustomTextView
-                android:id="@+id/vitalsCount"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/dp6"
-                android:layout_marginLeft="@dimen/dp10"
-                android:layout_marginTop="@dimen/dp2"
-                android:layout_weight="2"
+            <LinearLayout
+                android:id="@+id/vitalsLinearLayout"
+                android:layout_width="@dimen/dp0"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center_vertical|left"
                 android:background="@drawable/curve_fill_yellow_bg"
-                android:drawablePadding="@dimen/dp16"
-                android:drawableRight="@drawable/down_arrow"
-                android:paddingBottom="@dimen/dp4"
-                android:paddingLeft="@dimen/dp8"
-                android:paddingRight="@dimen/dp4"
-                android:paddingTop="@dimen/dp4"
-                android:text="***SPO2 High"
-                android:textColor="@color/black"
-                android:textSize="@dimen/sp15"
-                app:customFont="@string/roboto_medium" />
+                android:orientation="horizontal">
+
+                <com.icuapp.customesViews.CustomTextView
+                    android:id="@+id/vitalsMainTagCount"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="@dimen/dp6"
+                    android:drawableRight="@drawable/down_arrow"
+                    android:gravity="center_vertical"
+                    android:layout_marginRight="@dimen/dp6"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/sp15"
+                    app:customFont="@string/roboto_regular" />
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="@dimen/dp0"
+                android:layout_height="match_parent"
+                android:layout_weight="1" />
 
         </LinearLayout>
 
@@ -139,7 +148,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="left"
-                        android:text="PVC"
+                        android:text="SP02"
                         android:textColor="@color/parrot_green_color"
                         android:textSize="@dimen/sp12"
                         android:textStyle="bold"
@@ -361,10 +370,37 @@
                         app:customFont="@string/roboto_bold" />
 
                 </LinearLayout>
+                <LinearLayout
+                    android:visibility="invisible"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <com.icuapp.customesViews.CustomTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="left"
+                        android:text="T2"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/sp12"
+                        app:customFont="@string/roboto_regular" />
+
+                    <com.icuapp.customesViews.CustomTextView
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="right"
+                        android:text="81"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/sp30"
+                        app:customFont="@string/roboto_bold" />
+
+                </LinearLayout>
 
 
             </LinearLayout>
         </HorizontalScrollView>
+
     </LinearLayout>
 
 </LinearLayout>

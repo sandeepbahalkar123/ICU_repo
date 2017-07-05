@@ -33,10 +33,10 @@
         <Button
                 android:id="@+id/button_close"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="30dp"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
-                android:background="@drawable/curve_edge_white"
+                android:background="@color/white"
                 android:text="@string/close"
                 android:textSize="@dimen/sp10"
                 android:textAllCaps="false"

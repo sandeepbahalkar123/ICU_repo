@@ -7,16 +7,21 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/dp10"
         android:background="@color/white"
         android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/dp10"
-            android:layout_marginRight="@dimen/dp10"
-            android:background="@color/white">
+            android:background="@color/tagColor"
+            >
+            <ImageView
+                android:id="@+id/backArrow"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left|center_vertical"
+                android:layout_weight="0.1"
+                app:srcCompat="@drawable/ic_arrow_back_white_24dp" />
 
             <com.icuapp.customesViews.CustomTextView
                 android:id="@+id/bedNo"
@@ -26,7 +31,7 @@
                 android:gravity="center_vertical"
                 android:paddingLeft="@dimen/dp2"
                 android:text="Bed No. 0"
-                android:textColor="@color/tagColor"
+                android:textColor="@color/white"
                 android:textSize="20sp"
                 android:textStyle="bold"
                 app:customFont="@string/roboto_bold" />
@@ -40,7 +45,7 @@
                 android:gravity="center_vertical"
                 android:paddingLeft="@dimen/dp8"
                 android:text="Barbara"
-                android:textColor="@color/grey_800"
+                android:textColor="@color/white"
                 android:textSize="20sp"
                 app:customFont="@string/roboto_bold" />
 
@@ -49,7 +54,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.5"
-                android:background="@drawable/curve_fill_blue_bg"
+                android:background="@drawable/curve_fill_red_bg"
                 android:gravity="center"
                 android:paddingBottom="@dimen/dp4"
                 android:paddingTop="@dimen/dp4"
@@ -61,39 +66,24 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="30dp"
-            android:layout_marginBottom="@dimen/dp4"
-            android:layout_marginLeft="@dimen/dp10"
-            android:layout_marginTop="@dimen/dp4"
+            android:layout_height="wrap_content"
+            android:background="@color/tagColor"
             android:orientation="horizontal">
 
-            <LinearLayout
-                android:id="@+id/vitalsLinearLayout"
-                android:layout_width="@dimen/dp0"
+            <com.icuapp.customesViews.CustomTextView
+                android:id="@+id/vitalsMainTagCount"
+                android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="center_vertical|left"
+                android:layout_marginTop="@dimen/dp4"
+                android:layout_marginLeft="@dimen/dp16"
+                android:layout_marginBottom="@dimen/dp4"
                 android:background="@drawable/curve_fill_yellow_bg"
-                android:orientation="horizontal">
-
-                <com.icuapp.customesViews.CustomTextView
-                    android:id="@+id/vitalsMainTagCount"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginLeft="@dimen/dp6"
-                    android:drawableRight="@drawable/down_arrow"
-                    android:gravity="center_vertical"
-                    android:layout_marginRight="@dimen/dp6"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/sp15"
-                    app:customFont="@string/roboto_regular" />
-
-            </LinearLayout>
-
-            <TextView
-                android:layout_width="@dimen/dp0"
-                android:layout_height="match_parent"
-                android:layout_weight="1" />
+                android:drawablePadding="@dimen/dp16"
+                android:drawableRight="@drawable/down_arrow"
+                android:text="***SPO2 High"
+                android:textColor="@color/black"
+                android:textSize="@dimen/sp15"
+                app:customFont="@string/roboto_medium" />
 
         </LinearLayout>
 
@@ -370,37 +360,26 @@
                         app:customFont="@string/roboto_bold" />
 
                 </LinearLayout>
-                <LinearLayout
-                    android:visibility="invisible"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-
-                    <com.icuapp.customesViews.CustomTextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="left"
-                        android:text="T2"
-                        android:textColor="@color/white"
-                        android:textSize="@dimen/sp12"
-                        app:customFont="@string/roboto_regular" />
-
-                    <com.icuapp.customesViews.CustomTextView
-
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="right"
-                        android:text="81"
-                        android:textColor="@color/white"
-                        android:textSize="@dimen/sp30"
-                        app:customFont="@string/roboto_bold" />
-
-                </LinearLayout>
 
 
             </LinearLayout>
         </HorizontalScrollView>
 
+        <android.support.design.widget.AppBarLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <android.support.design.widget.TabLayout
+                android:id="@+id/tabFragmentDetailView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:tabGravity="fill"
+                app:tabMode="scrollable" />
+        </android.support.design.widget.AppBarLayout>
+        <android.support.v4.view.ViewPager
+            android:id="@+id/viewpagerDetailView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior" />
     </LinearLayout>
 
 </LinearLayout>
