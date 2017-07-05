@@ -1,8 +1,25 @@
 package com.icuapp.util;
 
+import android.app.Activity;
+import android.app.Dialog;
+import android.content.Context;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.support.design.widget.Snackbar;
 import android.util.Log;
 import android.view.View;
+import android.view.Window;
+import android.widget.EditText;
+import android.widget.ListView;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import com.icuapp.R;
+import com.icuapp.adapters.CustomBaseAdapter;
+import com.icuapp.model.RowItem;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -25,7 +42,46 @@ public class CommonMethods {
         }
     }
 
+
+    public static Dialog showAlertDialog(Context activity, String dialogHeader, ArrayList<String> dialogList) {
+        final String[] titles = new String[]{"Strawberry",
+                "Banana", "Orange", "Mixed"};
+        List<RowItem> rowItems;
+        final Context mContext = activity;
+        final Dialog dialog = new Dialog(activity);
+        rowItems = new ArrayList<RowItem>();
+        for (int i = 0; i < titles.length; i++) {
+            RowItem item = new RowItem(titles[i]);
+            rowItems.add(item);
+        }
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setContentView(R.layout.show_dialog_layout);
+        dialog.setCanceledOnTouchOutside(false);
+        dialog.setCancelable(false);
+        if (dialogHeader != null)
+            ((TextView) dialog.findViewById(R.id.patientDetails)).setText(dialogHeader);
+        ListView listViewDialogList = (ListView) dialog.findViewById(R.id.lvDialogueList);
+        CustomBaseAdapter adapter = new CustomBaseAdapter(activity, dialogList,dialogHeader,dialog);
+        listViewDialogList.setAdapter(adapter);
+
+        dialog.findViewById(R.id.button_close).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                dialog.dismiss();
+            }
+        });
+
+        dialog.show();
+
+        return dialog;
+    }
+
+
+
     public static int generateRandomEvenNumber() {
+
         int min = 0, max = 60;
         Random rand = new Random();
         min = min % 2 == 1 ? min + 1 : min; // If min is odd, add one to make sure the integer division can´t create a number smaller min;
@@ -35,6 +91,7 @@ public class CommonMethods {
         Log.e(TAG, "generateEvenNumber : " + i);
 
         return i; // multiply by 2 to make the number even
+
     }
 
     public static String convertMilliSecondsToDate(long miliSeconds, String dateFormat) {
@@ -58,3 +115,4 @@ public class CommonMethods {
         Log.e(tag, "" + data);
     }
 }
+

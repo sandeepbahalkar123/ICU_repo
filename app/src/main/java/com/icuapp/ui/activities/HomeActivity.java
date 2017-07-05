@@ -76,11 +76,9 @@ public class HomeActivity extends AppCompatActivity
 
         if (id == R.id.home) {
             // Handle the camera action
-        } else if (id == R.id.patientList) {
+        } else if (id == R.id.patient) {
             Intent intent = new Intent(this, PatientListActivity.class);
             startActivity(intent);
-        } else if (id == R.id.logout) {
-
         }
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);

@@ -15,6 +15,8 @@ public class VitalDetails {
     @SerializedName("value")
     @Expose
     private String value;
+    private boolean isAnimated = false;
+
 
     private boolean animated;
 

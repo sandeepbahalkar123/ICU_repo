@@ -23,9 +23,7 @@ public class PatientListContainerActivity extends AppCompatActivity implements T
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.patient_list_container_layout);
-
         toolbar = (Toolbar) findViewById(R.id.toolbar);
-
         toolbar.setTitle("Patients");
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -34,7 +32,7 @@ public class PatientListContainerActivity extends AppCompatActivity implements T
 
     private void setupHomeView() {
         //setup tablayout
-        tabLayout = (TabLayout) findViewById(R.id.patientListTabLayout);
+        tabLayout = (TabLayout) findViewById(R.id.tabs);
         //Adding the tabs using addTab() method
         tabLayout.addTab(tabLayout.newTab().setText("CCU"));
         tabLayout.addTab(tabLayout.newTab().setText("ICU"));
@@ -42,7 +40,7 @@ public class PatientListContainerActivity extends AppCompatActivity implements T
         tabLayout.addTab(tabLayout.newTab().setText("NICU"));
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
         //Setup ViewPager
-        viewPager = (ViewPager) findViewById(R.id.patientListViewPager);
+        viewPager = (ViewPager) findViewById(R.id.viewpager);
         PatientListContainerViewPager adapter = new PatientListContainerViewPager(getSupportFragmentManager(), tabLayout.getTabCount());
         viewPager.setAdapter(adapter);
         tabLayout.addOnTabSelectedListener(this);

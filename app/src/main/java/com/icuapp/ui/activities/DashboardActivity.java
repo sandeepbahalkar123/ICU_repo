@@ -17,15 +17,11 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-
 import com.icuapp.R;
 import com.icuapp.adapters.DashBoardAdapter;
-import com.icuapp.model.Movie;
 import com.icuapp.util.AppConstants;
 import com.icuapp.util.CommonMethods;
 
-import java.util.ArrayList;
-import java.util.List;
 
 public class DashboardActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -125,13 +121,11 @@ public class DashboardActivity extends AppCompatActivity
 
         if (id == R.id.home) {
             // Handle the camera action
-        } else if (id == R.id.patientList) {
+
+        } else if (id == R.id.patient) {
             Intent intent = new Intent(this, PatientListContainerActivity.class);
             startActivity(intent);
-        } else if (id == R.id.logout) {
-
         }
-
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
