@@ -73,7 +73,6 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center_vertical|left"
-                android:background="@drawable/curve_fill_yellow_bg"
                 android:orientation="horizontal">
 
                 <com.icuapp.customesViews.CustomTextView
