@@ -17,13 +17,8 @@ public class VitalDetails {
     private String value;
     private boolean isAnimated = false;
 
-    public boolean isAnimated() {
-        return isAnimated;
-    }
 
-    public void setAnimated(boolean animated) {
-        isAnimated = animated;
-    }
+    private boolean animated;
 
     public String getName() {
         return name;
@@ -41,4 +36,11 @@ public class VitalDetails {
         this.value = value;
     }
 
+    public boolean isAnimated() {
+        return animated;
+    }
+
+    public void setAnimated(boolean animated) {
+        this.animated = animated;
+    }
 }

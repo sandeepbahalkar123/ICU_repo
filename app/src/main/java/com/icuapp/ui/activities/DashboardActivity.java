@@ -14,11 +14,13 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import com.icuapp.R;
 import com.icuapp.adapters.DashBoardAdapter;
 import com.icuapp.util.AppConstants;
+import com.icuapp.util.CommonMethods;
 
 
 public class DashboardActivity extends AppCompatActivity
@@ -61,9 +63,13 @@ public class DashboardActivity extends AppCompatActivity
             @Override
             public void run() {
                 //Do something after 100ms
+
+                Log.e("DashBoard Activity", "convertMilliSecondsToDate->" + CommonMethods.convertMilliSecondsToDate(System.currentTimeMillis(), "HH:mm:ss"));
+
                 mAdapter = new DashBoardAdapter(DashboardActivity.this, AppConstants.getSelectedPatientList());
                 recyclerView.setAdapter(mAdapter);
                 mHandler.postDelayed(this, 2000);
+
             }
         };
 
@@ -115,8 +121,9 @@ public class DashboardActivity extends AppCompatActivity
 
         if (id == R.id.home) {
             // Handle the camera action
+
         } else if (id == R.id.patient) {
-            Intent intent = new Intent(this, PatientListActivity.class);
+            Intent intent = new Intent(this, PatientListContainerActivity.class);
             startActivity(intent);
         }
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

@@ -18,9 +18,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.activities.PatientDetails" />
+        <activity android:name=".ui.activities.PatientDetailsMain"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".ui.activities.ECGGraphDetail" />
-        <activity android:name=".ui.activities.VitalHistoryDetail"/>
+        <activity android:name=".ui.activities.VitalHistoryDetail" />
 
         <activity
             android:name=".ui.activities.LoginActivity"
@@ -39,9 +40,15 @@
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity
+
             android:name=".ui.activities.DialogVitalDetailView"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
+            android:name=".ui.activities.PatientListContainerActivity"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme.NoActionBar" />
+
     </application>
 
 </manifest>

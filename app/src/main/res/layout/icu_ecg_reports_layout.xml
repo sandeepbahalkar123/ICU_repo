@@ -7,7 +7,6 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/white"
         android:orientation="vertical">
 
         <LinearLayout
@@ -15,6 +14,12 @@
             android:layout_height="wrap_content"
             android:background="@color/tagColor"
             >
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/tagColor"
+                android:layout_marginTop="@dimen/dp8"
+                >
             <ImageView
                 android:id="@+id/backArrow"
                 android:layout_width="wrap_content"
@@ -28,7 +33,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.5"
-                android:gravity="center_vertical"
+                android:layout_gravity="center_vertical"
                 android:paddingLeft="@dimen/dp2"
                 android:text="Bed No. 0"
                 android:textColor="@color/white"
@@ -57,34 +62,49 @@
                 android:background="@drawable/curve_fill_red_bg"
                 android:gravity="center"
                 android:paddingBottom="@dimen/dp4"
+                android:layout_marginRight="@dimen/dp8"
                 android:paddingTop="@dimen/dp4"
                 android:text="Order"
                 android:textColor="@color/white"
                 android:textSize="@dimen/sp16"
                 app:customFont="@string/roboto_regular" />
         </LinearLayout>
-
+</LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/tagColor"
+
             android:orientation="horizontal">
 
-            <com.icuapp.customesViews.CustomTextView
-                android:id="@+id/vitalsMainTagCount"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+            <LinearLayout
+                android:id="@+id/vitalsLinearLayout"
+                android:layout_width="@dimen/dp0"
+                android:layout_height="30dp"
                 android:layout_marginTop="@dimen/dp4"
                 android:layout_marginLeft="@dimen/dp16"
-                android:layout_marginBottom="@dimen/dp4"
+                android:layout_weight="1"   android:layout_marginBottom="@dimen/dp4"
                 android:background="@drawable/curve_fill_yellow_bg"
-                android:drawablePadding="@dimen/dp16"
-                android:drawableRight="@drawable/down_arrow"
-                android:text="***SPO2 High"
-                android:textColor="@color/black"
-                android:textSize="@dimen/sp15"
-                app:customFont="@string/roboto_medium" />
+                android:gravity="center_vertical|left"
+                android:orientation="horizontal">
 
+                <com.icuapp.customesViews.CustomTextView
+                    android:id="@+id/vitalsMainTagCount"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:drawableRight="@drawable/down_arrow"
+                    android:gravity="center_vertical"
+                    android:text="*** SP02 High"
+                    android:layout_marginRight="@dimen/dp6"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/sp15"
+                    app:customFont="@string/roboto_regular" />
+
+            </LinearLayout>
+            <TextView
+                android:layout_width="@dimen/dp0"
+                android:layout_height="match_parent"
+                android:layout_weight="1" />
         </LinearLayout>
 
         <HorizontalScrollView
@@ -364,7 +384,6 @@
 
             </LinearLayout>
         </HorizontalScrollView>
-
         <android.support.design.widget.AppBarLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
@@ -373,8 +392,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:tabGravity="fill"
+                app:tabIndicatorColor="@color/white"
+                app:tabTextColor="@color/white"
+                app:tabSelectedTextColor="@color/white"
                 app:tabMode="scrollable" />
         </android.support.design.widget.AppBarLayout>
+
         <android.support.v4.view.ViewPager
             android:id="@+id/viewpagerDetailView"
             android:layout_width="match_parent"

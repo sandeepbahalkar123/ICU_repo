@@ -21,5 +21,6 @@
     <!-- Strings related to login -->
     <string name="error_empty_fields">Please enter username/password</string>
     <string name="demo_user">Demo</string>
+    <string name="forgotPass">Forgot Password </string>
 
 </resources>
