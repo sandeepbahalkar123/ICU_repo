@@ -58,7 +58,7 @@ public class CustomBaseAdapter extends BaseAdapter {
         if(vitalName.equals("***SPO2 <80")){
             holder.mDialogLinearLayout.setBackgroundColor(ContextCompat.getColor(context, R.color.Red));
 
-        }else if(vitalName.equals("***Pulse > 120")){
+        }else if(vitalName.equals("**HR High > 120")){
             holder.mDialogLinearLayout.setBackgroundColor(ContextCompat.getColor(context, R.color.yellow));
 
         }else if(vitalName.equals("* T Rect High > 38.0")){

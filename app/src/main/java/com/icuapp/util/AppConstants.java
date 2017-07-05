@@ -5,6 +5,7 @@ import android.util.Log;
 
 import com.google.gson.Gson;
 import com.icuapp.model.Patients;
+import com.icuapp.model.vitals.VitalCriticalDataOfPatient;
 import com.icuapp.model.vitals.VitalDetails;
 import com.icuapp.model.vitals.VitalsMainModel;
 
@@ -23,6 +24,7 @@ public class AppConstants {
     private static VitalsMainModel allVitals = null;
 
     private static HashMap<String, String> definedVitalsConstants = new HashMap<>();
+    public static HashMap<String, VitalCriticalDataOfPatient> vitalCriticalDataReportOfPatient = new HashMap<>();
 
     public AppConstants(Context context) {
     }

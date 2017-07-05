@@ -91,8 +91,9 @@ public class DashBoardAdapter extends RecyclerView.Adapter<DashBoardAdapter.Dash
                         viewHolder.mVitalsLinearLayout.setVisibility(View.VISIBLE);
                         viewHolder.mVitalsLinearLayout.setBackground(mContext.getResources().getDrawable(R.drawable.curve_fill_yellow_bg));
                         viewHolder.vitalsMainTagCount.setTextColor(ContextCompat.getColor(mContext, R.color.black));
-                        viewHolder.vitalsMainTagCount.setText("***Pulse > 120");
-                        dialogList.add("***Pulse > 120");
+                        viewHolder.vitalsMainTagCount.setText("**HR High > 120");
+                        loadAnimation(viewHolder.countPulse, dataObject);
+                        dialogList.add("**HR High > 120");
                     }
                 } else if (name.equalsIgnoreCase("Systolic Pressure")) {
                     viewHolder.countSystolicPressure.setText(value);
@@ -109,7 +110,7 @@ public class DashBoardAdapter extends RecyclerView.Adapter<DashBoardAdapter.Dash
                     viewHolder.countT2.setText(value);
 
                 }
-            } else if (name.equalsIgnoreCase("Resp")) {
+            }else if (name.equalsIgnoreCase("Resp")) {
                 viewHolder.countResp.setText(value);
             } else if (name.equalsIgnoreCase("CVP")) {
                 viewHolder.countCvp.setText(value);
@@ -123,8 +124,9 @@ public class DashBoardAdapter extends RecyclerView.Adapter<DashBoardAdapter.Dash
                     viewHolder.mVitalsLinearLayout.setVisibility(View.VISIBLE);
                     viewHolder.mVitalsLinearLayout.setBackground(mContext.getResources().getDrawable(R.drawable.curve_fill_yellow_bg));
                     viewHolder.vitalsMainTagCount.setTextColor(ContextCompat.getColor(mContext, R.color.black));
-                    viewHolder.vitalsMainTagCount.setText("***Pulse > 120");
-                    dialogList.add("***Pulse > 120");
+                    viewHolder.vitalsMainTagCount.setText("**HR High > 120");
+                    loadAnimationHr(viewHolder.countPulse, dataObject);
+                    dialogList.add("**HR High > 120");
                 }
             } else if (name.equalsIgnoreCase("Systolic Pressure")) {
                 viewHolder.countSystolicPressure.setText(value);
@@ -196,9 +198,13 @@ public class DashBoardAdapter extends RecyclerView.Adapter<DashBoardAdapter.Dash
             public void run() {
                 if (dataObject.isAnimated()) {
                     view.setBackgroundColor(ContextCompat.getColor(mContext, R.color.Red));
+                    TextView textView = (TextView) view.findViewById(R.id.countPleth);
+                    textView.setTextColor(ContextCompat.getColor(mContext,R.color.white));
                     //  view.setTextColor(Color.WHITE);
                 } else {
                     view.setBackgroundColor(Color.BLACK);
+                    TextView textView = (TextView) view.findViewById(R.id.countPleth);
+                    textView.setTextColor(ContextCompat.getColor(mContext,R.color.parrot_green_color));
                     //    view.setTextColor(mContext.getResources().getColor(R.color.parrot_green_color));
                 }
 
@@ -212,4 +218,40 @@ public class DashBoardAdapter extends RecyclerView.Adapter<DashBoardAdapter.Dash
             }
         }, 200);
     }
+    private void loadAnimationHr(final View view, final VitalDetails dataObject) {
+        /*Animation anim = new AlphaAnimation(0.0f, 1.0f);
+        anim.setDuration(100);
+        anim.setStartOffset(20);
+        anim.setRepeatMode(Animation.REVERSE);
+        anim.setRepeatCount(Animation.INFINITE);
+        view.startAnimation(anim);*/
+
+        final Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                if (dataObject.isAnimated()) {
+                    view.setBackgroundColor(ContextCompat.getColor(mContext, R.color.yellow));
+
+                    TextView textView = (TextView) view.findViewById(R.id.countPulse);
+                    textView.setTextColor(ContextCompat.getColor(mContext,R.color.black));
+
+                } else {
+                    view.setBackgroundColor(Color.BLACK);
+                    TextView textView = (TextView) view.findViewById(R.id.countPulse);
+                    textView.setTextColor(ContextCompat.getColor(mContext,R.color.parrot_green_color));
+                    //    view.setTextColor(mContext.getResources().getColor(R.color.parrot_green_color));
+                }
+
+                if (dataObject.isAnimated()) {
+                    dataObject.setAnimated(false);
+                } else {
+                    dataObject.setAnimated(true);
+                }
+                handler.postDelayed(this, 300);
+                //  drawable.start();
+            }
+        }, 200);
+    }
+
 }
