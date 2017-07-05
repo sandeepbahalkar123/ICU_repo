@@ -77,8 +77,6 @@ public class DashBoardAdapter extends RecyclerView.Adapter<DashBoardAdapter.Dash
                     viewHolder.vitalsMainTagCount.setText("***SPO2 <80");
                     loadAnimation(viewHolder.countPleth, dataObject);
                     dialogList.add("***SPO2 <80");
-
-
                 } else if (name.equalsIgnoreCase("Resp")) {
                     viewHolder.countResp.setText(value);
                 } else if (name.equalsIgnoreCase("CVP")) {
