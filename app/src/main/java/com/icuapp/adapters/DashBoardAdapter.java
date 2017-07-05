@@ -18,8 +18,8 @@ import com.icuapp.model.Patients;
 import com.icuapp.model.vitals.VitalDetails;
 import com.icuapp.util.AppConstants;
 import com.icuapp.util.CommonMethods;
-import java.util.ArrayList;
 
+import java.util.ArrayList;
 
 
 public class DashBoardAdapter extends RecyclerView.Adapter<DashBoardAdapter.DashBoardViewHolder> {
@@ -70,13 +70,13 @@ public class DashBoardAdapter extends RecyclerView.Adapter<DashBoardAdapter.Dash
             double formattedValue = Double.parseDouble(dataObject.getValue());
             if (name.equalsIgnoreCase("Pleth") || name.equalsIgnoreCase("SPO2")) {
                 viewHolder.countPleth.setText(value);
-
                 if (formattedValue < Double.parseDouble("" + 90)) {
                     viewHolder.mVitalsLinearLayout.setVisibility(View.VISIBLE);
                     viewHolder.mVitalsLinearLayout.setBackground(mContext.getResources().getDrawable(R.drawable.curve_fill_red_bg));
                     viewHolder.vitalsMainTagCount.setText("***SPO2 <80");
                     loadAnimation(viewHolder.countPleth, dataObject);
                     dialogList.add("***SPO2 <80");
+
                 } else if (name.equalsIgnoreCase("Resp")) {
                     viewHolder.countResp.setText(value);
                 } else if (name.equalsIgnoreCase("CVP")) {
@@ -107,17 +107,49 @@ public class DashBoardAdapter extends RecyclerView.Adapter<DashBoardAdapter.Dash
                     }
                 } else if (name.equalsIgnoreCase("T2")) {
                     viewHolder.countT2.setText(value);
-                }
-            }
-            viewHolder.vitalsMainTagCount.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    CommonMethods.showAlertDialog(mContext, "Bed No." + patientObject.getBedNo() + " " + patientObject.getPatientName(), dialogList);
-                }
-            });
 
+                }
+            } else if (name.equalsIgnoreCase("Resp")) {
+                viewHolder.countResp.setText(value);
+            } else if (name.equalsIgnoreCase("CVP")) {
+                viewHolder.countCvp.setText(value);
+            } else if (name.equalsIgnoreCase("ICP")) {
+                viewHolder.countIcp.setText(value);
+            } else if (name.equalsIgnoreCase("PAP")) {
+                viewHolder.countPap.setText(value);
+            } else if (name.equalsIgnoreCase("Pulse")) {
+                viewHolder.countPulse.setText(value);
+                if (formattedValue > 80) {
+                    viewHolder.mVitalsLinearLayout.setVisibility(View.VISIBLE);
+                    viewHolder.mVitalsLinearLayout.setBackground(mContext.getResources().getDrawable(R.drawable.curve_fill_yellow_bg));
+                    viewHolder.vitalsMainTagCount.setTextColor(ContextCompat.getColor(mContext, R.color.black));
+                    viewHolder.vitalsMainTagCount.setText("***Pulse > 120");
+                    dialogList.add("***Pulse > 120");
+                }
+            } else if (name.equalsIgnoreCase("Systolic Pressure")) {
+                viewHolder.countSystolicPressure.setText(value);
+            } else if (name.equalsIgnoreCase("T1")) {
+                viewHolder.countT1.setText(value);
+                if (formattedValue > 38) {
+                    viewHolder.mVitalsLinearLayout.setVisibility(View.VISIBLE);
+                    viewHolder.mVitalsLinearLayout.setBackground(mContext.getResources().getDrawable(R.drawable.curve_fill_blue_bg));
+                    viewHolder.vitalsMainTagCount.setTextColor(ContextCompat.getColor(mContext, R.color.black));
+                    viewHolder.vitalsMainTagCount.setText("* T Rect High > 38.0");
+                    dialogList.add("* T Rect High > 38.0");
+                }
+            } else if (name.equalsIgnoreCase("T2")) {
+                viewHolder.countT2.setText(value);
+            }
         }
+        viewHolder.vitalsMainTagCount.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                CommonMethods.showAlertDialog(mContext, "Bed No." + patientObject.getBedNo() + " " + patientObject.getPatientName(), dialogList);
+            }
+        });
+
     }
+
 
     @Override
     public int getItemCount() {
@@ -133,7 +165,7 @@ public class DashBoardAdapter extends RecyclerView.Adapter<DashBoardAdapter.Dash
 
         public DashBoardViewHolder(View view) {
             super(view);
-            mVitalsLinearLayout = (LinearLayout)view.findViewById(R.id.vitalsLinearLayout) ;
+            mVitalsLinearLayout = (LinearLayout) view.findViewById(R.id.vitalsLinearLayout);
             patientName = (TextView) view.findViewById(R.id.patientName);
             bedNo = (TextView) view.findViewById(R.id.bedNo);
             countPleth = (TextView) view.findViewById(R.id.countPleth); // THIS IS SP02
@@ -147,6 +179,7 @@ public class DashBoardAdapter extends RecyclerView.Adapter<DashBoardAdapter.Dash
             countPulse = (TextView) view.findViewById(R.id.countPulse);
             vitalsMainTagCount = (CustomTextView) view.findViewById(R.id.vitalsMainTagCount);
         }
+
     }
 
     private void loadAnimation(final View view, final VitalDetails dataObject) {
