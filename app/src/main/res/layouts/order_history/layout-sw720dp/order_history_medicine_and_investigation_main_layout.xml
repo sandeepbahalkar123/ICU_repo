@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            app:layout_scrollFlags="scroll|enterAlways"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
+    </android.support.design.widget.AppBarLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp40"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <com.icuapp.customesViews.CustomTextView
+                android:layout_width="@dimen/dp0"
+                android:layout_height="match_parent"
+                android:layout_weight="0.5"
+                android:gravity="center|left"
+                android:text="Select"
+                android:textColor="@color/black"
+                android:textSize="@dimen/sp17"
+                app:customFont="@string/roboto_bold" />
+
+            <com.icuapp.customesViews.CustomTextView
+                android:id="@+id/selectDate"
+                android:layout_width="@dimen/dp0"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/rectangle_edge_recentblue"
+                android:drawablePadding="@dimen/dp5"
+                android:drawableRight="@drawable/calendar"
+                android:gravity="center|left"
+                android:textColor="@color/black"
+                android:textSize="@dimen/sp17"
+                app:customFont="@string/roboto_bold" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp40"
+            android:layout_marginTop="@dimen/dp10"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <RadioGroup
+                android:id="@+id/radioGroup"
+                android:layout_width="@dimen/dp0"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_weight="0.5"
+                android:gravity="center|left"
+                android:orientation="vertical">
+
+                <RadioButton
+                    android:id="@+id/medicine"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:checked="false"
+                    android:text="Medicines" />
+
+                <RadioButton
+                    android:id="@+id/investigations"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:checked="false"
+                    android:text="Investigations" />
+            </RadioGroup>
+
+            <AutoCompleteTextView
+                android:id="@+id/selectedMedicine"
+                android:layout_width="@dimen/dp0"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/rectangle_edge_recentblue"
+                android:gravity="center|left"
+                android:text="Select"
+                android:textColor="@color/black"
+                android:textSize="@dimen/sp17" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp40"
+            android:layout_marginTop="@dimen/dp10"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <com.icuapp.customesViews.CustomTextView
+                android:layout_width="@dimen/dp0"
+                android:layout_height="match_parent"
+                android:layout_weight="0.5"
+                android:gravity="center|left"
+                android:text="Select"
+                android:textColor="@color/black"
+                android:textSize="@dimen/sp17"
+                app:customFont="@string/roboto_bold" />
+
+            <com.icuapp.customesViews.CustomTextView
+                android:id="@+id/instructions"
+                android:layout_width="@dimen/dp0"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/rectangle_edge_recentblue"
+                android:gravity="center|left"
+                android:text="Select"
+                android:textColor="@color/black"
+                android:textSize="@dimen/sp17"
+                app:customFont="@string/roboto_bold" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp40"
+            android:layout_marginTop="@dimen/dp10"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <com.icuapp.customesViews.CustomTextView
+                android:id="@+id/tvAddOrder"
+                android:layout_width="@dimen/dp0"
+                android:layout_height="match_parent"
+                android:layout_weight="0.5"
+                android:background="@drawable/curve_fill_blue_bg"
+                android:gravity="center"
+                android:paddingBottom="@dimen/dp4"
+                android:paddingTop="@dimen/dp4"
+                android:text="Order"
+                android:textColor="@color/white"
+                android:textSize="@dimen/sp16"
+                app:customFont="@string/roboto_regular" />
+
+            <TextView
+                android:layout_width="@dimen/dp0"
+                android:layout_height="match_parent"
+                android:layout_weight="1" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1">
+
+        <include layout="@layout/order_history_main_layout" />
+    </LinearLayout>
+</LinearLayout>

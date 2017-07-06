@@ -40,6 +40,10 @@ public class PatientDetailsMain extends AppCompatActivity implements TabLayout.O
     @BindView(R.id.vitalsMainTagCount)
     CustomTextView mVitalsMainTagCount;
 
+    @BindView(R.id.order)
+    TextView mOrder;
+
+
     @BindView(R.id.countPulse)
     CustomTextView mPulseCount;
 
@@ -95,7 +99,7 @@ public class PatientDetailsMain extends AppCompatActivity implements TabLayout.O
         tabLayout = (TabLayout) findViewById(R.id.tabFragmentDetailView);
         //Adding the tabs using addTab() method
         tabLayout.addTab(tabLayout.newTab().setText("Vital Graphs"));
-        tabLayout.addTab(tabLayout.newTab().setText("ECG Graphs"));
+        tabLayout.addTab(tabLayout.newTab().setText("ECG Reports"));
         tabLayout.addTab(tabLayout.newTab().setText("Vital History"));
         tabLayout.addTab(tabLayout.newTab().setText("Order History"));
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
@@ -109,6 +113,13 @@ public class PatientDetailsMain extends AppCompatActivity implements TabLayout.O
         PatientDetailViewPager adapter = new PatientDetailViewPager(getSupportFragmentManager(), tabLayout.getTabCount());
         viewPager.setAdapter(adapter);
         tabLayout.addOnTabSelectedListener(this);
+        mOrder.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(PatientDetailsMain.this,OrderHistoryContainerActivity.class);
+                startActivity(intent);
+            }
+        });
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
 
             @Override
@@ -192,6 +203,16 @@ public class PatientDetailsMain extends AppCompatActivity implements TabLayout.O
                 mSysPressureCount.setText(value);
             } else if (name.equalsIgnoreCase("T1")) {
                 mT1Count.setText(value);
+                //TODO
+               /* if (formattedValue <= 38) {
+                    String currentTimeHr = CommonMethods.convertMilliSecondsToDate(System.currentTimeMillis(), "HH:mm:ss");
+                    mVitalsLinearLayout.setVisibility(View.VISIBLE);
+                    mVitalsLinearLayout.setBackground(getResources().getDrawable(R.drawable.curve_fill_blue_bg));
+                    mVitalsMainTagCount.setTextColor(ContextCompat.getColor(PatientDetailsMain.this, R.color.black));
+                    mVitalsMainTagCount.setText("**T rect High > 38.0"+ " "+currentTimeHr.substring(0,5));
+                    // loadAnimationHr(mPulseCount, dataObject);
+                    dialogList.add("**T rect High > 38.0"+ " "+currentTimeHr.substring(0,5));
+                }*/
             } else if (name.equalsIgnoreCase("T2")) {
                 mT2Count.setText(value);
             }

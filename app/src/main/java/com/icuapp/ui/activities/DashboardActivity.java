@@ -48,6 +48,7 @@ public class DashboardActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+        navigationView.setItemIconTintList(null);
 
         AppConstants.getAllVitalList(this);
         recyclerView = (RecyclerView) findViewById(R.id.recycler_view);

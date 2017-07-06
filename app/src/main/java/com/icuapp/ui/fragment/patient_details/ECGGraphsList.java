@@ -1,4 +1,4 @@
-package com.icuapp.ui.fragment;
+package com.icuapp.ui.fragment.patient_details;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,11 +8,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
+import android.widget.LinearLayout;
+import com.icuapp.R;
+import android.view.View.OnClickListener;
 import android.widget.TextView;
 
-import com.icuapp.R;
-import com.icuapp.ui.activities.VitalHistoryDetail;
+import com.icuapp.ui.activities.ECGGraphDetail;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -21,32 +24,47 @@ import java.util.Calendar;
  * Created by hardikj on 03/07/17.
  */
 
-public class VitalHistoryList extends Fragment {
+public class ECGGraphsList extends Fragment {
 
     String[] arrayDate = new String[8];
-    private TextView textViewName;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         //Get Subtract Time from current time with no of counts.
 
-//        textViewName = (TextView) getView().findViewById(R.id.tvName);
-//        textViewName.setText("Rhythm");
-
         getDate(8,-15);
-        View view = inflater.inflate(R.layout.ecg_graphs, container, false);
+        final View view = inflater.inflate(R.layout.ecg_graphs, container, false);
+
         ArrayAdapter adapter = new ArrayAdapter<String>(getActivity(),
-                R.layout.ecg_graphs_row,R.id.tvDateAndTime, arrayDate);
+                R.layout.ecg_graphs_row, R.id.tvDateAndTime, arrayDate);
 
-        ListView listView = (ListView) view.findViewById(R.id.ecgListView);
+        final ListView listView = (ListView) view.findViewById(R.id.ecgListView);
         listView.setAdapter(adapter);
+        listView.setVisibility(view.VISIBLE);
 
+
+        final LinearLayout linearLayout = (LinearLayout) view.findViewById(R.id.ecgGraphDetailLayout);
+        linearLayout.setVisibility(view.GONE);
+
+        final TextView tvAnalysisTime = (TextView) view.findViewById(R.id.analysisTime);
+
+        final Button backButton = (Button) view.findViewById(R.id.backBtn);
         //Set Click Listener for Listview row.
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                startActivity(new Intent(getActivity(), VitalHistoryDetail.class));
+                listView.setVisibility(view.GONE);
+                linearLayout.setVisibility(view.VISIBLE);
+                tvAnalysisTime.setText(arrayDate[position]);
+            }
+        });
+
+        backButton.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                listView.setVisibility(view.VISIBLE);
+                linearLayout.setVisibility(view.GONE);
             }
         });
         return view;

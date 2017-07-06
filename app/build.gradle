@@ -27,6 +27,7 @@ android {
                             'src/main/res/layouts/login',
                             'src/main/res/layouts/patients',
                             'src/main/res/layouts/dashboard',
+                            'src/main/res/layouts/order_history',
                     ]
         }
     }

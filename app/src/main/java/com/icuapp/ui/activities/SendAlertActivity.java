@@ -36,7 +36,7 @@ public class SendAlertActivity extends AppCompatActivity implements TabLayout.On
         setContentView(R.layout.patient_list_container_layout);
         intent = getIntent();
         toolbar = (Toolbar) findViewById(R.id.toolbar);
-        toolbar.setTitle("Patient List");
+        toolbar.setTitle("Set Alert");
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         setupHomeView();

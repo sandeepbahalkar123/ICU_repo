@@ -25,7 +25,11 @@ import com.icuapp.customesViews.CustomTextView;
 import com.icuapp.model.Patients;
 import com.icuapp.model.vitals.VitalCriticalDataOfPatient;
 import com.icuapp.model.vitals.VitalDetails;
+
+import com.icuapp.ui.activities.OrderHistoryContainerActivity;
+
 import com.icuapp.ui.activities.PatientDetailsMain;
+
 import com.icuapp.util.AppConstants;
 import com.icuapp.util.CommonMethods;
 
@@ -41,15 +45,14 @@ public class DashBoardAdapter extends RecyclerView.Adapter<DashBoardAdapter.Dash
     public static final String MEDIUM = "medium";
     public static final String HIGH = "high";
 
-    Handler handler;
     Context mContext;
     String currentDate;
     String currentTime;
 
-    public DashBoardAdapter(Context context, ArrayList<Patients> mSelectedPatients) {
+    public DashBoardAdapter(Activity context, ArrayList<Patients> mSelectedPatients) {
         this.mContext = context;
+        this.activity = context;
         this.mSelectedPatients = mSelectedPatients;
-
     }
 
 
@@ -105,10 +108,10 @@ public class DashBoardAdapter extends RecyclerView.Adapter<DashBoardAdapter.Dash
                     //---------------
 
                     viewHolder.mVitalsLinearLayout.setVisibility(View.VISIBLE);
-                    viewHolder.vitalsMainTagCount.setText("***SPO2 <80 " +currentTime.substring(0,5));
+                    viewHolder.vitalsMainTagCount.setText("***SPO2 <80 " + currentTime.substring(0, 5));
                     viewHolder.mVitalsLinearLayout.setBackground(mContext.getResources().getDrawable(R.drawable.curve_fill_red_bg));
                     loadAnimation(viewHolder.countPleth, dataObject);
-                    dialogList.add("***SPO2 <80 " +currentTime.substring(0,5));
+                    dialogList.add("***SPO2 <80 " + currentTime.substring(0, 5));
 
                 }
             } else if (name.equalsIgnoreCase("Resp")) {
@@ -141,9 +144,9 @@ public class DashBoardAdapter extends RecyclerView.Adapter<DashBoardAdapter.Dash
                                 new VitalCriticalDataOfPatient(patientObject, vitalInfo, null, currentTimeHr));
                     }
 
-                    viewHolder.vitalsMainTagCount.setText("**HR High > 120"+ " "+currentTimeHr.substring(0,5));
+                    viewHolder.vitalsMainTagCount.setText("**HR High > 120" + " " + currentTimeHr.substring(0, 5));
                     loadAnimationHr(viewHolder.countPulse, dataObject);
-                    dialogList.add("**HR High > 120"+ " "+currentTimeHr.substring(0,5));
+                    dialogList.add("**HR High > 120" + " " + currentTimeHr.substring(0, 5));
 
 
                 }
@@ -155,6 +158,7 @@ public class DashBoardAdapter extends RecyclerView.Adapter<DashBoardAdapter.Dash
                 viewHolder.countT2.setText(value);
             }
         }
+
         viewHolder.vitalsMainTagCount.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -172,6 +176,7 @@ public class DashBoardAdapter extends RecyclerView.Adapter<DashBoardAdapter.Dash
                 mContext.startActivity(intent);
             }
         });
+
         viewHolder.mHorizontalView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -181,6 +186,17 @@ public class DashBoardAdapter extends RecyclerView.Adapter<DashBoardAdapter.Dash
                 mContext.startActivity(intent);
             }
         });
+
+        viewHolder.tvOrderHistory.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(activity, OrderHistoryContainerActivity.class);
+                intent.putExtra(mContext.getString(R.string.bed_no), patientObject.getBedNo());
+                activity.startActivity(intent);
+            }
+        });
+
+
       /*  viewHolder.order.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -198,7 +214,11 @@ public class DashBoardAdapter extends RecyclerView.Adapter<DashBoardAdapter.Dash
 
     public class DashBoardViewHolder extends RecyclerView.ViewHolder {
         public TextView patientName, countPleth, countResp, countCvp, countIcp, countPap, countSystolicPressure, countT1, countT2;
+
+        public TextView   tvOrderHistory;
+
         public TextView countPulse, bedNo,order;
+
         public CustomTextView vitalsMainTagCount;
         public LinearLayout mVitalsLinearLayout;
         public LinearLayout mLinearLayoutItemDashboard;
@@ -219,6 +239,7 @@ public class DashBoardAdapter extends RecyclerView.Adapter<DashBoardAdapter.Dash
             countT1 = (TextView) view.findViewById(R.id.countt1);
             countT2 = (TextView) view.findViewById(R.id.countt2);
             countPulse = (TextView) view.findViewById(R.id.countPulse);
+            tvOrderHistory = (TextView) view.findViewById(R.id.tvOrderHistory);
             vitalsMainTagCount = (CustomTextView) view.findViewById(R.id.vitalsMainTagCount);
             mLinearLayoutItemDashboard = (LinearLayout) view.findViewById(R.id.linearLayoutItemDashboard);
             order = (TextView)view.findViewById(R.id.order);
@@ -243,12 +264,12 @@ public class DashBoardAdapter extends RecyclerView.Adapter<DashBoardAdapter.Dash
                 if (dataObject.isAnimated()) {
                     view.setBackgroundColor(ContextCompat.getColor(mContext, R.color.Red));
                     TextView textView = (TextView) view.findViewById(R.id.countPleth);
-                    textView.setTextColor(ContextCompat.getColor(mContext,R.color.white));
+                    textView.setTextColor(ContextCompat.getColor(mContext, R.color.white));
                     //  view.setTextColor(Color.WHITE);
                 } else {
                     view.setBackgroundColor(Color.BLACK);
                     TextView textView = (TextView) view.findViewById(R.id.countPleth);
-                    textView.setTextColor(ContextCompat.getColor(mContext,R.color.parrot_green_color));
+                    textView.setTextColor(ContextCompat.getColor(mContext, R.color.parrot_green_color));
                     //    view.setTextColor(mContext.getResources().getColor(R.color.parrot_green_color));
                 }
 
@@ -262,6 +283,7 @@ public class DashBoardAdapter extends RecyclerView.Adapter<DashBoardAdapter.Dash
             }
         }, 200);
     }
+
     private void loadAnimationHr(final View view, final VitalDetails dataObject) {
         /*Animation anim = new AlphaAnimation(0.0f, 1.0f);
         anim.setDuration(100);
@@ -278,12 +300,12 @@ public class DashBoardAdapter extends RecyclerView.Adapter<DashBoardAdapter.Dash
                     view.setBackgroundColor(ContextCompat.getColor(mContext, R.color.yellow));
 
                     TextView textView = (TextView) view.findViewById(R.id.countPulse);
-                    textView.setTextColor(ContextCompat.getColor(mContext,R.color.black));
+                    textView.setTextColor(ContextCompat.getColor(mContext, R.color.black));
 
                 } else {
                     view.setBackgroundColor(Color.BLACK);
                     TextView textView = (TextView) view.findViewById(R.id.countPulse);
-                    textView.setTextColor(ContextCompat.getColor(mContext,R.color.parrot_green_color));
+                    textView.setTextColor(ContextCompat.getColor(mContext, R.color.parrot_green_color));
                     //    view.setTextColor(mContext.getResources().getColor(R.color.parrot_green_color));
                 }
 

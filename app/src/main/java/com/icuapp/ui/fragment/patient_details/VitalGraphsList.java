@@ -1,4 +1,4 @@
-package com.icuapp.ui.fragment;
+package com.icuapp.ui.fragment.patient_details;
 
 
 import android.graphics.Color;

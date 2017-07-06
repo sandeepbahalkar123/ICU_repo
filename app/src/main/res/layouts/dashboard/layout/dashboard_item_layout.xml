@@ -44,7 +44,7 @@
                 app:customFont="@string/roboto_bold" />
 
             <com.icuapp.customesViews.CustomTextView
-                android:id="@+id/order"
+                android:id="@+id/tvOrderHistory"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.5"

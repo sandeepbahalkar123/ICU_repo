@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.fragment.ECGGraphsList">
+    tools:context=".ui.fragment.patient_details.ECGGraphsList">
 
     <ListView
         android:id="@+id/ecgListView"
@@ -12,5 +12,10 @@
         android:layout_height="match_parent"
         android:divider="@android:color/darker_gray"
         android:dividerHeight="0.5dp" />
+
+    <LinearLayout android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <include layout="@layout/ecg_graph_detail"/>
+    </LinearLayout>
 
 </FrameLayout>

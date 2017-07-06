@@ -58,6 +58,11 @@
     <color name="blue_color">#29aae1</color>
     <color name="rr_yellow_color">#baaa45</color>
     <color name="loginHeader">#00ACDA</color>
+
+    <color name="vitalBackButton">#FF653F</color>
+
+    <color name="order_history_time">#434343</color>
+
     <color name="order_orange">#ff6733</color>
     <color name="red_red">#fc4f4f</color>
 

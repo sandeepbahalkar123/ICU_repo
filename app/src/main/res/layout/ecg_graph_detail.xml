@@ -5,25 +5,85 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <android.support.design.widget.AppBarLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+    <LinearLayout android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/ecgGraphDetailLayout"
+        android:orientation="vertical">
 
-        <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbar"
+        <LinearLayout android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:background="@color/vitalBackButton"
+            android:orientation="horizontal">
+
+            <LinearLayout android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/vitalBackButton"
+                android:layout_gravity="center"
+                android:orientation="horizontal"
+                android:layout_weight="1.5">
+
+            <TextView android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Analysis Time:"
+                android:layout_marginLeft="5dp"
+                android:fontFamily="@string/roboto_bold"
+                android:textStyle="bold"
+                android:textSize="@dimen/sp10"
+                android:textColor="@color/white"
+                android:layout_gravity="center"></TextView>
+
+            <TextView android:layout_width="wrap_content"
+                android:id="@+id/analysisTime"
+                android:layout_height="wrap_content"
+                android:text="Analysis Time:"
+                android:fontFamily="@string/roboto_bold"
+                android:textStyle="bold"
+                android:layout_marginLeft="5dp"
+                android:textSize="@dimen/sp10"
+                android:textColor="@color/white"
+                android:layout_gravity="center"></TextView>
+
+            <TextView android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="DOB: "
+                android:fontFamily="@string/roboto_bold"
+                android:textStyle="bold"
+                android:layout_marginLeft="8dp"
+                android:textColor="@color/white"
+                android:textSize="@dimen/sp10"
+                android:layout_gravity="center"></TextView>
+
+            <TextView android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="19/7/1970"
+                android:fontFamily="@string/roboto_bold"
+                android:textStyle="bold"
+                android:layout_marginLeft="3dp"
+                android:textColor="@color/white"
+                android:textSize="@dimen/sp10"
+                android:layout_gravity="center"></TextView>
+            </LinearLayout>
+
+            <Button android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/backBtn"
+                android:fontFamily="@string/roboto_bold"
+                android:textStyle="bold"
+                android:background="@color/vitalBackButton"
+                android:text="Back"
+                android:textColor="@color/white"
+                android:layout_gravity="right">
+            </Button>
+
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/imgViewECGGraph"
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"
-            app:layout_scrollFlags="scroll|enterAlways"
-            app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
-    </android.support.design.widget.AppBarLayout>
-
-    <ImageView
-        android:id="@+id/imgViewECGGraph"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        app:srcCompat="@drawable/ecg_graph_img" />
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:scaleType="centerCrop"
+            app:srcCompat="@drawable/ecg_graph_img" />
+    </LinearLayout>
 
 </LinearLayout>
