@@ -145,7 +145,7 @@ public class AppConstants {
     }
 
     private static void setDefinedVitalsConstants() {
-        AppConstants.definedVitalsConstants.put("SPO2", "SPO2");
+        AppConstants.definedVitalsConstants.put("SpO2", "SpO2");
         AppConstants.definedVitalsConstants.put("Resp", "Resp");
         AppConstants.definedVitalsConstants.put("CVP", "CVP");
         AppConstants.definedVitalsConstants.put("ICP", "ICP");

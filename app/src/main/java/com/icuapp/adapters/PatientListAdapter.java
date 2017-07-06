@@ -5,26 +5,23 @@ package com.icuapp.adapters;
  */
 
 
-import java.util.List;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
-
 import android.view.ViewGroup;
 import android.widget.CheckBox;
-import android.widget.CompoundButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.icuapp.R;
 import com.icuapp.model.Patients;
 import com.icuapp.ui.activities.PatientDetailsMain;
 import com.icuapp.util.AppConstants;
+
+import java.util.List;
 
 public class PatientListAdapter extends
         RecyclerView.Adapter<PatientListAdapter.ViewHolder> {

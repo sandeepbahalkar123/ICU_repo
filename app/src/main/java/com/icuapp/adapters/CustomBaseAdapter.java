@@ -55,7 +55,7 @@ public class CustomBaseAdapter extends BaseAdapter {
         }
         String vitalName = rowItems.get(position);
 
-        if (vitalName.contains("***SPO2 <80")) {
+        if (vitalName.contains("***SpO2 <80")) {
             holder.mDialogLinearLayout.setBackgroundColor(ContextCompat.getColor(context, R.color.Red));
 
         } else if (vitalName.contains("**HR High > 120")) {

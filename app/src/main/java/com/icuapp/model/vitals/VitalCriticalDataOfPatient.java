@@ -12,13 +12,13 @@ public class VitalCriticalDataOfPatient {
 
     private Patients patient;
     private ArrayList<VitalDetails> vitalInfo;
-    private String pelthOrSPO2CriticalTimeStamp;
+    private String pelthOrSpO2CriticalTimeStamp;
     private String HRCriticalTimeStamp;
 
-    public VitalCriticalDataOfPatient(Patients patient, ArrayList<VitalDetails> vitalInfo, String pelthOrSPO2CriticalTimeStamp, String HRCriticalTimeStamp) {
+    public VitalCriticalDataOfPatient(Patients patient, ArrayList<VitalDetails> vitalInfo, String pelthOrSpO2CriticalTimeStamp, String HRCriticalTimeStamp) {
         this.patient = patient;
         this.vitalInfo = vitalInfo;
-        this.pelthOrSPO2CriticalTimeStamp = pelthOrSPO2CriticalTimeStamp;
+        this.pelthOrSpO2CriticalTimeStamp = pelthOrSpO2CriticalTimeStamp;
         this.HRCriticalTimeStamp = HRCriticalTimeStamp;
     }
 
@@ -39,12 +39,12 @@ public class VitalCriticalDataOfPatient {
         this.vitalInfo = vitalInfo;
     }
 
-    public String getPelthOrSPO2CriticalTimeStamp() {
-        return pelthOrSPO2CriticalTimeStamp;
+    public String getPelthOrSpO2CriticalTimeStamp() {
+        return pelthOrSpO2CriticalTimeStamp;
     }
 
-    public void setPelthOrSPO2CriticalTimeStamp(String pelthOrSPO2CriticalTimeStamp) {
-        this.pelthOrSPO2CriticalTimeStamp = pelthOrSPO2CriticalTimeStamp;
+    public void setPelthOrSpO2CriticalTimeStamp(String pelthOrSpO2CriticalTimeStamp) {
+        this.pelthOrSpO2CriticalTimeStamp = pelthOrSpO2CriticalTimeStamp;
     }
 
     public String getHRCriticalTimeStamp() {
@@ -60,7 +60,7 @@ public class VitalCriticalDataOfPatient {
         return "VitalCriticalDataOfPatient{" +
                 "patient=" + patient +
                 ", vitalInfo=" + vitalInfo +
-                ", pelthOrSPO2CriticalTimeStamp='" + pelthOrSPO2CriticalTimeStamp + '\'' +
+                ", pelthOrSpO2CriticalTimeStamp='" + pelthOrSpO2CriticalTimeStamp + '\'' +
                 ", HRCriticalTimeStamp='" + HRCriticalTimeStamp + '\'' +
                 '}';
     }

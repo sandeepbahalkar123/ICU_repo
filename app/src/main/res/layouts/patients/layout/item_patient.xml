@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:id="@+id/mainContainer"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
 
@@ -13,7 +14,6 @@
         android:orientation="horizontal">
 
         <LinearLayout
-            android:id="@+id/mainContainer"
             android:layout_width="@dimen/dp0"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"

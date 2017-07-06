@@ -140,7 +140,7 @@ public class DialogVitalDetailView extends AppCompatActivity {
         GraphView mGraph_Resp = (GraphView) findViewById(R.id.graph_Resp);
         GraphView mGraph_Art = (GraphView) findViewById(R.id.graph_Art);
 
-        if (vitalType.contains("SPO2")) {
+        if (vitalType.contains("SpO2")) {
             mGraph_Art.setVisibility(View.VISIBLE);
             artFixLayout.setVisibility(View.VISIBLE);
             mGraph_Resp.setVisibility(View.GONE);
@@ -314,7 +314,7 @@ public class DialogVitalDetailView extends AppCompatActivity {
                 vitalInfo) {
             String name = dataObject.getName();
             String value = dataObject.getValue();
-            if (name.equalsIgnoreCase("Pleth") || name.equalsIgnoreCase("SPO2")) {
+            if (name.equalsIgnoreCase("Pleth") || name.equalsIgnoreCase("SpO2")) {
                 mSpo2Count.setText(value);
             } else if (name.equalsIgnoreCase("Resp")) {
                 mRespCount.setText(value);

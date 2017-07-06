@@ -78,8 +78,8 @@ public class DashBoardAdapter extends RecyclerView.Adapter<DashBoardAdapter.Dash
         final ArrayList<String> dialogList = new ArrayList<>();
         ArrayList<VitalDetails> vitalInfo = AppConstants.getVitalInfo(CommonMethods.generateRandomEvenNumber());
         viewHolder.mVitalsLinearLayout.setVisibility(View.INVISIBLE);
-        viewHolder.patientName.setText(patientObject.getPatientName());
-        viewHolder.bedNo.setText("Bed No." + patientObject.getBedNo());
+        viewHolder.patientName.setText(patientObject.getPatientName().split(" ")[0]);
+        viewHolder.bedNo.setText("Bed No. " + patientObject.getBedNo());
 
 
         for (VitalDetails dataObject :
@@ -87,7 +87,7 @@ public class DashBoardAdapter extends RecyclerView.Adapter<DashBoardAdapter.Dash
             String name = dataObject.getName();
             String value = dataObject.getValue();
             double formattedValue = Double.parseDouble(dataObject.getValue());
-            if (name.equalsIgnoreCase("Pleth") || name.equalsIgnoreCase("SPO2")) {
+            if (name.equalsIgnoreCase("Pleth") || name.equalsIgnoreCase("SpO2")) {
                 viewHolder.countPleth.setText(value);
                 if (formattedValue < Double.parseDouble("" + 90)) {
 
@@ -99,7 +99,7 @@ public class DashBoardAdapter extends RecyclerView.Adapter<DashBoardAdapter.Dash
                     if (vitalCriticalDataOfPatient != null) {
                         vitalCriticalDataOfPatient.setPatient(patientObject);
                         vitalCriticalDataOfPatient.setVitalInfo(vitalInfo);
-                        vitalCriticalDataOfPatient.setPelthOrSPO2CriticalTimeStamp(currentTime);
+                        vitalCriticalDataOfPatient.setPelthOrSpO2CriticalTimeStamp(currentTime);
                         AppConstants.vitalCriticalDataReportOfPatient.put(patientObject.getBedNo(), vitalCriticalDataOfPatient);
                     } else {
                         AppConstants.vitalCriticalDataReportOfPatient.put(patientObject.getBedNo(),
@@ -108,10 +108,10 @@ public class DashBoardAdapter extends RecyclerView.Adapter<DashBoardAdapter.Dash
                     //---------------
 
                     viewHolder.mVitalsLinearLayout.setVisibility(View.VISIBLE);
-                    viewHolder.vitalsMainTagCount.setText("***SPO2 <80 " + currentTime.substring(0, 5));
+                    viewHolder.vitalsMainTagCount.setText("***SpO2 <80 " + currentTime.substring(0, 5));
                     viewHolder.mVitalsLinearLayout.setBackground(mContext.getResources().getDrawable(R.drawable.curve_fill_red_bg));
                     loadAnimation(viewHolder.countPleth, dataObject);
-                    dialogList.add("***SPO2 <80 " + currentTime.substring(0, 5));
+                    dialogList.add("***SpO2 <80 " + currentTime.substring(0, 5));
 
                 }
             } else if (name.equalsIgnoreCase("Resp")) {
@@ -172,7 +172,7 @@ public class DashBoardAdapter extends RecyclerView.Adapter<DashBoardAdapter.Dash
             @Override
             public void onClick(View v) {
                 String timeDetails = currentDate + currentTime;
-                CommonMethods.showAlertDialog(mContext, "Bed No." + patientObject.getBedNo() + "  " + patientObject.getPatientName(), dialogList,timeDetails);
+                CommonMethods.showAlertDialog(mContext, "Bed No. " + patientObject.getBedNo() + "  " + patientObject.getPatientName().split(" ")[0], dialogList,timeDetails);
             }
         });
 
@@ -181,7 +181,7 @@ public class DashBoardAdapter extends RecyclerView.Adapter<DashBoardAdapter.Dash
             public void onClick(View v) {
                 Intent intent = new Intent(mContext, PatientDetailsMain.class);
                 intent.putExtra("PatientBedNo",patientObject.getBedNo());
-                intent.putExtra("PatientName",patientObject.getPatientName());
+                intent.putExtra("PatientName",patientObject.getPatientName().split(" ")[0]);
                 mContext.startActivity(intent);
             }
         });
@@ -191,7 +191,7 @@ public class DashBoardAdapter extends RecyclerView.Adapter<DashBoardAdapter.Dash
             public void onClick(View v) {
                 Intent intent = new Intent(mContext, PatientDetailsMain.class);
                 intent.putExtra("PatientBedNo",patientObject.getBedNo());
-                intent.putExtra("PatientName",patientObject.getPatientName());
+                intent.putExtra("PatientName",patientObject.getPatientName().split(" ")[0]);
                 mContext.startActivity(intent);
             }
         });

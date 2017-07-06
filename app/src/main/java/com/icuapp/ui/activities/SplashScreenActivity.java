@@ -15,15 +15,11 @@ public class SplashScreenActivity extends AppCompatActivity {
 
     private static final String TAG = "SplashScreenActivity";
 
-    private Context mContext;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.splashscreen);
-
-        mContext = this;
 
         //handler to close the splash activity after the set time
         new Handler().postDelayed(new Runnable() {
@@ -33,7 +29,7 @@ public class SplashScreenActivity extends AppCompatActivity {
                 Intent intentObj = new Intent(SplashScreenActivity.this, LoginActivity.class);
                 startActivity(intentObj);
             }
-        }, 2000);
+        }, 3000);
 
     }
 
