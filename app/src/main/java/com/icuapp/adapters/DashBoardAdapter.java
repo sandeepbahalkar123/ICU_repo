@@ -87,7 +87,7 @@ public class DashBoardAdapter extends RecyclerView.Adapter<DashBoardAdapter.Dash
             if (name.equalsIgnoreCase("Pleth") || name.equalsIgnoreCase("SPO2")) {
                 viewHolder.countPleth.setText(value);
                 if (formattedValue < Double.parseDouble("" + 90)) {
-                    loadAnimation(viewHolder.countPleth, dataObject);
+
                     //------------
 
                 currentDate = CommonMethods.getCurrentDateTime();
@@ -140,7 +140,6 @@ public class DashBoardAdapter extends RecyclerView.Adapter<DashBoardAdapter.Dash
                         AppConstants.vitalCriticalDataReportOfPatient.put(patientObject.getBedNo(),
                                 new VitalCriticalDataOfPatient(patientObject, vitalInfo, null, currentTimeHr));
                     }
-                    //------------------
 
                     viewHolder.vitalsMainTagCount.setText("**HR High > 120"+ " "+currentTimeHr.substring(0,5));
                     loadAnimationHr(viewHolder.countPulse, dataObject);
@@ -173,7 +172,15 @@ public class DashBoardAdapter extends RecyclerView.Adapter<DashBoardAdapter.Dash
                 mContext.startActivity(intent);
             }
         });
-
+        viewHolder.mHorizontalView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(mContext, PatientDetailsMain.class);
+                intent.putExtra("PatientBedNo",patientObject.getBedNo());
+                intent.putExtra("PatientName",patientObject.getPatientName());
+                mContext.startActivity(intent);
+            }
+        });
       /*  viewHolder.order.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

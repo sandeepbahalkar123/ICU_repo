@@ -1,15 +1,23 @@
 package com.icuapp.ui.activities;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.design.widget.TabLayout;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.icuapp.R;
+import com.icuapp.adapters.DashBoardAdapter;
 import com.icuapp.customesViews.CustomTextView;
+import com.icuapp.model.vitals.VitalCriticalDataOfPatient;
 import com.icuapp.model.vitals.VitalDetails;
 import com.icuapp.util.AppConstants;
 import com.icuapp.util.CommonMethods;
@@ -34,6 +42,9 @@ public class PatientDetailsMain extends AppCompatActivity implements TabLayout.O
 
     @BindView(R.id.countPulse)
     CustomTextView mPulseCount;
+
+    @BindView(R.id.vitalsLinearLayout)
+    LinearLayout mVitalsLinearLayout;
 
     @BindView(R.id.countPleth)
     CustomTextView mSpo2Count;
@@ -65,7 +76,10 @@ public class PatientDetailsMain extends AppCompatActivity implements TabLayout.O
     @BindView(R.id.countt2)
     CustomTextView mT2Count;
     Intent intent;
-
+    private Handler mHandler;
+    private String currentDate;
+    private String currentTime;
+    private ArrayList<String> dialogList;
 
 
     @Override
@@ -77,6 +91,7 @@ public class PatientDetailsMain extends AppCompatActivity implements TabLayout.O
     }
 
     private void setupHomeView() {
+
         tabLayout = (TabLayout) findViewById(R.id.tabFragmentDetailView);
         //Adding the tabs using addTab() method
         tabLayout.addTab(tabLayout.newTab().setText("Vital Graphs"));
@@ -111,12 +126,31 @@ public class PatientDetailsMain extends AppCompatActivity implements TabLayout.O
 
             }
         });
+        mHandler = new Handler();
+        Runnable updateUI = new Runnable() {
+            @Override
+            public void run() {
+                //Do something after 100ms
+                setupPatientVitals();
+                mHandler.postDelayed(this, 2000);
 
+            }
+        };
+
+        mHandler.postDelayed(updateUI, 2000);
+        mVitalsLinearLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String timeDetails = currentDate + currentTime;
+                CommonMethods.showAlertDialog(PatientDetailsMain.this, "Bed No. "+intent.getStringExtra("PatientBedNo")+intent.getStringExtra("PatientName"), dialogList,timeDetails);
+            }
+        });
         //Setup patient vitals datacounts.
-        setupPatientVitals();
+
     }
 
     private void setupPatientVitals() {
+        dialogList = new ArrayList<>();
         ArrayList<VitalDetails> vitalInfo = AppConstants.getVitalInfo(CommonMethods.generateRandomEvenNumber());
         for (VitalDetails dataObject :
                 vitalInfo) {
@@ -125,6 +159,16 @@ public class PatientDetailsMain extends AppCompatActivity implements TabLayout.O
             double formattedValue = Double.parseDouble(dataObject.getValue());
             if (name.equalsIgnoreCase("Pleth") || name.equalsIgnoreCase("SPO2")) {
                 mSpo2Count.setText(value);
+                if (formattedValue > Double.parseDouble("" + 90)) {
+                    currentDate = CommonMethods.getCurrentDateTime();
+                    currentTime = CommonMethods.convertMilliSecondsToDate(System.currentTimeMillis(), "HH:mm:ss");
+                    mVitalsLinearLayout.setVisibility(View.VISIBLE);
+                    mVitalsMainTagCount.setText("***SPO2 <80 " +currentTime.substring(0,5));
+                    mVitalsLinearLayout.setBackground(getResources().getDrawable(R.drawable.curve_fill_red_bg));
+                   // loadAnimation(mSpo2Count, dataObject);
+                    dialogList.add("***SPO2 <80 " +currentTime.substring(0,5));
+                }
+
             } else if (name.equalsIgnoreCase("Resp")) {
                 mRespCount.setText(value);
             } else if (name.equalsIgnoreCase("CVP")) {
@@ -135,6 +179,15 @@ public class PatientDetailsMain extends AppCompatActivity implements TabLayout.O
                 mPapCount.setText(value);
             } else if (name.equalsIgnoreCase("Pulse")) {
                 mPulseCount.setText(value);
+                if (formattedValue < 75) {
+                    String currentTimeHr = CommonMethods.convertMilliSecondsToDate(System.currentTimeMillis(), "HH:mm:ss");
+                    mVitalsLinearLayout.setVisibility(View.VISIBLE);
+                   mVitalsLinearLayout.setBackground(getResources().getDrawable(R.drawable.curve_fill_yellow_bg));
+                  mVitalsMainTagCount.setTextColor(ContextCompat.getColor(PatientDetailsMain.this, R.color.black));
+                    mVitalsMainTagCount.setText("**HR High > 120"+ " "+currentTimeHr.substring(0,5));
+                   // loadAnimationHr(mPulseCount, dataObject);
+                    dialogList.add("**HR High > 120"+ " "+currentTimeHr.substring(0,5));
+                }
             } else if (name.equalsIgnoreCase("Systolic Pressure")) {
                 mSysPressureCount.setText(value);
             } else if (name.equalsIgnoreCase("T1")) {
@@ -173,4 +226,73 @@ public class PatientDetailsMain extends AppCompatActivity implements TabLayout.O
         }
 
     }
+    private void loadAnimation(final View view, final VitalDetails dataObject) {
+        /*Animation anim = new AlphaAnimation(0.0f, 1.0f);
+        anim.setDuration(100);
+        anim.setStartOffset(20);
+        anim.setRepeatMode(Animation.REVERSE);
+        anim.setRepeatCount(Animation.INFINITE);
+        view.startAnimation(anim);*/
+
+        final Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                if (dataObject.isAnimated()) {
+                    view.setBackgroundColor(ContextCompat.getColor(PatientDetailsMain.this, R.color.Red));
+                    TextView textView = (TextView) view.findViewById(R.id.countPleth);
+                    textView.setTextColor(ContextCompat.getColor(PatientDetailsMain.this,R.color.white));
+                    //  view.setTextColor(Color.WHITE);
+                } else {
+                    view.setBackgroundColor(Color.BLACK);
+                    TextView textView = (TextView) view.findViewById(R.id.countPleth);
+                    textView.setTextColor(ContextCompat.getColor(PatientDetailsMain.this,R.color.parrot_green_color));
+                    //    view.setTextColor(mContext.getResources().getColor(R.color.parrot_green_color));
+                }
+
+                if (dataObject.isAnimated()) {
+                    dataObject.setAnimated(false);
+                } else {
+                    dataObject.setAnimated(true);
+                }
+                handler.postDelayed(this, 300);
+                //  drawable.start();
+            }
+        }, 300);
+    }
+    private void loadAnimationHr(final View view, final VitalDetails dataObject) {
+        /*Animation anim = new AlphaAnimation(0.0f, 1.0f);
+        anim.setDuration(100);
+        anim.setStartOffset(20);
+        anim.setRepeatMode(Animation.REVERSE);
+        anim.setRepeatCount(Animation.INFINITE);
+        view.startAnimation(anim);*/
+
+        final Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                if (dataObject.isAnimated()) {
+                    view.setBackgroundColor(ContextCompat.getColor(PatientDetailsMain.this, R.color.yellow));
+                    TextView textView = (TextView) view.findViewById(R.id.countPulse);
+                    textView.setTextColor(ContextCompat.getColor(PatientDetailsMain.this,R.color.black));
+
+                } else {
+                    view.setBackgroundColor(Color.BLACK);
+                    TextView textView = (TextView) view.findViewById(R.id.countPulse);
+                    textView.setTextColor(ContextCompat.getColor(PatientDetailsMain.this,R.color.parrot_green_color));
+                    //    view.setTextColor(mContext.getResources().getColor(R.color.parrot_green_color));
+                }
+
+                if (dataObject.isAnimated()) {
+                    dataObject.setAnimated(false);
+                } else {
+                    dataObject.setAnimated(true);
+                }
+                handler.postDelayed(this, 300);
+                //  drawable.start();
+            }
+        }, 300);
+    }
+
 }

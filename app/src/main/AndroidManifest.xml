@@ -53,6 +53,10 @@
             android:name=".ui.activities.PatientListContainerActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".ui.activities.SendAlertActivity"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme.NoActionBar" />
 
     </application>
 

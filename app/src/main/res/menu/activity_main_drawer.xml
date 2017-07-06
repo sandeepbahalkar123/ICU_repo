@@ -14,6 +14,10 @@
             android:id="@+id/settings"
             android:icon="@drawable/settings"
             android:title="Settings" />
+        <item
+            android:id="@+id/alerts"
+            android:icon="@drawable/layer_4"
+            android:title="Set Alerts" />
 
     </group>
 

@@ -2,25 +2,29 @@ package com.icuapp.ui.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.view.View;
 
 import com.icuapp.R;
+import com.icuapp.adapters.PatientListAdapter;
 
-import java.util.ArrayList;
-import java.util.List;
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 /**
- * Created by hardikj on 04/07/17.
+ * Created by jeetal on 6/7/17.
  */
 
-public class PatientListContainerActivity extends AppCompatActivity implements TabLayout.OnTabSelectedListener {
+public class SendAlertActivity extends AppCompatActivity implements TabLayout.OnTabSelectedListener {
     private Toolbar toolbar;
     private TabLayout tabLayout;
     private ViewPager viewPager;
@@ -49,7 +53,7 @@ public class PatientListContainerActivity extends AppCompatActivity implements T
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
         //Setup ViewPager
         viewPager = (ViewPager) findViewById(R.id.viewpager);
-        PatientListContainerViewPager adapter = new PatientListContainerViewPager(getSupportFragmentManager(), tabLayout.getTabCount(),viewPager);
+        SetAlertContainer adapter = new SetAlertContainer(getSupportFragmentManager(), tabLayout.getTabCount(),viewPager);
         viewPager.setAdapter(adapter);
         tabLayout.addOnTabSelectedListener(this);
 

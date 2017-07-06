@@ -126,6 +126,9 @@ public class DashboardActivity extends AppCompatActivity
         } else if (id == R.id.patient) {
             Intent intent = new Intent(this, PatientListContainerActivity.class);
             startActivity(intent);
+        }else if (id == R.id.alerts) {
+            Intent intent = new Intent(this, SendAlertActivity.class);
+            startActivity(intent);
         }
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);

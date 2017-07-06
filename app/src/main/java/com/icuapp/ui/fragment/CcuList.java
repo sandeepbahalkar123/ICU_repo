@@ -9,28 +9,29 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.Toast;
 
 import com.icuapp.R;
 import com.icuapp.adapters.PatientListAdapter;
-import com.icuapp.model.Patients;
-import com.icuapp.util.AppConstants;
-
-import java.util.ArrayList;
+import com.icuapp.adapters.SetAlertAdapter;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
- * Created by hardikj on 04/07/17.
+ * Created by jeetal on 6/7/17.
  */
 
-public class CCUPatientList extends Fragment {
+public class CcuList  extends Fragment {
 
-    private PatientListAdapter mAdapter;
+    private SetAlertAdapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
 
     @BindView(R.id.recycleListView)
     RecyclerView mRecyclerView;
+    @BindView(R.id.buttonDone)
+    Button mButtonDone;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -43,6 +44,7 @@ public class CCUPatientList extends Fragment {
 
 //        setContentView(R.layout.list_view);
         ButterKnife.bind(this, view);
+        mButtonDone.setVisibility(View.VISIBLE);
 
         // use this setting to improve performance if you know that changes
         // in content do not change the layout size of the RecyclerView
@@ -54,11 +56,18 @@ public class CCUPatientList extends Fragment {
 
 
         // create an Object for Adapter
-        mAdapter = new PatientListAdapter();
+        mAdapter = new SetAlertAdapter();
         mAdapter.setmParentActivity(getActivity());
 
         // set the adapter object to the Recyclerview
         mRecyclerView.setAdapter(mAdapter);
+        mButtonDone.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getActivity(), "Alert Send Successfully", Toast.LENGTH_SHORT).show();
+                getActivity().finish();
+            }
+        });
         return view;
     }
 
@@ -83,5 +92,4 @@ public class CCUPatientList extends Fragment {
         }
         return super.onOptionsItemSelected(item);
     }
-
 }

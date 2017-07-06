@@ -84,7 +84,7 @@
                 android:layout_marginLeft="@dimen/dp16"
                 android:layout_marginTop="@dimen/dp4"
                 android:layout_weight="1"
-                android:background="@drawable/curve_fill_yellow_bg"
+                android:visibility="invisible"
                 android:gravity="center_vertical|left"
                 android:orientation="horizontal">
 
