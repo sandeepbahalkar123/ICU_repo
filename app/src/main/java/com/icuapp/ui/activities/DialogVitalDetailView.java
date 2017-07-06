@@ -191,18 +191,14 @@ public class DialogVitalDetailView extends AppCompatActivity {
         mSeries_1_Art.setThickness(2);
         mSeries_1_Art.setColor(Color.RED);
 
-        // End
-
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
         try {
             init();
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+        // End
+
     }
 
     private void init() throws IOException {
