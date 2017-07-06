@@ -4,7 +4,7 @@ import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
+
 import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -54,23 +54,24 @@ public class CustomBaseAdapter extends BaseAdapter {
             holder = (ViewHolder) convertView.getTag();
         }
         String vitalName = rowItems.get(position);
-        if (vitalName.equals("***SPO2 <80")) {
+
+        if (vitalName.contains("***SPO2 <80")) {
             holder.mDialogLinearLayout.setBackgroundColor(ContextCompat.getColor(context, R.color.Red));
 
-        } else if (vitalName.equals("***Pulse > 120")) {
+        } else if (vitalName.contains("**HR High > 120")) {
             holder.mDialogLinearLayout.setBackgroundColor(ContextCompat.getColor(context, R.color.yellow));
 
-        } else if (vitalName.equals("* T Rect High > 38.0")) {
-            holder.mDialogLinearLayout.setBackgroundColor(ContextCompat.getColor(context, R.color.notification_header_text));
         }
 
 
         holder.mTxtTitle.setText(rowItems.get(position));
+        final String vitalType = holder.mTxtTitle.getText().toString();
         holder.mTxtTitle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 mDialog.dismiss();
                 Intent intent = new Intent(context, DialogVitalDetailView.class);
+                intent.putExtra("VitalType",vitalType);
                 intent.putExtra("TITLE", mToolBarTitle);
                 context.startActivity(intent);
 

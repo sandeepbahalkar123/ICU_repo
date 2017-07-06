@@ -5,7 +5,12 @@ import android.util.Log;
 
 import com.google.gson.Gson;
 import com.icuapp.model.Patients;
+
 import com.icuapp.model.VitalList;
+
+import com.icuapp.model.order_history.OrderHistoryData;
+import com.icuapp.model.order_history.OrderHistoryModel;
+
 import com.icuapp.model.vitals.VitalCriticalDataOfPatient;
 import com.icuapp.model.vitals.VitalDetails;
 import com.icuapp.model.vitals.VitalsMainModel;
@@ -23,6 +28,7 @@ import java.lang.String;
 public class AppConstants {
 
     private static ArrayList<Patients> allPatients = null;
+    private static ArrayList<OrderHistoryData> allOrderHistoryDataList = null;
     private static VitalsMainModel allVitals = null;
     private static ArrayList<VitalList> allVitalsList = null;
 
@@ -51,8 +57,7 @@ public class AppConstants {
             arrayPatientName.add("Shiv Kumar Swami");
             arrayPatientName.add("Shivam Dubey");
             arrayPatientName.add("Yogesh Dhamal");
-
-            for (int i = 1; i <= 14; i++) {
+            for (int i = 0; i <= 14; i++) {
                 Patients st = new Patients(arrayPatientName.get(i), "" + i, false);
                 allPatients.add(st);
             }
@@ -114,6 +119,27 @@ public class AppConstants {
             }
         }
         return allVitals;
+    }
+
+    public static ArrayList<OrderHistoryData> getAllOrderHistoryDataList(Context mContext) {
+        if (allOrderHistoryDataList == null) {
+            // TODO : HARDCODED JSON STRING PARSING FROM assets foler
+            try {
+                InputStream is = mContext.getAssets().open("order_history.json");
+                int size = is.available();
+                byte[] buffer = new byte[size];
+                is.read(buffer);
+                is.close();
+                String json = new String(buffer, "UTF-8");
+                Log.e("OrderHistoryList", "json" + json);
+
+                OrderHistoryModel orderHistoryModel = new Gson().fromJson(json, OrderHistoryModel.class);
+                allOrderHistoryDataList = orderHistoryModel.getOrderHistoryDataList();
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+        }
+        return allOrderHistoryDataList;
     }
 
     private static void setDefinedVitalsConstants() {

@@ -4,10 +4,11 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 
-import com.icuapp.ui.fragment.ECGGraphsList;
-import com.icuapp.ui.fragment.OrderHistory;
-import com.icuapp.ui.fragment.VitalGraphsList;
-import com.icuapp.ui.fragment.VitalHistoryList;
+import com.icuapp.ui.fragment.patient_details.ECGGraphsList;
+import com.icuapp.ui.fragment.order_history.OrderHistoryMedicines;
+import com.icuapp.ui.fragment.patient_details.OrderHistoryList;
+import com.icuapp.ui.fragment.patient_details.VitalGraphsList;
+import com.icuapp.ui.fragment.patient_details.VitalHistoryList;
 
 /**
  * Created by hardikj on 03/07/17.
@@ -15,6 +16,7 @@ import com.icuapp.ui.fragment.VitalHistoryList;
 
 public class PatientDetailViewPager extends FragmentStatePagerAdapter {
     int tabCount;
+
     public PatientDetailViewPager(FragmentManager fragMngr, int tabCount) {
         super(fragMngr);
         this.tabCount = tabCount;
@@ -24,7 +26,7 @@ public class PatientDetailViewPager extends FragmentStatePagerAdapter {
     public Fragment getItem(int position) {
         switch (position) {
             case 0:
-                VitalGraphsList vitalGraphsList = new VitalGraphsList();
+                VitalGraphsList vitalGraphsList = VitalGraphsList.newInstance();
                 return vitalGraphsList;
             case 1:
                 ECGGraphsList ecgGraphsList = new ECGGraphsList();
@@ -33,7 +35,7 @@ public class PatientDetailViewPager extends FragmentStatePagerAdapter {
                 VitalHistoryList vitalHistoryList = new VitalHistoryList();
                 return vitalHistoryList;
             case 3:
-                OrderHistory orderHistory = new OrderHistory();
+                OrderHistoryList orderHistory = new OrderHistoryList();
                 return orderHistory;
             default:
                 return null;

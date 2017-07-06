@@ -1,18 +1,15 @@
 package com.icuapp.ui.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
-import android.support.graphics.drawable.VectorDrawableCompat;
-import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.ImageView;
 
 import com.icuapp.R;
 import com.icuapp.customesViews.CustomTextView;
-import com.icuapp.model.vitals.VitalCriticalDataOfPatient;
 import com.icuapp.model.vitals.VitalDetails;
 import com.icuapp.util.AppConstants;
 import com.icuapp.util.CommonMethods;
@@ -35,12 +32,6 @@ public class PatientDetailsMain extends AppCompatActivity implements TabLayout.O
     @BindView(R.id.vitalsMainTagCount)
     CustomTextView mVitalsMainTagCount;
 
-    @BindView(R.id.bedNo)
-    CustomTextView mBedNo;
-
-    @BindView(R.id.patientName)
-    CustomTextView mPatienName;
-
     @BindView(R.id.countPulse)
     CustomTextView mPulseCount;
 
@@ -62,11 +53,19 @@ public class PatientDetailsMain extends AppCompatActivity implements TabLayout.O
     @BindView(R.id.countSystolicPressure)
     CustomTextView mSysPressureCount;
 
+    @BindView(R.id.bedNo)
+    CustomTextView mBedNo;
+
+    @BindView(R.id.patientName)
+    CustomTextView mPatientName;
+
     @BindView(R.id.countt1)
     CustomTextView mT1Count;
 
     @BindView(R.id.countt2)
     CustomTextView mT2Count;
+    Intent intent;
+
 
 
     @Override
@@ -85,6 +84,9 @@ public class PatientDetailsMain extends AppCompatActivity implements TabLayout.O
         tabLayout.addTab(tabLayout.newTab().setText("Vital History"));
         tabLayout.addTab(tabLayout.newTab().setText("Order History"));
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
+        intent = getIntent();
+        mPatientName.setText(intent.getStringExtra("PatientName"));
+        mBedNo.setText("Bed No. "+intent.getStringExtra("PatientBedNo"));
         mBackArrow = (ImageView)findViewById(R.id.backArrow);
         mBackArrow.setOnClickListener(this);
         //Setup ViewPager

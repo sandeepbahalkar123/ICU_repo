@@ -2,6 +2,7 @@ package com.icuapp.util;
 
 import android.app.Activity;
 import android.app.Dialog;
+import android.app.TimePickerDialog;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -12,6 +13,7 @@ import android.view.Window;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.TimePicker;
 import android.widget.Toast;
 
 import com.icuapp.R;
@@ -19,6 +21,7 @@ import com.icuapp.adapters.CustomBaseAdapter;
 import com.icuapp.model.RowItem;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import java.text.DateFormat;
@@ -42,8 +45,26 @@ public class CommonMethods {
         }
     }
 
+    public static String getCurrentDateTime() // for enrollmentId
+    {
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(new Date());
+        int year = calendar.get(Calendar.YEAR);
+        int month = calendar.get(Calendar.MONTH) + 1;
+        int date = calendar.get(Calendar.DATE);
 
-    public static Dialog showAlertDialog(Context activity, String dialogHeader, ArrayList<String> dialogList) {
+        String Year = String.valueOf(year);
+        StringBuffer dString = new StringBuffer();
+        dString.append(year);
+        dString.append("-");
+        dString.append((month > 9) ? String.valueOf(month) : ("0" + month));
+        dString.append("-");
+        dString.append((date > 9) ? String.valueOf(date) : ("0" + date));
+        return dString.toString();
+    }
+
+
+    public static Dialog showAlertDialog(Context activity, String dialogHeader, ArrayList<String> dialogList, String timeDetails) {
         final String[] titles = new String[]{"Strawberry",
                 "Banana", "Orange", "Mixed"};
         List<RowItem> rowItems;
@@ -62,7 +83,7 @@ public class CommonMethods {
         if (dialogHeader != null)
             ((TextView) dialog.findViewById(R.id.patientDetails)).setText(dialogHeader);
         ListView listViewDialogList = (ListView) dialog.findViewById(R.id.lvDialogueList);
-        CustomBaseAdapter adapter = new CustomBaseAdapter(activity, dialogList,dialogHeader,dialog);
+        CustomBaseAdapter adapter = new CustomBaseAdapter(activity, dialogList, dialogHeader, dialog);
         listViewDialogList.setAdapter(adapter);
 
         dialog.findViewById(R.id.button_close).setOnClickListener(new View.OnClickListener() {
@@ -77,7 +98,6 @@ public class CommonMethods {
 
         return dialog;
     }
-
 
 
     public static int generateRandomEvenNumber() {
@@ -113,6 +133,28 @@ public class CommonMethods {
 
     public static void printLog(String tag, String data) {
         Log.e(tag, "" + data);
+    }
+
+    public static void showTimePickerDialog(Activity context, final IOnTimePickerSelection iOnTimePickerSelection) {
+        Calendar mcurrentTime = Calendar.getInstance();
+        int hour = mcurrentTime.get(Calendar.HOUR_OF_DAY);
+        int minute = mcurrentTime.get(Calendar.MINUTE);
+        TimePickerDialog mTimePicker;
+        mTimePicker = new TimePickerDialog(context, new TimePickerDialog.OnTimeSetListener() {
+            @Override
+            public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute) {
+
+                String AM_PM;
+                if (selectedHour < 12) {
+                    AM_PM = "am";
+                } else {
+                    AM_PM = "pm";
+                }
+                iOnTimePickerSelection.onTimeSelected(selectedHour + ":" + selectedMinute, selectedHour + ":" + selectedMinute + " " + AM_PM);
+            }
+        }, hour, minute, false);
+        mTimePicker.setTitle("Select Time");
+        mTimePicker.show();
     }
 }
 
