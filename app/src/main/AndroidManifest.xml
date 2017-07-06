@@ -20,8 +20,13 @@
         </activity>
         <activity android:name=".ui.activities.PatientDetailsMain"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".ui.activities.ECGGraphDetail" />
-        <activity android:name=".ui.activities.VitalHistoryDetail" />
+        <activity android:name=".ui.activities.ECGGraphDetail"
+            android:theme="@style/AppTheme.NoActionBar"
+            />
+        <activity android:name=".ui.activities.VitalHistoryDetail"
+
+            android:theme="@style/AppTheme.NoActionBar"
+            />
 
         <activity
             android:name=".ui.activities.LoginActivity"

@@ -21,7 +21,6 @@ import java.util.List;
 
 public class PatientListContainerActivity extends AppCompatActivity implements TabLayout.OnTabSelectedListener {
     private Toolbar toolbar;
-
     private TabLayout tabLayout;
     private ViewPager viewPager;
 
@@ -30,7 +29,7 @@ public class PatientListContainerActivity extends AppCompatActivity implements T
         super.onCreate(savedInstanceState);
         setContentView(R.layout.patient_list_container_layout);
         toolbar = (Toolbar) findViewById(R.id.toolbar);
-        toolbar.setTitle("Patients");
+        toolbar.setTitle("Patient List");
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         setupHomeView();
@@ -50,6 +49,24 @@ public class PatientListContainerActivity extends AppCompatActivity implements T
         PatientListContainerViewPager adapter = new PatientListContainerViewPager(getSupportFragmentManager(), tabLayout.getTabCount(),viewPager);
         viewPager.setAdapter(adapter);
         tabLayout.addOnTabSelectedListener(this);
+
+        viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+                tabLayout.setScrollPosition(position,0f,true);
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                tabLayout.setScrollPosition(position,0f,true);
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
 
     }
 
