@@ -1,5 +1,6 @@
 package com.icuapp.ui.activities;
 
+import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
@@ -21,10 +22,16 @@ import com.icuapp.ui.fragment.PicuList;
 public class SetAlertContainer extends FragmentStatePagerAdapter {
 
     int tabCount;
-    public SetAlertContainer(FragmentManager fragMngr, int tabCount, ViewPager viewPager) {
+    public SetAlertContainer(FragmentManager fragMngr, int tabCount, final ViewPager viewPager) {
         super(fragMngr);
         this.tabCount = tabCount;
-        viewPager.setCurrentItem(2);
+
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                viewPager.setCurrentItem(1);
+            }
+        }, 100);
     }
 
     @Override

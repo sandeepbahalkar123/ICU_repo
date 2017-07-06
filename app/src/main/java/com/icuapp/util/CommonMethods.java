@@ -27,6 +27,7 @@ import java.util.List;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Locale;
 import java.util.Random;
 
 
@@ -43,6 +44,14 @@ public class CommonMethods {
         } else {
             Log.d(TAG, "null snacbar view" + msg);
         }
+    }
+
+    public static String getCalculatedSeconds(String inFormat, int seconds) {
+        Calendar cal = Calendar.getInstance();
+        cal.add(Calendar.SECOND, seconds);
+        Date date = new Date(cal.getTimeInMillis());
+        SimpleDateFormat dateFormat = new SimpleDateFormat(inFormat, Locale.US);
+        return dateFormat.format(date);
     }
 
     public static String getCurrentDateTime() // for enrollmentId

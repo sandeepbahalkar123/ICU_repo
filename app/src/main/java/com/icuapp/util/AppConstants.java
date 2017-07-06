@@ -5,12 +5,9 @@ import android.util.Log;
 
 import com.google.gson.Gson;
 import com.icuapp.model.Patients;
-
 import com.icuapp.model.VitalList;
-
 import com.icuapp.model.order_history.OrderHistoryData;
 import com.icuapp.model.order_history.OrderHistoryModel;
-
 import com.icuapp.model.vitals.VitalCriticalDataOfPatient;
 import com.icuapp.model.vitals.VitalDetails;
 import com.icuapp.model.vitals.VitalsMainModel;
@@ -19,7 +16,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.lang.String;
 
 /**
  * Created by riteshpandhurkar on 4/7/17.
@@ -71,14 +67,20 @@ public class AppConstants {
             ArrayList<String> arrayVitalList = new ArrayList<>();
             arrayVitalList.add("Pleth");
             arrayVitalList.add("Resp");
+            arrayVitalList.add("Art");
+            arrayVitalList.add("PAP");
             arrayVitalList.add("CVP");
             arrayVitalList.add("ICP");
-            arrayVitalList.add("PAP");
-            arrayVitalList.add("O2");
+            arrayVitalList.add("Ao");
+            arrayVitalList.add("UAP");
+            arrayVitalList.add("BAP");
+            arrayVitalList.add("FAP");
             arrayVitalList.add("CO2");
+            arrayVitalList.add("O2");
             arrayVitalList.add("N2O");
+            arrayVitalList.add("AA");
 
-            for (int i = 0; i <= 7; i++) {
+            for (int i = 0; i < arrayVitalList.size(); i++) {
                 VitalList vt = new VitalList(arrayVitalList.get(i), false);
                 allVitalsList.add(vt);
             }
