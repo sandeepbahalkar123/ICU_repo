@@ -13,8 +13,8 @@ import android.widget.ListView;
 import com.icuapp.R;
 import com.icuapp.ui.activities.ECGGraphDetail;
 
-import java.util.Calendar;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 
 /**
  * Created by hardikj on 03/07/17.
@@ -28,10 +28,10 @@ public class ECGGraphsList extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         //Get Subtract Time from current time with no of counts.
-        getDate(8,-15);
+        getDate(8, -15);
         View view = inflater.inflate(R.layout.ecg_graphs, container, false);
         ArrayAdapter adapter = new ArrayAdapter<String>(getActivity(),
-                R.layout.ecg_graphs_row,R.id.tvDateAndTime, arrayDate);
+                R.layout.ecg_graphs_row, R.id.tvDateAndTime, arrayDate);
 
         ListView listView = (ListView) view.findViewById(R.id.ecgListView);
         listView.setAdapter(adapter);

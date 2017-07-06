@@ -59,5 +59,13 @@
     <color name="rr_yellow_color">#baaa45</color>
     <color name="loginHeader">#00ACDA</color>
 
+    <!--<color name="black">#000000</color>-->
+    <!--<color name="grey">#919499</color>-->
+    <color name="parrot">#33ED41</color>
+    <!--<color name="transparent">#00000000</color>-->
+    <!--<color name="yellow">#ffff00</color>-->
+    <color name="pleth">#00ffff</color>
+    <color name="cvp">#5a94ff</color>
+
 </resources>
 

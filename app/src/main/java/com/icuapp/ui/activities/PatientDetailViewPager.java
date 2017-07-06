@@ -24,7 +24,7 @@ public class PatientDetailViewPager extends FragmentStatePagerAdapter {
     public Fragment getItem(int position) {
         switch (position) {
             case 0:
-                VitalGraphsList vitalGraphsList = new VitalGraphsList();
+                VitalGraphsList vitalGraphsList = VitalGraphsList.newInstance();
                 return vitalGraphsList;
             case 1:
                 ECGGraphsList ecgGraphsList = new ECGGraphsList();
