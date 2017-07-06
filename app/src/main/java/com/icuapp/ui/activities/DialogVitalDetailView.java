@@ -9,6 +9,7 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.LinearLayout;
 
 import com.icuapp.R;
 import com.icuapp.customesViews.CustomTextView;
@@ -63,14 +64,22 @@ public class DialogVitalDetailView extends AppCompatActivity {
     @BindView(R.id.countt2)
     CustomTextView mT2Count;
 
+    @BindView(R.id.textViewTimeDate)
+    CustomTextView mTextViewTimeDate;
+    Intent intent;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.dialog_vital_detail_view_layout);
         ButterKnife.bind(this);
-
+        intent = getIntent();
+        String currentDate = CommonMethods.getCurrentDateTime();
+        String currentTime = CommonMethods.convertMilliSecondsToDate(System.currentTimeMillis(), "HH:mm:ss");
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        mTextViewTimeDate.setText(currentDate +" "+ currentTime+"  " + intent.getStringExtra("VitalType"));
         Intent intent = getIntent();
         String mToolBarTitle = intent.getStringExtra("TITLE");
         getSupportActionBar().setTitle(mToolBarTitle);
