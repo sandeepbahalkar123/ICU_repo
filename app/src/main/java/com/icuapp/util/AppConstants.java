@@ -48,8 +48,7 @@ public class AppConstants {
             arrayPatientName.add("Shiv Kumar Swami");
             arrayPatientName.add("Shivam Dubey");
             arrayPatientName.add("Yogesh Dhamal");
-
-            for (int i = 1; i <= 14; i++) {
+            for (int i = 0; i <= 14; i++) {
                 Patients st = new Patients(arrayPatientName.get(i), "" + i, false);
                 allPatients.add(st);
             }

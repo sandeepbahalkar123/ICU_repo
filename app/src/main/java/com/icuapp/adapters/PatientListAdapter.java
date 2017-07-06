@@ -74,10 +74,10 @@ public class PatientListAdapter extends
                 contact.setChecked(cb.isChecked());
                 mPatientList.get(pos).setChecked(cb.isChecked());
                 AppConstants.getAllPatientList().get(pos).setChecked(cb.isChecked());
-                Toast.makeText(
+              /*  Toast.makeText(
                         v.getContext(),
                         "Clicked on Checkbox: " + cb.getText() + " is "
-                                + cb.isChecked(), Toast.LENGTH_LONG).show();
+                                + cb.isChecked(), Toast.LENGTH_LONG).show();*/
             }
         });
 
@@ -86,8 +86,10 @@ public class PatientListAdapter extends
             @Override
             public void onClick(View v) {
                 Log.e("ADASD", "onBindViewHolder:" + (Patients) v.getTag());
-
+                Patients data = (Patients) v.getTag();
                 Intent intent = new Intent(getmParentActivity(), PatientDetailsMain.class);
+                intent.putExtra("PatientBedNo",data.getBedNo());
+                intent.putExtra("PatientName",data.getPatientName());
                 getmParentActivity().startActivity(intent);
             }
         });

@@ -22,9 +22,8 @@
             android:layout_marginRight="@dimen/dp6"
             android:drawableRight="@drawable/down_arrow"
             android:gravity="center_vertical"
-            android:text="asdasasd"
             android:textColor="@color/black"
-            android:textSize="@dimen/sp15"
+            android:textSize="@dimen/sp16"
             app:customFont="@string/roboto_regular" />
 
     </LinearLayout>

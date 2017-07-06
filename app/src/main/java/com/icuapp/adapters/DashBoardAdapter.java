@@ -2,6 +2,7 @@ package com.icuapp.adapters;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Handler;
 import android.support.v4.content.ContextCompat;
@@ -10,18 +11,21 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import android.widget.HorizontalScrollView;
 import android.widget.TextView;
 
 import com.icuapp.customesViews.CustomTextView;
 
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.icuapp.R;
 import com.icuapp.customesViews.CustomTextView;
 import com.icuapp.model.Patients;
 import com.icuapp.model.vitals.VitalCriticalDataOfPatient;
 import com.icuapp.model.vitals.VitalDetails;
+import com.icuapp.ui.activities.PatientDetailsMain;
 import com.icuapp.util.AppConstants;
 import com.icuapp.util.CommonMethods;
 
@@ -39,6 +43,8 @@ public class DashBoardAdapter extends RecyclerView.Adapter<DashBoardAdapter.Dash
 
     Handler handler;
     Context mContext;
+    String currentDate;
+    String currentTime;
 
     public DashBoardAdapter(Context context, ArrayList<Patients> mSelectedPatients) {
         this.mContext = context;
@@ -83,7 +89,9 @@ public class DashBoardAdapter extends RecyclerView.Adapter<DashBoardAdapter.Dash
                 if (formattedValue < Double.parseDouble("" + 90)) {
                     loadAnimation(viewHolder.countPleth, dataObject);
                     //------------
-                    String currentTime = CommonMethods.convertMilliSecondsToDate(System.currentTimeMillis(), "HH:mm:ss");
+
+                currentDate = CommonMethods.getCurrentDateTime();
+                 currentTime = CommonMethods.convertMilliSecondsToDate(System.currentTimeMillis(), "HH:mm:ss");
                     VitalCriticalDataOfPatient vitalCriticalDataOfPatient = AppConstants.vitalCriticalDataReportOfPatient.get(patientObject.getBedNo());
                     if (vitalCriticalDataOfPatient != null) {
                         vitalCriticalDataOfPatient.setPatient(patientObject);
@@ -151,10 +159,28 @@ public class DashBoardAdapter extends RecyclerView.Adapter<DashBoardAdapter.Dash
         viewHolder.vitalsMainTagCount.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                CommonMethods.showAlertDialog(mContext, "Bed No." + patientObject.getBedNo() + " " + patientObject.getPatientName(), dialogList);
+                String timeDetails = currentDate + currentTime;
+                CommonMethods.showAlertDialog(mContext, "Bed No." + patientObject.getBedNo() + " " + patientObject.getPatientName(), dialogList,timeDetails);
             }
         });
 
+        viewHolder.mLinearLayoutItemDashboard.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(mContext, PatientDetailsMain.class);
+                intent.putExtra("PatientBedNo",patientObject.getBedNo());
+                intent.putExtra("PatientName",patientObject.getPatientName());
+                mContext.startActivity(intent);
+            }
+        });
+
+      /*  viewHolder.order.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(mContext, "hi", Toast.LENGTH_SHORT).show();
+            }
+        });
+*/
     }
 
 
@@ -165,9 +191,11 @@ public class DashBoardAdapter extends RecyclerView.Adapter<DashBoardAdapter.Dash
 
     public class DashBoardViewHolder extends RecyclerView.ViewHolder {
         public TextView patientName, countPleth, countResp, countCvp, countIcp, countPap, countSystolicPressure, countT1, countT2;
-        public TextView countPulse, bedNo;
+        public TextView countPulse, bedNo,order;
         public CustomTextView vitalsMainTagCount;
         public LinearLayout mVitalsLinearLayout;
+        public LinearLayout mLinearLayoutItemDashboard;
+        public LinearLayout mHorizontalView;
 
 
         public DashBoardViewHolder(View view) {
@@ -185,6 +213,10 @@ public class DashBoardAdapter extends RecyclerView.Adapter<DashBoardAdapter.Dash
             countT2 = (TextView) view.findViewById(R.id.countt2);
             countPulse = (TextView) view.findViewById(R.id.countPulse);
             vitalsMainTagCount = (CustomTextView) view.findViewById(R.id.vitalsMainTagCount);
+            mLinearLayoutItemDashboard = (LinearLayout) view.findViewById(R.id.linearLayoutItemDashboard);
+            order = (TextView)view.findViewById(R.id.order);
+            mHorizontalView = (LinearLayout)view.findViewById(R.id.horizontalView);
+
         }
 
     }
@@ -256,7 +288,7 @@ public class DashBoardAdapter extends RecyclerView.Adapter<DashBoardAdapter.Dash
                 handler.postDelayed(this, 300);
                 //  drawable.start();
             }
-        }, 200);
+        }, 300);
     }
 
 }

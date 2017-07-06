@@ -13,7 +13,7 @@
     <color name="grey_800">#424242</color>
     <color name="grey_500">#9E9E9E</color>
     <color name="grey_200">#E0E0E0</color>
-
+    <color name="patient_name_color">#777777</color>
     <color name="gray_93">#ededed</color>
     <color name="tablet_color">#666565</color>
     <color name="instruction_color">#5e5e5e</color>
@@ -40,7 +40,7 @@
     <color name="white">#ffffff</color>
     <color name="yellow">#ffff33</color>
     <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorPrimaryDark">#0078A3</color>
     <color name="colorAccent">#FF4081</color>
     <color name="app_background">#5E5E5E</color>
     <color name="skybluefent">#e4f3fa</color>
@@ -58,6 +58,8 @@
     <color name="blue_color">#29aae1</color>
     <color name="rr_yellow_color">#baaa45</color>
     <color name="loginHeader">#00ACDA</color>
+    <color name="order_orange">#ff6733</color>
+    <color name="red_red">#fc4f4f</color>
 
     <!--<color name="black">#000000</color>-->
     <!--<color name="grey">#919499</color>-->

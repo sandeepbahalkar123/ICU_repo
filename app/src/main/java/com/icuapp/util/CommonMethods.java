@@ -19,6 +19,7 @@ import com.icuapp.adapters.CustomBaseAdapter;
 import com.icuapp.model.RowItem;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import java.text.DateFormat;
@@ -41,9 +42,26 @@ public class CommonMethods {
             Log.d(TAG, "null snacbar view" + msg);
         }
     }
+    public static String getCurrentDateTime() // for enrollmentId
+    {
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(new Date());
+        int year = calendar.get(Calendar.YEAR);
+        int month = calendar.get(Calendar.MONTH) + 1;
+        int date = calendar.get(Calendar.DATE);
+
+        String Year = String.valueOf(year);
+        StringBuffer dString = new StringBuffer();
+        dString.append(year);
+        dString.append("-");
+        dString.append((month > 9) ? String.valueOf(month) : ("0" + month));
+        dString.append("-");
+        dString.append((date > 9) ? String.valueOf(date) : ("0" + date));
+        return dString.toString();
+    }
 
 
-    public static Dialog showAlertDialog(Context activity, String dialogHeader, ArrayList<String> dialogList) {
+    public static Dialog showAlertDialog(Context activity, String dialogHeader, ArrayList<String> dialogList, String timeDetails) {
         final String[] titles = new String[]{"Strawberry",
                 "Banana", "Orange", "Mixed"};
         List<RowItem> rowItems;
