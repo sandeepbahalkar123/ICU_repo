@@ -4,7 +4,7 @@ import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
+
 import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
