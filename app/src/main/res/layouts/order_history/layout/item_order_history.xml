@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top"
+            android:src="@drawable/ellipse_1"
+            android:visibility="gone" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <com.icuapp.customesViews.CustomTextView
+                android:id="@+id/orderName"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:drawableLeft="@drawable/ellipse_1"
+                android:drawablePadding="@dimen/dp8"
+                android:gravity="center|left"
+                android:text="Adrenaline 1:10,000 IV - 0.80 ml"
+                android:textColor="@color/black"
+                android:textSize="@dimen/sp15"
+                app:customFont="@string/roboto_bold" />
+
+            <TextView
+                android:id="@+id/orderInstruction"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="@dimen/dp18"
+                android:layout_marginTop="@dimen/dp4"
+                android:gravity="center|left"
+                android:text="Instruction:asdasdasdasdasd\nsfsdfsfs\n"
+                android:textColor="@color/black"
+                android:textSize="@dimen/sp14" />
+
+        </LinearLayout>
+
+        <com.icuapp.customesViews.CustomTextView
+            android:id="@+id/orderTimestamp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center|left"
+            android:text="0.80 ml"
+            android:textColor="@color/order_history_time"
+            android:textSize="@dimen/sp14"
+            app:customFont="@string/roboto_bold" />
+
+    </LinearLayout>
+
+</LinearLayout>
