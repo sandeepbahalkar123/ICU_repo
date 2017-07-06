@@ -1,21 +1,34 @@
 package com.icuapp.ui.fragment;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.LinearLayout;
+import android.widget.Spinner;
 import android.widget.ListView;
-import android.widget.TextView;
+import android.view.View.OnClickListener;
+import android.widget.Toast;
+import android.util.Log;
+import android.widget.AdapterView;
 
 import com.icuapp.R;
-import com.icuapp.ui.activities.VitalHistoryDetail;
+import com.icuapp.adapters.PatientListAdapter;
+import com.icuapp.adapters.VitalListAdapter;
+import com.icuapp.model.VitalList;
+import com.icuapp.util.AppConstants;
 
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
+
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 /**
  * Created by hardikj on 03/07/17.
@@ -23,32 +36,85 @@ import java.util.Calendar;
 
 public class VitalHistoryList extends Fragment {
 
-    String[] arrayDate = {"Pleth","Resp", "CVP", "ICP","PAP","02","CO2","N20"};
-    private TextView textViewName;
+    ArrayList<VitalList> vitalListData;
+    private String[] spinnerDays = {"1 Days","2 Days","3 Days","4 Days","5 Days","6 Days","7 Days"};
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        //Get Subtract Time from current time with no of counts.
 
-//        textViewName = (TextView) getView().findViewById(R.id.tvName);
-//        textViewName.setText("Rhythm");
+        final View view = inflater.inflate(R.layout.vital_history_list, container, false);
 
-        getDate(8,-15);
-        View view = inflater.inflate(R.layout.vital_history_list, container, false);
-        ArrayAdapter adapter = new ArrayAdapter<String>(getActivity(),
-                R.layout.vital_history_list_row,R.id.tvVitalName, arrayDate);
+        vitalListData = AppConstants.getAllVitalList();
 
-        ListView listView = (ListView) view.findViewById(R.id.ecgListView);
+        ArrayAdapter adapter = new VitalListAdapter(getActivity(),
+                R.layout.vital_history_list_row, vitalListData);
+
+        final ListView listView = (ListView) view.findViewById(R.id.vitalListView);
         listView.setAdapter(adapter);
 
-        //Set Click Listener for Listview row.
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        final LinearLayout linearLayoutList = (LinearLayout) view.findViewById(R.id.vitalHistoryListLinearLayout);
+        linearLayoutList.setVisibility(View.VISIBLE);
+
+        final LinearLayout linearLayoutDetail = (LinearLayout) view.findViewById(R.id.vitalHistoryDetailLayout);
+        linearLayoutDetail.setVisibility(view.GONE);
+
+        final Button backButton = (Button) view.findViewById(R.id.backBtnVital);
+        Button btnOk = (Button) view.findViewById(R.id.buttonOkVital);
+
+//        final Spinner spinner = (Spinner) view.findViewById(R.id.spinnerDays);
+//
+//        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+//            @Override
+//            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+//
+//            }
+//
+//            @Override
+//            public void onNothingSelected(AdapterView<?> parent) {
+//
+//            }
+//        });
+//
+//        ArrayAdapter spinnerAdapter = new ArrayAdapter(getActivity(),
+//                R.layout.vital_history_list, spinnerDays);
+//
+//        spinner.setVisibility(view.GONE);
+
+        // Drop down layout style - list view with radio button
+//        spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        // attaching data adapter to spinner
+//        spinner.setAdapter(spinnerAdapter);
+
+        // Spinner click listener
+
+        Button btnDays = (Button) view.findViewById(R.id.btnDays);
+
+        btnOk.setOnClickListener(new OnClickListener() {
+            //Run when button is clicked
             @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                startActivity(new Intent(getActivity(), VitalHistoryDetail.class));
+            public void onClick(View v) {
+                linearLayoutDetail.setVisibility(view.VISIBLE);
+                linearLayoutList.setVisibility(view.GONE);
+                System.out.println("selected values"+AppConstants.getAllVitalList());
             }
         });
+
+        backButton.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                linearLayoutDetail.setVisibility(view.GONE);
+                linearLayoutList.setVisibility(view.VISIBLE);
+            }
+        });
+
+//        btnDays.setOnClickListener(new OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//               spinner.setVisibility(view.VISIBLE);
+//            }
+//        });
         return view;
     }
 
@@ -57,15 +123,4 @@ public class VitalHistoryList extends Fragment {
         super.onActivityCreated(savedInstanceState);
     }
 
-    //Methods for getting subtracted time from current time.
-    private void getDate(Integer noOfCell, Integer subTime) {
-        Calendar calendar = Calendar.getInstance();
-        for (int day = 0; day < noOfCell; day++) {
-            calendar.add(Calendar.MINUTE, subTime);
-            SimpleDateFormat df = new SimpleDateFormat("yyyy/MM/dd hh:mm:ss");
-            String formattedDate = df.format(calendar.getTime());
-            arrayDate[day] = formattedDate;
-            System.out.println("Today List :" + arrayDate);
-        }
-    }
 }

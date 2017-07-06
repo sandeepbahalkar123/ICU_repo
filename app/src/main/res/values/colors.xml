@@ -58,6 +58,6 @@
     <color name="blue_color">#29aae1</color>
     <color name="rr_yellow_color">#baaa45</color>
     <color name="loginHeader">#00ACDA</color>
-
+    <color name="vitalBackButton">#FF653F</color>
 </resources>
 

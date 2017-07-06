@@ -13,4 +13,9 @@
         android:divider="@android:color/darker_gray"
         android:dividerHeight="0.5dp" />
 
+    <LinearLayout android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <include layout="@layout/ecg_graph_detail"/>
+    </LinearLayout>
+
 </FrameLayout>

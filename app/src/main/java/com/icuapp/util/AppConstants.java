@@ -5,6 +5,7 @@ import android.util.Log;
 
 import com.google.gson.Gson;
 import com.icuapp.model.Patients;
+import com.icuapp.model.VitalList;
 import com.icuapp.model.vitals.VitalCriticalDataOfPatient;
 import com.icuapp.model.vitals.VitalDetails;
 import com.icuapp.model.vitals.VitalsMainModel;
@@ -13,6 +14,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.lang.String;
 
 /**
  * Created by riteshpandhurkar on 4/7/17.
@@ -22,6 +24,7 @@ public class AppConstants {
 
     private static ArrayList<Patients> allPatients = null;
     private static VitalsMainModel allVitals = null;
+    private static ArrayList<VitalList> allVitalsList = null;
 
     private static HashMap<String, String> definedVitalsConstants = new HashMap<>();
     public static HashMap<String, VitalCriticalDataOfPatient> vitalCriticalDataReportOfPatient = new HashMap<>();
@@ -57,6 +60,26 @@ public class AppConstants {
         return allPatients;
     }
 
+    public static ArrayList<VitalList> getAllVitalList() {
+        if (allVitalsList == null) {
+            allVitalsList = new ArrayList<>();
+            ArrayList<String> arrayVitalList = new ArrayList<>();
+            arrayVitalList.add("Pleth");
+            arrayVitalList.add("Resp");
+            arrayVitalList.add("CVP");
+            arrayVitalList.add("ICP");
+            arrayVitalList.add("PAP");
+            arrayVitalList.add("O2");
+            arrayVitalList.add("CO2");
+            arrayVitalList.add("N2O");
+
+            for (int i = 0; i <= 7; i++) {
+                VitalList vt = new VitalList(arrayVitalList.get(i), false);
+                allVitalsList.add(vt);
+            }
+        }
+        return allVitalsList;
+    }
     public static ArrayList<Patients> getSelectedPatientList() {
         ArrayList<Patients> allPatientList = getAllPatientList();
         ArrayList<Patients> mSelectedPatients = new ArrayList<>();

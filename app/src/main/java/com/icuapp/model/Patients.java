@@ -8,8 +8,6 @@ import java.util.ArrayList;
 
 public class Patients {
 
-
-
     private String patientName;
     private String bedNo;
     private boolean isChecked;

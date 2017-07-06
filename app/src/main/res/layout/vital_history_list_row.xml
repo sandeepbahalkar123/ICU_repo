@@ -1,26 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="50dp"
     android:layout_marginBottom="5dp"
     android:orientation="horizontal"
     android:weightSum="1">
 
         <TextView
-            android:id="@+id/tvVitalName"
+            android:id="@+id/ctvVitalName"
+            android:layout_gravity="center_vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:fontFamily="@string/roboto_bold"
+            android:textStyle="bold"
             android:layout_margin="5dp"
+            android:paddingLeft="20dp"
+            android:textColor="@color/black"
             android:text="Pleth"
             android:textSize="17sp"
-            android:layout_weight="1"/>
+            android:layout_weight="1.5"/>
 
         <android.support.v7.widget.AppCompatCheckBox
             android:id="@+id/checkBoxVital"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="end"
-            android:layout_marginTop="5dp"
+            android:layout_gravity="center_vertical"
             android:paddingTop="5dp"
             android:src="@drawable/side_menu"
             />
