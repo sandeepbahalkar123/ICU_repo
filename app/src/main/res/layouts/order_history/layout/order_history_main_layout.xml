@@ -6,19 +6,18 @@
     android:orientation="vertical">
 
     <LinearLayout
+        android:id="@+id/mainContainerLayout"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/dp50"
+        android:layout_height="@dimen/dp40"
         android:layout_margin="@dimen/dp10"
         android:orientation="horizontal">
 
         <ImageView
-            android:id="@+id/orderHistoryHeaderImage"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:src="@drawable/iv_icon" />
 
         <com.icuapp.customesViews.CustomTextView
-            android:id="@+id/orderHistoryHeader"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginLeft="@dimen/dp10"

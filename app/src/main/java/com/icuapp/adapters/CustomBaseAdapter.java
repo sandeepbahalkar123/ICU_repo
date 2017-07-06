@@ -65,11 +65,13 @@ public class CustomBaseAdapter extends BaseAdapter {
 
 
         holder.mTxtTitle.setText(rowItems.get(position));
+        final String vitalType = holder.mTxtTitle.getText().toString();
         holder.mTxtTitle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 mDialog.dismiss();
                 Intent intent = new Intent(context, DialogVitalDetailView.class);
+                intent.putExtra("VitalType",vitalType);
                 intent.putExtra("TITLE", mToolBarTitle);
                 context.startActivity(intent);
 

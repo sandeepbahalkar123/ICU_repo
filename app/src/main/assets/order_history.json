@@ -9,13 +9,13 @@
     {
       "name": "Calcium Gluconate 10% IV - 4 ml",
       "instruction": "Monitor for adverse signs of bradycardia",
-      "timeStamp": "12:00 pm",
+      "timeStamp": "12:05 pm",
       "type": "MEDICINE"
     },
     {
       "name": "Diazepam IV - 0.8 mg",
       "instruction": "If signs of overdose occur, stop the infusion immediately",
-      "timeStamp": "12:00 pm",
+      "timeStamp": "12:08 pm",
       "type": "MEDICINE"
     },
     {
@@ -27,13 +27,13 @@
     {
       "name": "Hypertonic Saline 3%",
       "instruction": "250 ml infused over 20-30 mins",
-      "timeStamp": "12:00 pm",
+      "timeStamp": "12:10 pm",
       "type": "MEDICINE"
     },
     {
       "name": "Laparoscopy",
       "instruction": "Add acetaminophen through IV during the procedure",
-      "timeStamp": "12:00 pm",
+      "timeStamp": "12:15 pm",
       "type": "INVESTIGATIONS"
     },
     {
@@ -45,13 +45,13 @@
     {
       "name": "Spirometry",
       "instruction": "Patient must be observed & encouraged throughout the procedure",
-      "timeStamp": "12:00 pm",
+      "timeStamp": "12:25 pm",
       "type": "INVESTIGATIONS"
     },
     {
       "name": "CT Chest",
       "instruction": "",
-      "timeStamp": "12:00 pm",
+      "timeStamp": "12:30 pm",
       "type": "INVESTIGATIONS"
     },
     {

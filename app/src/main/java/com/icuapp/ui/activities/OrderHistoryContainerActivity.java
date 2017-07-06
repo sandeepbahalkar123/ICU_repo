@@ -16,6 +16,7 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -57,10 +58,8 @@ public class OrderHistoryContainerActivity extends AppCompatActivity {
     AutoCompleteTextView mSelectedMedicine;
     @BindView(R.id.radioTypeSelectionGroup)
     RadioGroup mRadioTypeSelectionGroup;
-    @BindView(R.id.orderHistoryHeaderImage)
-    ImageView mOrderHistoryHeaderImage;
-    @BindView(R.id.orderHistoryHeader)
-    CustomTextView mOrderHistoryHeader;
+    @BindView(R.id.mainContainerLayout)
+    LinearLayout mMainContainerLayout;
 
     String mMedicineORInvestigationSelected;
     private ArrayList<OrderHistoryData> mAllOrderHistoryDataList;
@@ -82,8 +81,7 @@ public class OrderHistoryContainerActivity extends AppCompatActivity {
     }
 
     private void initialize() {
-        mOrderHistoryHeaderImage.setVisibility(View.GONE);
-        mOrderHistoryHeader.setText("Order History");
+        mMainContainerLayout.setVisibility(View.GONE);
         mAllOrderHistoryDataList = AppConstants.getAllOrderHistoryDataList(this);
         mOrderHistoryListAdapter = new OrderHistoryListAdapter(this, R.layout.item_order_history, mAllOrderHistoryDataList);
         mOrderHistoryListView.setAdapter(mOrderHistoryListAdapter);
