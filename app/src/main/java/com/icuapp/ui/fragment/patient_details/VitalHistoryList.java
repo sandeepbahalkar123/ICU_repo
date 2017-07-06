@@ -37,7 +37,7 @@ import butterknife.ButterKnife;
 public class VitalHistoryList extends Fragment {
 
     ArrayList<VitalList> vitalListData;
-    private String[] spinnerDays = {"1 Days","2 Days","3 Days","4 Days","5 Days","6 Days","7 Days"};
+    private String[] spinnerDays = {"1 Days", "2 Days", "3 Days", "4 Days", "5 Days", "6 Days", "7 Days"};
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -95,9 +95,20 @@ public class VitalHistoryList extends Fragment {
             //Run when button is clicked
             @Override
             public void onClick(View v) {
-                linearLayoutDetail.setVisibility(view.VISIBLE);
-                linearLayoutList.setVisibility(view.GONE);
-                System.out.println("selected values"+AppConstants.getAllVitalList());
+                ArrayList<VitalList> allVitalList = AppConstants.getAllVitalList();
+                int count = 0;
+                for (VitalList data :
+                        allVitalList) {
+                    if (data.isChecked()) {
+                        count++;
+                    }
+                }
+                if (count != 0) {
+                    linearLayoutDetail.setVisibility(view.VISIBLE);
+                    linearLayoutList.setVisibility(view.GONE);
+                } else {
+                    Toast.makeText(v.getContext(), "No patient selected", Toast.LENGTH_LONG).show();
+                }
             }
         });
 

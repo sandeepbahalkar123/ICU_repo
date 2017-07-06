@@ -44,6 +44,7 @@
                 </View>
 
                 <Button
+                    android:visibility="gone"
                     android:id="@+id/btnDays"
                     android:fontFamily="@string/roboto_bold"
                     android:textStyle="bold"

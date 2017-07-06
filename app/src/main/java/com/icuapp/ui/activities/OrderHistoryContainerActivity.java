@@ -81,10 +81,16 @@ public class OrderHistoryContainerActivity extends AppCompatActivity {
     }
 
     private void initialize() {
+        String date = CommonMethods.convertMilliSecondsToDate(System.currentTimeMillis(), "dd MMMM yyyy");
+        mSelectedTimeStamp = CommonMethods.convertMilliSecondsToDate(System.currentTimeMillis(), "hh:mm a");
+        mSelectDate.setText(date + " - " + mSelectedTimeStamp);
         mMainContainerLayout.setVisibility(View.GONE);
         mAllOrderHistoryDataList = AppConstants.getAllOrderHistoryDataList(this);
         mOrderHistoryListAdapter = new OrderHistoryListAdapter(this, R.layout.item_order_history, mAllOrderHistoryDataList);
         mOrderHistoryListView.setAdapter(mOrderHistoryListAdapter);
+
+        mMedicineORInvestigationSelected = "medicine";
+        filterAllOrderHistoryDataList();
     }
 
     @Override
@@ -145,10 +151,12 @@ public class OrderHistoryContainerActivity extends AppCompatActivity {
         orderHistoryData.setInstruction("" + mInstructions.getText().toString());
         orderHistoryData.setType("" + mMedicineORInvestigationSelected);
         orderHistoryData.setName("" + mSelectedMedicine.getText().toString());
-        AppConstants.getAllOrderHistoryDataList(this).add(orderHistoryData);
+        AppConstants.getAllOrderHistoryDataList(this).add(0, orderHistoryData);
         mAllOrderHistoryDataList = AppConstants.getAllOrderHistoryDataList(this);
         mOrderHistoryListAdapter.notifyDataSetChanged();
         Toast.makeText(this, "Order added successfully.", Toast.LENGTH_LONG).show();
+        mInstructions.setText("");
+        mSelectedMedicine.setText("");
     }
 
     private void filterAllOrderHistoryDataList() {

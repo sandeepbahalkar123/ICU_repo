@@ -74,10 +74,7 @@ public class PatientListAdapter extends
                 contact.setChecked(cb.isChecked());
                 mPatientList.get(pos).setChecked(cb.isChecked());
                 AppConstants.getAllPatientList().get(pos).setChecked(cb.isChecked());
-              /*  Toast.makeText(
-                        v.getContext(),
-                        "Clicked on Checkbox: " + cb.getText() + " is "
-                                + cb.isChecked(), Toast.LENGTH_LONG).show();*/
+
             }
         });
 

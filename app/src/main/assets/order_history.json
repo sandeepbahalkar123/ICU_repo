@@ -3,61 +3,61 @@
     {
       "name": "Adrenaline 1:10,000 IV - 0.80 ml",
       "instruction": "Inform immediately if allergic type reactions occur.",
-      "timeStamp": "12:00 pm",
+      "timeStamp": "12:50 pm",
       "type": "MEDICINE"
     },
     {
       "name": "Calcium Gluconate 10% IV - 4 ml",
       "instruction": "Monitor for adverse signs of bradycardia",
-      "timeStamp": "12:05 pm",
+      "timeStamp": "12:45 pm",
       "type": "MEDICINE"
     },
     {
       "name": "Diazepam IV - 0.8 mg",
       "instruction": "If signs of overdose occur, stop the infusion immediately",
-      "timeStamp": "12:08 pm",
+      "timeStamp": "12:42 pm",
       "type": "MEDICINE"
     },
     {
       "name": "Mannitol 20% - 1 g/kg IV bolus",
       "instruction": "May repeat 0.25-0.5 g/kg as needed",
-      "timeStamp": "12:00 pm",
+      "timeStamp": "12:30 pm",
       "type": "MEDICINE"
     },
     {
       "name": "Hypertonic Saline 3%",
       "instruction": "250 ml infused over 20-30 mins",
-      "timeStamp": "12:10 pm",
+      "timeStamp": "12:26 pm",
       "type": "MEDICINE"
     },
     {
       "name": "Laparoscopy",
       "instruction": "Add acetaminophen through IV during the procedure",
-      "timeStamp": "12:15 pm",
+      "timeStamp": "12:22 pm",
       "type": "INVESTIGATIONS"
     },
     {
       "name": "X-Ray Abdomen",
       "instruction": "Breathing Instructions: On full expiration",
-      "timeStamp": "12:00 pm",
+      "timeStamp": "12:17 pm",
       "type": "INVESTIGATIONS"
     },
     {
       "name": "Spirometry",
       "instruction": "Patient must be observed & encouraged throughout the procedure",
-      "timeStamp": "12:25 pm",
+      "timeStamp": "12:13 pm",
       "type": "INVESTIGATIONS"
     },
     {
       "name": "CT Chest",
       "instruction": "",
-      "timeStamp": "12:30 pm",
+      "timeStamp": "12:08 pm",
       "type": "INVESTIGATIONS"
     },
     {
       "name": "MRI Brain",
       "instruction": "",
-      "timeStamp": "12:00 pm",
+      "timeStamp": "12:01 pm",
       "type": "INVESTIGATIONS"
     }
   ]

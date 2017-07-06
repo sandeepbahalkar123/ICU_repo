@@ -84,9 +84,9 @@
                 android:layout_marginLeft="@dimen/dp16"
                 android:layout_marginTop="@dimen/dp4"
                 android:layout_weight="1"
-                android:visibility="invisible"
                 android:gravity="center_vertical|left"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:visibility="invisible">
 
                 <com.icuapp.customesViews.CustomTextView
                     android:id="@+id/vitalsMainTagCount"
@@ -95,6 +95,7 @@
                     android:layout_marginRight="@dimen/dp6"
                     android:drawableRight="@drawable/down_arrow"
                     android:gravity="center_vertical"
+                    android:paddingLeft="@dimen/dp4"
                     android:textColor="@color/black"
                     android:textSize="@dimen/sp15"
                     app:customFont="@string/roboto_regular" />
@@ -380,8 +381,8 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="@dimen/dp10"
                     android:layout_marginLeft="@dimen/dp20"
+                    android:layout_marginRight="@dimen/dp10"
                     android:orientation="vertical">
 
                     <com.icuapp.customesViews.CustomTextView
@@ -404,11 +405,12 @@
                         android:textSize="@dimen/sp30"
                         app:customFont="@string/roboto_bold" />
                 </LinearLayout>
+
                 <LinearLayout
-                    android:visibility="invisible"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    android:visibility="invisible">
 
                     <com.icuapp.customesViews.CustomTextView
                         android:layout_width="wrap_content"
