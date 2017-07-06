@@ -23,7 +23,7 @@ import java.util.Calendar;
 
 public class VitalHistoryList extends Fragment {
 
-    String[] arrayDate = new String[8];
+    String[] arrayDate = {"Pleth","Resp", "CVP", "ICP","PAP","02","CO2","N20"};
     private TextView textViewName;
 
     @Override
@@ -35,9 +35,9 @@ public class VitalHistoryList extends Fragment {
 //        textViewName.setText("Rhythm");
 
         getDate(8,-15);
-        View view = inflater.inflate(R.layout.ecg_graphs, container, false);
+        View view = inflater.inflate(R.layout.vital_history_list, container, false);
         ArrayAdapter adapter = new ArrayAdapter<String>(getActivity(),
-                R.layout.ecg_graphs_row,R.id.tvDateAndTime, arrayDate);
+                R.layout.vital_history_list_row,R.id.tvVitalName, arrayDate);
 
         ListView listView = (ListView) view.findViewById(R.id.ecgListView);
         listView.setAdapter(adapter);

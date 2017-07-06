@@ -81,7 +81,7 @@ public class PatientDetailsMain extends AppCompatActivity implements TabLayout.O
         tabLayout = (TabLayout) findViewById(R.id.tabFragmentDetailView);
         //Adding the tabs using addTab() method
         tabLayout.addTab(tabLayout.newTab().setText("Vital Graphs"));
-        tabLayout.addTab(tabLayout.newTab().setText("ECG Graphs"));
+        tabLayout.addTab(tabLayout.newTab().setText("ECG Reports"));
         tabLayout.addTab(tabLayout.newTab().setText("Vital History"));
         tabLayout.addTab(tabLayout.newTab().setText("Order History"));
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
