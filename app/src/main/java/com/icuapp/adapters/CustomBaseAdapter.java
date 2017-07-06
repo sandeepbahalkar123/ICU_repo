@@ -62,6 +62,11 @@ public class CustomBaseAdapter extends BaseAdapter {
             holder.mDialogLinearLayout.setBackgroundColor(ContextCompat.getColor(context, R.color.yellow));
 
         }
+        else if (vitalName.contains("**T1 High> 38.0")) {
+            holder.mDialogLinearLayout.setBackgroundColor(ContextCompat.getColor(context, R.color.blue_color));
+
+        }
+
 
 
         holder.mTxtTitle.setText(rowItems.get(position));

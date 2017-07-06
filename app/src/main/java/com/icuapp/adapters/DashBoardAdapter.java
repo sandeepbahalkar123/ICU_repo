@@ -154,6 +154,15 @@ public class DashBoardAdapter extends RecyclerView.Adapter<DashBoardAdapter.Dash
                 viewHolder.countSystolicPressure.setText(value);
             } else if (name.equalsIgnoreCase("T1")) {
                 viewHolder.countT1.setText(value);
+                if (formattedValue <= 38.2) {
+                    String currentTimeHr = CommonMethods.convertMilliSecondsToDate(System.currentTimeMillis(), "HH:mm:ss");
+                    viewHolder.mVitalsLinearLayout.setVisibility(View.VISIBLE);
+                    viewHolder.mVitalsLinearLayout.setBackground(mContext.getResources().getDrawable(R.drawable.curve_fill_blue_bg));
+                    viewHolder.vitalsMainTagCount.setTextColor(ContextCompat.getColor(mContext, R.color.black));
+                    viewHolder.vitalsMainTagCount.setText("**T1 High> 38.0"+ " "+currentTimeHr.substring(0,5));
+                     /*loadAnimationT(viewHolder.countT1, dataObject);*/
+                    dialogList.add("**T1 High> 38.0"+ " "+currentTimeHr.substring(0,5));
+                }
             } else if (name.equalsIgnoreCase("T2")) {
                 viewHolder.countT2.setText(value);
             }
@@ -163,7 +172,7 @@ public class DashBoardAdapter extends RecyclerView.Adapter<DashBoardAdapter.Dash
             @Override
             public void onClick(View v) {
                 String timeDetails = currentDate + currentTime;
-                CommonMethods.showAlertDialog(mContext, "Bed No." + patientObject.getBedNo() + " " + patientObject.getPatientName(), dialogList,timeDetails);
+                CommonMethods.showAlertDialog(mContext, "Bed No." + patientObject.getBedNo() + "  " + patientObject.getPatientName(), dialogList,timeDetails);
             }
         });
 
@@ -319,5 +328,40 @@ public class DashBoardAdapter extends RecyclerView.Adapter<DashBoardAdapter.Dash
             }
         }, 300);
     }
+   /* private void loadAnimationT(final View view, final VitalDetails dataObject) {
+        *//*Animation anim = new AlphaAnimation(0.0f, 1.0f);
+        anim.setDuration(100);
+        anim.setStartOffset(20);
+        anim.setRepeatMode(Animation.REVERSE);
+        anim.setRepeatCount(Animation.INFINITE);
+        view.startAnimation(anim);*//*
+
+        final Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                if (dataObject.isAnimated()) {
+                    view.setBackgroundColor(ContextCompat.getColor(mContext, R.color.yellow));
+
+                    TextView textView = (TextView) view.findViewById(R.id.countPulse);
+                    textView.setTextColor(ContextCompat.getColor(mContext, R.color.black));
+
+                } else {
+                    view.setBackgroundColor(Color.BLACK);
+                    TextView textView = (TextView) view.findViewById(R.id.countPulse);
+                    textView.setTextColor(ContextCompat.getColor(mContext, R.color.parrot_green_color));
+                    //    view.setTextColor(mContext.getResources().getColor(R.color.parrot_green_color));
+                }
+
+                if (dataObject.isAnimated()) {
+                    dataObject.setAnimated(false);
+                } else {
+                    dataObject.setAnimated(true);
+                }
+                handler.postDelayed(this, 300);
+                //  drawable.start();
+            }
+        }, 300);
+    }*/
 
 }

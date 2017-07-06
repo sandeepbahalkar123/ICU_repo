@@ -105,7 +105,7 @@ public class PatientDetailsMain extends AppCompatActivity implements TabLayout.O
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
         intent = getIntent();
         mPatientName.setText(intent.getStringExtra("PatientName"));
-        mBedNo.setText("Bed No. "+intent.getStringExtra("PatientBedNo"));
+        mBedNo.setText("Bed No. "+ "  " + intent.getStringExtra("PatientBedNo"));
         mBackArrow = (ImageView)findViewById(R.id.backArrow);
         mBackArrow.setOnClickListener(this);
         //Setup ViewPager
@@ -153,7 +153,7 @@ public class PatientDetailsMain extends AppCompatActivity implements TabLayout.O
             @Override
             public void onClick(View v) {
                 String timeDetails = currentDate + currentTime;
-                CommonMethods.showAlertDialog(PatientDetailsMain.this, "Bed No. "+intent.getStringExtra("PatientBedNo")+intent.getStringExtra("PatientName"), dialogList,timeDetails);
+                CommonMethods.showAlertDialog(PatientDetailsMain.this, "Bed No. "+intent.getStringExtra("PatientBedNo")+"  "+intent.getStringExtra("PatientName"), dialogList,timeDetails);
             }
         });
         //Setup patient vitals datacounts.
@@ -204,15 +204,15 @@ public class PatientDetailsMain extends AppCompatActivity implements TabLayout.O
             } else if (name.equalsIgnoreCase("T1")) {
                 mT1Count.setText(value);
                 //TODO
-               /* if (formattedValue <= 38) {
+               if (formattedValue <= 38.2) {
                     String currentTimeHr = CommonMethods.convertMilliSecondsToDate(System.currentTimeMillis(), "HH:mm:ss");
                     mVitalsLinearLayout.setVisibility(View.VISIBLE);
                     mVitalsLinearLayout.setBackground(getResources().getDrawable(R.drawable.curve_fill_blue_bg));
                     mVitalsMainTagCount.setTextColor(ContextCompat.getColor(PatientDetailsMain.this, R.color.black));
-                    mVitalsMainTagCount.setText("**T rect High > 38.0"+ " "+currentTimeHr.substring(0,5));
+                    mVitalsMainTagCount.setText("**T1 High> 38.0"+ " "+currentTimeHr.substring(0,5));
                     // loadAnimationHr(mPulseCount, dataObject);
-                    dialogList.add("**T rect High > 38.0"+ " "+currentTimeHr.substring(0,5));
-                }*/
+                    dialogList.add("**T1 High> 38.0"+ " "+currentTimeHr.substring(0,5));
+                }
             } else if (name.equalsIgnoreCase("T2")) {
                 mT2Count.setText(value);
             }
