@@ -83,7 +83,7 @@ public class DashBoardAdapter extends RecyclerView.Adapter<DashBoardAdapter.Dash
         currentTime = CommonMethods.convertMilliSecondsToDate(System.currentTimeMillis(), "HH:mm:ss");
         viewHolder.vitalsMainTagCount.setText("**SpO2 <80 " + currentTime.substring(0, 5));
         viewHolder.mVitalsLinearLayout.setBackground(mContext.getResources().getDrawable(R.drawable.curve_fill_red_bg));
-
+        dialogList.add("**SpO2 <80 " + currentTime.substring(0, 5));
         for (VitalDetails dataObject :
                 vitalInfo) {
             String name = dataObject.getName();
@@ -176,6 +176,7 @@ public class DashBoardAdapter extends RecyclerView.Adapter<DashBoardAdapter.Dash
             @Override
             public void onClick(View v) {
                 String timeDetails = currentDate + currentTime;
+
                 CommonMethods.showAlertDialog(mContext, "Bed " + patientObject.getBedNo() + "  " + "("+patientObject.getPatientName().split(" ")[0]+")", dialogList,timeDetails);
             }
         });

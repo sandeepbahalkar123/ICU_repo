@@ -165,7 +165,10 @@ public class PatientDetailsMain extends AppCompatActivity implements TabLayout.O
     }
 
     private void setupPatientVitals() {
+        currentDate = CommonMethods.getCurrentDateTime();
+        currentTime = CommonMethods.convertMilliSecondsToDate(System.currentTimeMillis(), "HH:mm:ss");
         dialogList.clear();
+        dialogList.add("**HR High >120"+ " "+currentTime.substring(0,5));
 
         ArrayList<VitalDetails> vitalInfo = AppConstants.getVitalInfo(CommonMethods.generateRandomEvenNumber());
         for (VitalDetails dataObject :
