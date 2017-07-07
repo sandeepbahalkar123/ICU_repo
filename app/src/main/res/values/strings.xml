@@ -6,6 +6,8 @@
     <string name="dashboard">Dashboard</string>
     <string name="app_name">ICU</string>
     <string name="close">Close</string>
+
+    <string name="spo2">**SpO2 80</string>
     <string name="internet">Please check your Internet Connection</string>
     <string name="timeout">Timeout error</string>
 

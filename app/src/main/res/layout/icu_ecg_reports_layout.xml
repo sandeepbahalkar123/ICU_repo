@@ -24,48 +24,22 @@
                     android:id="@+id/backArrow"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/dp16"
                     android:layout_gravity="left|center_vertical"
-                    android:layout_weight="0.1"
                     app:srcCompat="@drawable/ic_arrow_back_white_24dp" />
 
                 <com.icuapp.customesViews.CustomTextView
-                    android:id="@+id/bedNo"
-                    android:layout_width="0dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
-                    android:layout_weight="0.5"
                     android:paddingLeft="@dimen/dp2"
+                    android:layout_marginLeft="@dimen/dp16"
+                    android:text="Patient Monitor"
                     android:textColor="@color/white"
-                    android:textSize="20sp"
+                    android:textSize="18sp"
                     android:textStyle="bold"
                     app:customFont="@string/roboto_bold" />
 
-                <com.icuapp.customesViews.CustomTextView
-                    android:id="@+id/patientName"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="left"
-                    android:layout_weight="0.5"
-                    android:gravity="center_vertical"
-                    android:paddingLeft="@dimen/dp8"
-                    android:textColor="@color/white"
-                    android:textSize="20sp"
-                    app:customFont="@string/roboto_bold" />
-
-                <com.icuapp.customesViews.CustomTextView
-                    android:id="@+id/order"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginRight="@dimen/dp8"
-                    android:layout_weight="0.5"
-                    android:background="@drawable/curve_fill_orange_colour"
-                    android:gravity="center"
-                    android:paddingBottom="@dimen/dp4"
-                    android:paddingTop="@dimen/dp4"
-                    android:text="Order"
-                    android:textColor="@color/white"
-                    android:textSize="@dimen/sp16"
-                    app:customFont="@string/roboto_regular" />
             </LinearLayout>
         </LinearLayout>
 
@@ -77,35 +51,93 @@
             android:orientation="horizontal">
 
             <LinearLayout
-                android:id="@+id/vitalsLinearLayout"
-                android:layout_width="@dimen/dp0"
-                android:layout_height="40dp"
-                android:layout_marginBottom="@dimen/dp4"
-                android:layout_marginLeft="@dimen/dp16"
-                android:layout_marginTop="@dimen/dp4"
-                android:layout_weight="1"
-                android:gravity="center_vertical|left"
-                android:orientation="horizontal"
-                android:visibility="invisible">
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/dp10"
+                android:layout_marginLeft="@dimen/dp5"
+                android:layout_marginRight="@dimen/dp5"
+                android:layout_marginTop="@dimen/dp10"
+                android:background="@color/tagColor"
+                android:orientation="horizontal">
 
-                <com.icuapp.customesViews.CustomTextView
-                    android:id="@+id/vitalsMainTagCount"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginRight="@dimen/dp6"
-                    android:drawableRight="@drawable/down_arrow"
-                    android:gravity="center_vertical"
-                    android:paddingLeft="@dimen/dp4"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/sp15"
-                    app:customFont="@string/roboto_regular" />
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="0.7"
+                    android:orientation="horizontal">
+
+                    <com.icuapp.customesViews.CustomTextView
+                        android:id="@+id/bedNo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:gravity="center_vertical"
+                        android:textColor="@color/white"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        app:customFont="@string/roboto_bold" />
+
+                    <com.icuapp.customesViews.CustomTextView
+                        android:id="@+id/patientName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="left"
+                        android:gravity="center_vertical"
+                        android:paddingLeft="@dimen/dp8"
+                        android:textColor="@color/white"
+                        android:textSize="16sp"
+                        app:customFont="@string/roboto_bold" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:id="@+id/vitalsLinearLayout"
+                        android:layout_width="@dimen/dp0"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/dp2"
+                        android:layout_marginRight="@dimen/dp2"
+                        android:layout_weight="0.6"
+                        android:orientation="horizontal">
+
+                        <com.icuapp.customesViews.CustomTextView
+                            android:id="@+id/vitalsMainTagCount"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="center_vertical"
+                            android:drawableRight="@drawable/down_arrow"
+                            android:gravity="center_vertical"
+                            android:paddingBottom="@dimen/dp8"
+                            android:paddingLeft="@dimen/dp4"
+                            android:paddingRight="@dimen/dp4"
+                            android:paddingTop="@dimen/dp8"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/sp12"
+                            app:customFont="@string/roboto_regular" />
+                    </LinearLayout>
+
+                    <ImageView
+                        android:id="@+id/tvOrderHistory"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center_vertical|right"
+                        android:layout_marginLeft="@dimen/dp4"
+                        android:background="@drawable/rounded_rectangle_1"
+                        android:paddingBottom="@dimen/dp4"
+                        android:paddingTop="@dimen/dp4"
+                        android:scaleType="centerInside"
+                        android:src="@drawable/rx"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/sp16" />
+                </LinearLayout>
 
             </LinearLayout>
 
-            <TextView
-                android:layout_width="@dimen/dp0"
-                android:layout_height="match_parent"
-                android:layout_weight="1" />
         </LinearLayout>
 
         <HorizontalScrollView

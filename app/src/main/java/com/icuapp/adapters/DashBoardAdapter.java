@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import android.widget.HorizontalScrollView;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.icuapp.customesViews.CustomTextView;
@@ -72,15 +73,16 @@ public class DashBoardAdapter extends RecyclerView.Adapter<DashBoardAdapter.Dash
     public void onBindViewHolder(final DashBoardViewHolder viewHolder, final int position) {
 
         CommonMethods.printLog("DashBoardAdapter", "" + AppConstants.vitalCriticalDataReportOfPatient);
-
         final Patients patientObject = mSelectedPatients.get(position);
-
         final ArrayList<String> dialogList = new ArrayList<>();
         ArrayList<VitalDetails> vitalInfo = AppConstants.getVitalInfo(CommonMethods.generateRandomEvenNumber());
-        viewHolder.mVitalsLinearLayout.setVisibility(View.INVISIBLE);
-        viewHolder.patientName.setText(patientObject.getPatientName().split(" ")[0]);
-        viewHolder.bedNo.setText("Bed No. " + patientObject.getBedNo());
+        viewHolder.patientName.setText("("+patientObject.getPatientName().split(" ")[0]+")");
+        viewHolder.bedNo.setText("Bed " + patientObject.getBedNo());
 
+        currentDate = CommonMethods.getCurrentDateTime();
+        currentTime = CommonMethods.convertMilliSecondsToDate(System.currentTimeMillis(), "HH:mm:ss");
+        viewHolder.vitalsMainTagCount.setText("**SpO2 <80 " + currentTime.substring(0, 5));
+        viewHolder.mVitalsLinearLayout.setBackground(mContext.getResources().getDrawable(R.drawable.curve_fill_red_bg));
 
         for (VitalDetails dataObject :
                 vitalInfo) {
@@ -89,12 +91,13 @@ public class DashBoardAdapter extends RecyclerView.Adapter<DashBoardAdapter.Dash
             double formattedValue = Double.parseDouble(dataObject.getValue());
             if (name.equalsIgnoreCase("Pleth") || name.equalsIgnoreCase("SpO2")) {
                 viewHolder.countPleth.setText(value);
+
+                currentDate = CommonMethods.getCurrentDateTime();
+                currentTime = CommonMethods.convertMilliSecondsToDate(System.currentTimeMillis(), "HH:mm:ss");
                 if (formattedValue < Double.parseDouble("" + 90)) {
 
                     //------------
 
-                currentDate = CommonMethods.getCurrentDateTime();
-                 currentTime = CommonMethods.convertMilliSecondsToDate(System.currentTimeMillis(), "HH:mm:ss");
                     VitalCriticalDataOfPatient vitalCriticalDataOfPatient = AppConstants.vitalCriticalDataReportOfPatient.get(patientObject.getBedNo());
                     if (vitalCriticalDataOfPatient != null) {
                         vitalCriticalDataOfPatient.setPatient(patientObject);
@@ -108,10 +111,10 @@ public class DashBoardAdapter extends RecyclerView.Adapter<DashBoardAdapter.Dash
                     //---------------
 
                     viewHolder.mVitalsLinearLayout.setVisibility(View.VISIBLE);
-                    viewHolder.vitalsMainTagCount.setText("***SpO2 <80 " + currentTime.substring(0, 5));
+                    viewHolder.vitalsMainTagCount.setText("**SpO2 <80 " + currentTime.substring(0, 5));
                     viewHolder.mVitalsLinearLayout.setBackground(mContext.getResources().getDrawable(R.drawable.curve_fill_red_bg));
                     loadAnimation(viewHolder.countPleth, dataObject);
-                    dialogList.add("***SpO2 <80 " + currentTime.substring(0, 5));
+                    dialogList.add("**SpO2 <80 " + currentTime.substring(0, 5));
 
                 }
             } else if (name.equalsIgnoreCase("Resp")) {
@@ -124,8 +127,9 @@ public class DashBoardAdapter extends RecyclerView.Adapter<DashBoardAdapter.Dash
                 viewHolder.countPap.setText(value);
             } else if (name.equalsIgnoreCase("Pulse")) {
                 viewHolder.countPulse.setText(value);
+                String currentTimeHr = CommonMethods.convertMilliSecondsToDate(System.currentTimeMillis(), "HH:mm:ss");
+
                 if (formattedValue > 80) {
-                    String currentTimeHr = CommonMethods.convertMilliSecondsToDate(System.currentTimeMillis(), "HH:mm:ss");
 
                     viewHolder.mVitalsLinearLayout.setVisibility(View.VISIBLE);
                     viewHolder.mVitalsLinearLayout.setBackground(mContext.getResources().getDrawable(R.drawable.curve_fill_yellow_bg));
@@ -144,9 +148,9 @@ public class DashBoardAdapter extends RecyclerView.Adapter<DashBoardAdapter.Dash
                                 new VitalCriticalDataOfPatient(patientObject, vitalInfo, null, currentTimeHr));
                     }
 
-                    viewHolder.vitalsMainTagCount.setText("**HR High > 120" + " " + currentTimeHr.substring(0, 5));
+                    viewHolder.vitalsMainTagCount.setText("**HR High >120" + " " + currentTimeHr.substring(0, 5));
                     loadAnimationHr(viewHolder.countPulse, dataObject);
-                    dialogList.add("**HR High > 120" + " " + currentTimeHr.substring(0, 5));
+                    dialogList.add("**HR High >120" + " " + currentTimeHr.substring(0, 5));
 
 
                 }
@@ -154,15 +158,15 @@ public class DashBoardAdapter extends RecyclerView.Adapter<DashBoardAdapter.Dash
                 viewHolder.countSystolicPressure.setText(value);
             } else if (name.equalsIgnoreCase("T1")) {
                 viewHolder.countT1.setText(value);
-                if (formattedValue <= 38.2) {
+              /*  if (formattedValue <= 38.2) {
                     String currentTimeHr = CommonMethods.convertMilliSecondsToDate(System.currentTimeMillis(), "HH:mm:ss");
                     viewHolder.mVitalsLinearLayout.setVisibility(View.VISIBLE);
                     viewHolder.mVitalsLinearLayout.setBackground(mContext.getResources().getDrawable(R.drawable.curve_fill_blue_bg));
                     viewHolder.vitalsMainTagCount.setTextColor(ContextCompat.getColor(mContext, R.color.black));
                     viewHolder.vitalsMainTagCount.setText("**T1 High> 38.0"+ " "+currentTimeHr.substring(0,5));
-                     /*loadAnimationT(viewHolder.countT1, dataObject);*/
+                     *//*loadAnimationT(viewHolder.countT1, dataObject);*//*
                     dialogList.add("**T1 High> 38.0"+ " "+currentTimeHr.substring(0,5));
-                }
+                }*/
             } else if (name.equalsIgnoreCase("T2")) {
                 viewHolder.countT2.setText(value);
             }
@@ -172,7 +176,7 @@ public class DashBoardAdapter extends RecyclerView.Adapter<DashBoardAdapter.Dash
             @Override
             public void onClick(View v) {
                 String timeDetails = currentDate + currentTime;
-                CommonMethods.showAlertDialog(mContext, "Bed No. " + patientObject.getBedNo() + "  " + patientObject.getPatientName().split(" ")[0], dialogList,timeDetails);
+                CommonMethods.showAlertDialog(mContext, "Bed " + patientObject.getBedNo() + "  " + "("+patientObject.getPatientName().split(" ")[0]+")", dialogList,timeDetails);
             }
         });
 
@@ -224,7 +228,7 @@ public class DashBoardAdapter extends RecyclerView.Adapter<DashBoardAdapter.Dash
     public class DashBoardViewHolder extends RecyclerView.ViewHolder {
         public TextView patientName, countPleth, countResp, countCvp, countIcp, countPap, countSystolicPressure, countT1, countT2;
 
-        public TextView   tvOrderHistory;
+        public ImageView  tvOrderHistory;
 
         public TextView countPulse, bedNo,order;
 
@@ -248,10 +252,9 @@ public class DashBoardAdapter extends RecyclerView.Adapter<DashBoardAdapter.Dash
             countT1 = (TextView) view.findViewById(R.id.countt1);
             countT2 = (TextView) view.findViewById(R.id.countt2);
             countPulse = (TextView) view.findViewById(R.id.countPulse);
-            tvOrderHistory = (TextView) view.findViewById(R.id.tvOrderHistory);
             vitalsMainTagCount = (CustomTextView) view.findViewById(R.id.vitalsMainTagCount);
             mLinearLayoutItemDashboard = (LinearLayout) view.findViewById(R.id.linearLayoutItemDashboard);
-            order = (TextView)view.findViewById(R.id.order);
+            tvOrderHistory = (ImageView)view.findViewById(R.id.tvOrderHistory);
             mHorizontalView = (LinearLayout)view.findViewById(R.id.horizontalView);
 
         }

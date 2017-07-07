@@ -40,8 +40,8 @@ public class PatientDetailsMain extends AppCompatActivity implements TabLayout.O
     @BindView(R.id.vitalsMainTagCount)
     CustomTextView mVitalsMainTagCount;
 
-    @BindView(R.id.order)
-    TextView mOrder;
+    @BindView(R.id.tvOrderHistory)
+    ImageView mOrder;
 
 
     @BindView(R.id.countPulse)
@@ -83,7 +83,7 @@ public class PatientDetailsMain extends AppCompatActivity implements TabLayout.O
     private Handler mHandler;
     private String currentDate;
     private String currentTime;
-    private ArrayList<String> dialogList;
+    private ArrayList<String> dialogList = new ArrayList<>();
 
 
     @Override
@@ -104,8 +104,8 @@ public class PatientDetailsMain extends AppCompatActivity implements TabLayout.O
         tabLayout.addTab(tabLayout.newTab().setText("Order History"));
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
         intent = getIntent();
-        mPatientName.setText(intent.getStringExtra("PatientName").split(" ")[0]);
-        mBedNo.setText("Bed No. " + intent.getStringExtra("PatientBedNo"));
+        mPatientName.setText("("+intent.getStringExtra("PatientName").split(" ")[0]+")");
+        mBedNo.setText("Bed " + intent.getStringExtra("PatientBedNo"));
         mBackArrow = (ImageView)findViewById(R.id.backArrow);
         mBackArrow.setOnClickListener(this);
         //Setup ViewPager
@@ -113,6 +113,10 @@ public class PatientDetailsMain extends AppCompatActivity implements TabLayout.O
         PatientDetailViewPager adapter = new PatientDetailViewPager(getSupportFragmentManager(), tabLayout.getTabCount());
         viewPager.setAdapter(adapter);
         tabLayout.addOnTabSelectedListener(this);
+        currentDate = CommonMethods.getCurrentDateTime();
+        currentTime = CommonMethods.convertMilliSecondsToDate(System.currentTimeMillis(), "HH:mm:ss");
+        mVitalsMainTagCount.setText("**SpO2 <80 " +currentTime.substring(0,5));
+        mVitalsLinearLayout.setBackground(getResources().getDrawable(R.drawable.curve_fill_red_bg));
         mOrder.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -153,7 +157,7 @@ public class PatientDetailsMain extends AppCompatActivity implements TabLayout.O
             @Override
             public void onClick(View v) {
                 String timeDetails = currentDate + currentTime;
-                CommonMethods.showAlertDialog(PatientDetailsMain.this, "Bed No. "+intent.getStringExtra("PatientBedNo")+"  "+intent.getStringExtra("PatientName"), dialogList,timeDetails);
+                CommonMethods.showAlertDialog(PatientDetailsMain.this, "Bed "+intent.getStringExtra("PatientBedNo")+"  "+"("+intent.getStringExtra("PatientName")+")", dialogList,timeDetails);
             }
         });
         //Setup patient vitals datacounts.
@@ -161,7 +165,8 @@ public class PatientDetailsMain extends AppCompatActivity implements TabLayout.O
     }
 
     private void setupPatientVitals() {
-        dialogList = new ArrayList<>();
+        dialogList.clear();
+
         ArrayList<VitalDetails> vitalInfo = AppConstants.getVitalInfo(CommonMethods.generateRandomEvenNumber());
         for (VitalDetails dataObject :
                 vitalInfo) {
@@ -174,10 +179,10 @@ public class PatientDetailsMain extends AppCompatActivity implements TabLayout.O
                     currentDate = CommonMethods.getCurrentDateTime();
                     currentTime = CommonMethods.convertMilliSecondsToDate(System.currentTimeMillis(), "HH:mm:ss");
                     mVitalsLinearLayout.setVisibility(View.VISIBLE);
-                    mVitalsMainTagCount.setText("***SpO2 <80 " +currentTime.substring(0,5));
+                    mVitalsMainTagCount.setText("**SpO2 <80 " +currentTime.substring(0,5));
                     mVitalsLinearLayout.setBackground(getResources().getDrawable(R.drawable.curve_fill_red_bg));
                    // loadAnimation(mSpo2Count, dataObject);
-                    dialogList.add("***SpO2 <80 " +currentTime.substring(0,5));
+                    dialogList.add("**SpO2 <80 " +currentTime.substring(0,5));
                 }
 
             } else if (name.equalsIgnoreCase("Resp")) {
@@ -195,24 +200,14 @@ public class PatientDetailsMain extends AppCompatActivity implements TabLayout.O
                     mVitalsLinearLayout.setVisibility(View.VISIBLE);
                    mVitalsLinearLayout.setBackground(getResources().getDrawable(R.drawable.curve_fill_yellow_bg));
                   mVitalsMainTagCount.setTextColor(ContextCompat.getColor(PatientDetailsMain.this, R.color.black));
-                    mVitalsMainTagCount.setText("**HR High > 120"+ " "+currentTimeHr.substring(0,5));
+                    mVitalsMainTagCount.setText("**HR High >120"+ " "+currentTimeHr.substring(0,5));
                    // loadAnimationHr(mPulseCount, dataObject);
-                    dialogList.add("**HR High > 120"+ " "+currentTimeHr.substring(0,5));
+                    dialogList.add("**HR High >120"+ " "+currentTimeHr.substring(0,5));
                 }
             } else if (name.equalsIgnoreCase("Systolic Pressure")) {
                 mSysPressureCount.setText(value);
             } else if (name.equalsIgnoreCase("T1")) {
                 mT1Count.setText(value);
-                //TODO
-               if (formattedValue <= 38.2) {
-                    String currentTimeHr = CommonMethods.convertMilliSecondsToDate(System.currentTimeMillis(), "HH:mm:ss");
-                    mVitalsLinearLayout.setVisibility(View.VISIBLE);
-                    mVitalsLinearLayout.setBackground(getResources().getDrawable(R.drawable.curve_fill_blue_bg));
-                    mVitalsMainTagCount.setTextColor(ContextCompat.getColor(PatientDetailsMain.this, R.color.black));
-                    mVitalsMainTagCount.setText("**T1 High> 38.0"+ " "+currentTimeHr.substring(0,5));
-                    // loadAnimationHr(mPulseCount, dataObject);
-                    dialogList.add("**T1 High> 38.0"+ " "+currentTimeHr.substring(0,5));
-                }
             } else if (name.equalsIgnoreCase("T2")) {
                 mT2Count.setText(value);
             }
