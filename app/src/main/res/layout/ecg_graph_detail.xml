@@ -1,79 +1,86 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
-    <LinearLayout android:layout_width="match_parent"
-        android:layout_height="match_parent"
+    <LinearLayout
         android:id="@+id/ecgGraphDetailLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <LinearLayout android:layout_width="match_parent"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="30dp"
             android:background="@color/vitalBackButton"
             android:orientation="horizontal">
 
-            <LinearLayout android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@color/vitalBackButton"
                 android:layout_gravity="center"
-                android:orientation="horizontal"
-                android:layout_weight="1.5">
+                android:layout_weight="1.5"
+                android:background="@color/vitalBackButton"
+                android:orientation="horizontal">
 
-            <TextView android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Analysis Time:"
-                android:layout_marginLeft="5dp"
-                android:fontFamily="@string/roboto_bold"
-                android:textStyle="bold"
-                android:textSize="@dimen/sp10"
-                android:textColor="@color/white"
-                android:layout_gravity="center"></TextView>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="5dp"
+                    android:fontFamily="@string/roboto_bold"
+                    android:text="Analysis Time:"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/sp10"
+                    android:textStyle="bold"></TextView>
 
-            <TextView android:layout_width="wrap_content"
-                android:id="@+id/analysisTime"
-                android:layout_height="wrap_content"
-                android:text="Analysis Time:"
-                android:fontFamily="@string/roboto_bold"
-                android:textStyle="bold"
-                android:layout_marginLeft="5dp"
-                android:textSize="@dimen/sp10"
-                android:textColor="@color/white"
-                android:layout_gravity="center"></TextView>
+                <TextView
+                    android:id="@+id/analysisTime"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="5dp"
+                    android:fontFamily="@string/roboto_bold"
+                    android:text="Analysis Time:"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/sp10"
+                    android:textStyle="bold"></TextView>
 
-            <TextView android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="DOB: "
-                android:fontFamily="@string/roboto_bold"
-                android:textStyle="bold"
-                android:layout_marginLeft="8dp"
-                android:textColor="@color/white"
-                android:textSize="@dimen/sp10"
-                android:layout_gravity="center"></TextView>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="8dp"
+                    android:fontFamily="@string/roboto_bold"
+                    android:text="DOB: "
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/sp10"
+                    android:textStyle="bold"></TextView>
 
-            <TextView android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="19/7/1970"
-                android:fontFamily="@string/roboto_bold"
-                android:textStyle="bold"
-                android:layout_marginLeft="3dp"
-                android:textColor="@color/white"
-                android:textSize="@dimen/sp10"
-                android:layout_gravity="center"></TextView>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="3dp"
+                    android:fontFamily="@string/roboto_bold"
+                    android:text="19/7/1970"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/sp10"
+                    android:textStyle="bold"></TextView>
             </LinearLayout>
 
-            <Button android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+            <Button
                 android:id="@+id/backBtn"
-                android:fontFamily="@string/roboto_bold"
-                android:textStyle="bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
                 android:background="@color/vitalBackButton"
+                android:fontFamily="@string/roboto_bold"
                 android:text="Back"
                 android:textColor="@color/white"
-                android:layout_gravity="right">
-            </Button>
+                android:textStyle="bold"></Button>
 
         </LinearLayout>
 
@@ -83,7 +90,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:scaleType="centerCrop"
-            app:srcCompat="@drawable/ecg_graph_img" />
+            app:srcCompat="@drawable/layer_10" />
     </LinearLayout>
 
 </LinearLayout>

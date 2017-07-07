@@ -104,8 +104,8 @@ public class PatientDetailsMain extends AppCompatActivity implements TabLayout.O
         tabLayout.addTab(tabLayout.newTab().setText("Order History"));
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
         intent = getIntent();
-        mPatientName.setText(intent.getStringExtra("PatientName"));
-        mBedNo.setText("Bed No. "+ "  " + intent.getStringExtra("PatientBedNo"));
+        mPatientName.setText(intent.getStringExtra("PatientName").split(" ")[0]);
+        mBedNo.setText("Bed No. " + intent.getStringExtra("PatientBedNo"));
         mBackArrow = (ImageView)findViewById(R.id.backArrow);
         mBackArrow.setOnClickListener(this);
         //Setup ViewPager
@@ -168,16 +168,16 @@ public class PatientDetailsMain extends AppCompatActivity implements TabLayout.O
             String name = dataObject.getName();
             String value = dataObject.getValue();
             double formattedValue = Double.parseDouble(dataObject.getValue());
-            if (name.equalsIgnoreCase("Pleth") || name.equalsIgnoreCase("SPO2")) {
+            if (name.equalsIgnoreCase("Pleth") || name.equalsIgnoreCase("SpO2")) {
                 mSpo2Count.setText(value);
                 if (formattedValue > Double.parseDouble("" + 90)) {
                     currentDate = CommonMethods.getCurrentDateTime();
                     currentTime = CommonMethods.convertMilliSecondsToDate(System.currentTimeMillis(), "HH:mm:ss");
                     mVitalsLinearLayout.setVisibility(View.VISIBLE);
-                    mVitalsMainTagCount.setText("***SPO2 <80 " +currentTime.substring(0,5));
+                    mVitalsMainTagCount.setText("***SpO2 <80 " +currentTime.substring(0,5));
                     mVitalsLinearLayout.setBackground(getResources().getDrawable(R.drawable.curve_fill_red_bg));
                    // loadAnimation(mSpo2Count, dataObject);
-                    dialogList.add("***SPO2 <80 " +currentTime.substring(0,5));
+                    dialogList.add("***SpO2 <80 " +currentTime.substring(0,5));
                 }
 
             } else if (name.equalsIgnoreCase("Resp")) {

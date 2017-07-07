@@ -64,7 +64,7 @@ public class CcuList  extends Fragment {
         mButtonDone.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getActivity(), "Alert Send Successfully", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), "Alert Set Successfully", Toast.LENGTH_SHORT).show();
                 getActivity().finish();
             }
         });

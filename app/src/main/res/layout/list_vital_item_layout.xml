@@ -9,7 +9,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:text="SPO2"
+        android:text="SpO2"
         android:textSize="@dimen/sp8"
         android:id="@+id/spo2"
         android:textColor="@color/white" />

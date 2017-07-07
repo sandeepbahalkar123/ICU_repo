@@ -17,6 +17,8 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.TextView;
 
 import com.icuapp.R;
 import com.icuapp.adapters.DashBoardAdapter;
@@ -31,6 +33,8 @@ public class DashboardActivity extends AppCompatActivity
 
     private DashBoardAdapter mAdapter;
     private Handler mHandler;
+    private TextView mEmptyTextView;
+    private Runnable mUpdateUI;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +55,7 @@ public class DashboardActivity extends AppCompatActivity
         navigationView.setItemIconTintList(null);
 
         AppConstants.getAllVitalList(this);
+        mEmptyTextView = (TextView) findViewById(R.id.emptyTextView);
         recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
         // use this setting to improve performance if you know that changes
         // in content do not change the layout size of the RecyclerView
@@ -61,21 +66,7 @@ public class DashboardActivity extends AppCompatActivity
 
         mHandler = new Handler();
 
-        Runnable updateUI = new Runnable() {
-            @Override
-            public void run() {
-                //Do something after 100ms
 
-                Log.e("DashBoard Activity", "convertMilliSecondsToDate->" + CommonMethods.convertMilliSecondsToDate(System.currentTimeMillis(), "HH:mm:ss"));
-
-                mAdapter = new DashBoardAdapter(DashboardActivity.this, AppConstants.getSelectedPatientList());
-                recyclerView.setAdapter(mAdapter);
-                mHandler.postDelayed(this, 2000);
-
-            }
-        };
-
-        mHandler.postDelayed(updateUI, 2000); // The first call to the updateCurrentTime Runnable with a 2 second delay
     }
 
     @Override
@@ -91,12 +82,41 @@ public class DashboardActivity extends AppCompatActivity
     @Override
     protected void onResume() {
         super.onResume();
+        mUpdateUI = new Runnable() {
+            @Override
+            public void run() {
+                //Do something after 100ms
+
+                Log.e("DashBoard Activity", "convertMilliSecondsToDate->" + CommonMethods.convertMilliSecondsToDate(System.currentTimeMillis(), "HH:mm:ss"));
+
+                if (AppConstants.getSelectedPatientList().size() == 0) {
+                    mEmptyTextView.setVisibility(View.VISIBLE);
+                    recyclerView.setVisibility(View.GONE);
+                } else {
+                    recyclerView.setVisibility(View.VISIBLE);
+                    mEmptyTextView.setVisibility(View.GONE);
+                    mAdapter = new DashBoardAdapter(DashboardActivity.this, AppConstants.getSelectedPatientList());
+                    recyclerView.setAdapter(mAdapter);
+                }
+
+                mHandler.postDelayed(this, 2000);
+
+            }
+        };
+        mHandler.postDelayed(mUpdateUI, 100);
+
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        mHandler.removeCallbacks(mUpdateUI);
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-       // getMenuInflater().inflate(R.menu.main, menu);
+        // getMenuInflater().inflate(R.menu.main, menu);
         return true;
     }
 
@@ -127,7 +147,7 @@ public class DashboardActivity extends AppCompatActivity
         } else if (id == R.id.patient) {
             Intent intent = new Intent(this, PatientListContainerActivity.class);
             startActivity(intent);
-        }else if (id == R.id.alerts) {
+        } else if (id == R.id.alerts) {
             Intent intent = new Intent(this, SendAlertActivity.class);
             startActivity(intent);
         }

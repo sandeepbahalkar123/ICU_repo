@@ -10,6 +10,7 @@
     <string name="timeout">Timeout error</string>
 
     <string name="login">LOG IN</string>
+    <string name="empty_selected_patient">No patient selected</string>
     <string name="user_name">User Name</string>
     <string name="password">Password</string>
 

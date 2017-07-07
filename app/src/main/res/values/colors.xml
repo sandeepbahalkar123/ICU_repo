@@ -2,7 +2,7 @@
 <resources>
 
 
-    <color name="grey">#55000000</color>
+    <!--<color name="grey">#55000000</color>-->
     <color name="show_recent_prescription_bgcolor">#b2e6fa</color>
     <color name="prescription_bgcolor">#e4f3fa</color>
 
@@ -67,7 +67,7 @@
     <color name="red_red">#fc4f4f</color>
 
     <!--<color name="black">#000000</color>-->
-    <!--<color name="grey">#919499</color>-->
+    <color name="grey">#919499</color>
     <color name="parrot">#33ED41</color>
     <!--<color name="transparent">#00000000</color>-->
     <!--<color name="yellow">#ffff00</color>-->

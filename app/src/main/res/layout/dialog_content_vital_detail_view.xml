@@ -1,37 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/black"
     android:orientation="vertical">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/dp4"
         android:orientation="horizontal">
+
         <com.icuapp.customesViews.CustomTextView
+            android:id="@+id/textViewTimeDate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/textViewTimeDate"
+            android:textColor="@color/parrot_green_color"
             android:textSize="@dimen/sp16"
             android:textStyle="bold"
-            app:customFont="@string/roboto_bold"
-            android:textColor="@color/parrot_green_color"/>
+            app:customFont="@string/roboto_bold" />
     </LinearLayout>
 
     <HorizontalScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:scrollbars="none"
+        android:background="@color/transparent"
         android:scrollbarSize="0dp"
-        android:background="@color/black">
+        android:scrollbars="none">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/sp16"
             android:orientation="horizontal">
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -47,14 +50,17 @@
                     android:textSize="@dimen/sp12"
                     android:textStyle="bold"
                     app:customFont="@string/roboto_regular" />
+
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
+
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:orientation="vertical">
+
                         <com.icuapp.customesViews.CustomTextView
                             android:id="@+id/hr150"
                             android:layout_width="wrap_content"
@@ -65,6 +71,7 @@
                             android:textSize="@dimen/sp12"
                             android:textStyle="bold"
                             app:customFont="@string/roboto_regular" />
+
                         <com.icuapp.customesViews.CustomTextView
                             android:id="@+id/hr80"
                             android:layout_width="wrap_content"
@@ -76,6 +83,7 @@
                             android:textStyle="bold"
                             app:customFont="@string/roboto_regular" />
                     </LinearLayout>
+
                     <com.icuapp.customesViews.CustomTextView
                         android:id="@+id/countPulse"
                         android:layout_width="wrap_content"
@@ -129,9 +137,9 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="left"
                     android:text="Resp"
-                    android:textStyle="bold"
                     android:textColor="@color/blue_color"
                     android:textSize="@dimen/sp12"
+                    android:textStyle="bold"
                     app:customFont="@string/roboto_regular" />
 
                 <com.icuapp.customesViews.CustomTextView
@@ -173,6 +181,7 @@
                     app:customFont="@string/roboto_bold" />
 
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -228,6 +237,7 @@
                     app:customFont="@string/roboto_bold" />
 
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -315,5 +325,429 @@
         </LinearLayout>
     </HorizontalScrollView>
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scrollbars="none">
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:id="@+id/timeLayout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_alignEnd="@+id/timeLayout"
+                    android:layout_alignLeft="@+id/timeLayout"
+                    android:layout_alignRight="@+id/timeLayout"
+                    android:layout_alignStart="@+id/timeLayout"
+                    android:layout_alignTop="@+id/timeLayout"
+                    android:background="@color/grey" />
+
+                <LinearLayout
+                    android:id="@+id/graphLayout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignEnd="@+id/timeLayout"
+                    android:layout_alignLeft="@+id/timeLayout"
+                    android:layout_alignRight="@+id/timeLayout"
+                    android:layout_alignStart="@+id/timeLayout"
+                    android:layout_below="@+id/timeLayout"
+                    android:orientation="vertical">
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/grey" />
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/transparent"
+                        android:orientation="vertical">
+
+                        <com.jjoe64.graphview.GraphView
+                            android:id="@+id/graph_II"
+                            android:layout_width="match_parent"
+                            android:layout_height="110dp" />
+
+                    </RelativeLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/grey" />
+
+                    <!--Pleth graph-->
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/transparent"
+                        android:orientation="vertical">
+
+                        <com.jjoe64.graphview.GraphView
+                            android:id="@+id/graph_Pleth"
+                            android:layout_width="match_parent"
+                            android:layout_height="110dp" />
+
+                    </RelativeLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/grey" />
+
+                    <!--Resp graph-->
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/transparent"
+                        android:orientation="vertical">
+
+                        <com.jjoe64.graphview.GraphView
+                            android:id="@+id/graph_Resp"
+                            android:layout_width="match_parent"
+                            android:layout_height="110dp" />
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/transparent"
+                        android:orientation="vertical">
+
+                        <com.jjoe64.graphview.GraphView
+                            android:id="@+id/graph_Art"
+                            android:layout_width="match_parent"
+                            android:layout_height="110dp" />
+
+                    </RelativeLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/grey" />
+
+                </LinearLayout>
+
+            </RelativeLayout>
+
+        </HorizontalScrollView>
+
+        <RelativeLayout
+            android:id="@+id/fixedLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:id="@+id/timeFixLayout"
+                    android:layout_width="450dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="@dimen/timeTextDP" />
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_alignEnd="@+id/timeFixLayout"
+                    android:layout_alignLeft="@+id/timeFixLayout"
+                    android:layout_alignRight="@+id/timeFixLayout"
+                    android:layout_alignStart="@+id/timeFixLayout"
+                    android:layout_alignTop="@+id/timeFixLayout"
+                    android:background="@color/grey" />
+
+                <LinearLayout
+                    android:id="@+id/graphFixLayout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignEnd="@+id/timeFixLayout"
+                    android:layout_alignLeft="@+id/timeFixLayout"
+                    android:layout_alignRight="@+id/timeFixLayout"
+                    android:layout_alignStart="@+id/timeFixLayout"
+                    android:layout_below="@+id/timeFixLayout"
+                    android:orientation="vertical">
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/grey" />
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="110dp"
+                        android:background="@color/transparent"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:padding="10dp"
+                            android:text="II"
+                            android:textColor="@color/parrot"
+                            android:textSize="18sp"
+                            android:textStyle="bold" />
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="85dp"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="50dp"
+                            android:layout_marginStart="50dp"
+                            android:orientation="horizontal">
+
+                            <ImageView
+                                android:layout_width="2.5dp"
+                                android:layout_height="85dp"
+                                android:alpha=".5"
+                                android:paddingBottom="12dp"
+                                android:paddingTop="12dp"
+                                android:src="@color/parrot" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="bottom"
+                                android:paddingLeft="5dp"
+                                android:paddingStart="5dp"
+                                android:text="1mV"
+                                android:textColor="@color/parrot"
+                                android:textSize="13sp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="top"
+                                android:text="X1"
+                                android:textColor="@color/parrot"
+                                android:textSize="13sp" />
+                        </LinearLayout>
+
+                    </RelativeLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/grey" />
+
+                    <!--Pleth graph-->
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="110dp"
+                        android:background="@color/transparent"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:padding="10dp"
+                            android:text="Pleth"
+                            android:textColor="@color/pleth"
+                            android:textSize="18sp"
+                            android:textStyle="bold" />
+
+                    </RelativeLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/grey" />
+
+                    <!--Resp graph-->
+
+                    <RelativeLayout
+                        android:id="@+id/respFixedLayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="110dp"
+                        android:background="@color/transparent"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:padding="10dp"
+                            android:text="Resp"
+                            android:textColor="@color/yellow"
+                            android:textSize="18sp"
+                            android:textStyle="bold" />
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="85dp"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="50dp"
+                            android:layout_marginStart="50dp"
+                            android:orientation="horizontal">
+
+                            <ImageView
+                                android:layout_width="2.5dp"
+                                android:layout_height="85dp"
+                                android:alpha=".5"
+                                android:paddingBottom="12dp"
+                                android:paddingTop="12dp"
+                                android:src="@color/yellow"
+                                android:visibility="invisible" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="bottom"
+                                android:paddingLeft="5dp"
+                                android:paddingStart="5dp"
+                                android:text="1mV"
+                                android:textColor="@color/yellow"
+                                android:textSize="13sp"
+                                android:visibility="invisible" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="top"
+                                android:text="X2"
+                                android:textColor="@color/yellow"
+                                android:textSize="13sp" />
+                        </LinearLayout>
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/artFixLayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="110dp"
+                        android:background="@color/transparent"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:padding="10dp"
+                            android:text="Art"
+                            android:textColor="@android:color/holo_red_light"
+                            android:textSize="18sp"
+                            android:textStyle="bold" />
+
+                        <!--Top Line-->
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentTop="true"
+                            android:gravity="center"
+                            android:orientation="horizontal"
+                            android:paddingLeft="60dp"
+                            android:paddingStart="60dp">
+
+                            <TextView
+                                android:layout_width="30dp"
+                                android:layout_height="wrap_content"
+                                android:gravity="end|right"
+                                android:padding="3dp"
+                                android:text="160"
+                                android:textColor="@android:color/holo_red_light"
+                                android:textSize="12sp" />
+
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="2dp"
+                                android:background="@drawable/art_dotted_line"
+                                android:layerType="software" />
+
+                        </LinearLayout>
+
+                        <!--Middle Line-->
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:gravity="center"
+                            android:orientation="horizontal"
+                            android:paddingLeft="60dp"
+                            android:paddingStart="60dp">
+
+                            <TextView
+                                android:layout_width="30dp"
+                                android:layout_height="wrap_content"
+                                android:gravity="end|right"
+                                android:padding="3dp"
+                                android:text="80"
+                                android:textColor="@android:color/holo_red_light"
+                                android:textSize="12sp" />
+
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="2dp"
+                                android:background="@drawable/art_dotted_line"
+                                android:layerType="software" />
+
+                        </LinearLayout>
+
+                        <!--Bottom Line-->
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="110dp"
+                            android:layout_alignParentBottom="true"
+                            android:gravity="center"
+                            android:orientation="horizontal"
+                            android:paddingLeft="60dp"
+                            android:paddingStart="60dp">
+
+                            <TextView
+                                android:layout_width="30dp"
+                                android:layout_height="wrap_content"
+                                android:gravity="end|right"
+                                android:padding="3dp"
+                                android:text="0"
+                                android:textColor="@android:color/holo_red_light"
+                                android:textSize="12sp" />
+
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="2dp"
+                                android:background="@drawable/art_dotted_line"
+                                android:layerType="software" />
+
+                        </LinearLayout>
+
+                    </RelativeLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/grey" />
+
+                </LinearLayout>
+
+            </RelativeLayout>
+
+        </RelativeLayout>
+
+    </RelativeLayout>
 
 </LinearLayout>
