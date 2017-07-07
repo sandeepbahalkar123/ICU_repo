@@ -145,19 +145,25 @@
             android:layout_weight="1"
             android:orientation="horizontal">
 
+            <TextView
+                android:layout_width="@dimen/dp0"
+                android:layout_height="match_parent"
+                android:layout_weight="1" />
+
             <com.icuapp.customesViews.CustomTextView
                 android:id="@+id/tvAddOrder"
                 android:layout_width="@dimen/dp0"
                 android:layout_height="match_parent"
-                android:layout_weight="0.5"
+                android:layout_weight="1"
                 android:background="@drawable/curve_fill_orange_colour"
                 android:gravity="center"
                 android:paddingBottom="@dimen/dp4"
                 android:paddingTop="@dimen/dp4"
                 android:text="Order"
+                android:textAllCaps="true"
                 android:textColor="@color/white"
                 android:textSize="@dimen/sp16"
-                app:customFont="@string/roboto_regular" />
+                app:customFont="@string/roboto_bold" />
 
             <TextView
                 android:layout_width="@dimen/dp0"
@@ -168,24 +174,29 @@
     </LinearLayout>
 
     <LinearLayout
+
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="1"
-        android:orientation="vertical"
-        android:visibility="visible">
+        android:orientation="vertical">
 
-        <com.icuapp.customesViews.CustomTextView
-            android:id="@+id/orderHistoryHeader"
-            android:layout_width="match_parent"
+        <!--  <com.icuapp.customesViews.CustomTextView
+              android:id="@+id/orderHistoryHeader"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:layout_marginLeft="@dimen/dp10"
+              android:gravity="center|left"
+              android:paddingBottom="@dimen/dp5"
+              android:paddingTop="@dimen/dp5"
+              android:text="Order History"
+              android:textColor="@color/black"
+              android:textSize="@dimen/sp17"
+              app:customFont="@string/roboto_bold" />-->
+        <ImageView
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/dp10"
-            android:gravity="center|left"
-            android:paddingBottom="@dimen/dp5"
-            android:paddingTop="@dimen/dp5"
-            android:text="Order History"
-            android:textColor="@color/black"
-            android:textSize="@dimen/sp17"
-            app:customFont="@string/roboto_bold" />
+            android:src="@drawable/rx_history" />
 
         <include layout="@layout/order_history_main_layout" />
     </LinearLayout>

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/linearLayoutItemDashboard"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:id="@+id/linearLayoutItemDashboard">
+    android:layout_height="wrap_content">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -59,19 +59,19 @@
         </LinearLayout>
 
         <LinearLayout
-            android:background="@color/black"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/dp4"
+            android:background="@color/black"
             android:orientation="horizontal">
 
             <LinearLayout
                 android:id="@+id/vitalsLinearLayout"
                 android:layout_width="@dimen/dp0"
-                android:layout_marginLeft="@dimen/dp10"
-                android:layout_marginBottom="@dimen/dp4"
-                android:layout_marginTop="@dimen/dp10"
                 android:layout_height="match_parent"
+                android:layout_marginBottom="@dimen/dp4"
+                android:layout_marginLeft="@dimen/dp10"
+                android:layout_marginTop="@dimen/dp10"
                 android:layout_weight="1"
                 android:gravity="center_vertical|left"
                 android:orientation="horizontal">
@@ -81,11 +81,11 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/dp6"
-                    android:paddingTop="@dimen/dp8"
-                    android:paddingBottom="@dimen/dp8"
+                    android:layout_marginRight="@dimen/dp6"
                     android:drawableRight="@drawable/down_arrow"
                     android:gravity="center_vertical"
-                    android:layout_marginRight="@dimen/dp6"
+                    android:paddingBottom="@dimen/dp8"
+                    android:paddingTop="@dimen/dp8"
                     android:textColor="@color/black"
                     android:textSize="@dimen/sp15"
                     app:customFont="@string/roboto_regular" />
@@ -98,12 +98,13 @@
                 android:layout_weight="1" />
 
         </LinearLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-           >
-            <HorizontalScrollView
+            android:layout_height="wrap_content">
 
+            <HorizontalScrollView
+                android:id="@+id/horizontalScrollView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/black">
@@ -130,14 +131,17 @@
                             android:textSize="@dimen/sp12"
                             android:textStyle="bold"
                             app:customFont="@string/roboto_regular" />
+
                         <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:orientation="horizontal">
+
                             <LinearLayout
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:orientation="vertical">
+
                                 <com.icuapp.customesViews.CustomTextView
                                     android:id="@+id/hr150"
                                     android:layout_width="wrap_content"
@@ -148,6 +152,7 @@
                                     android:textSize="@dimen/sp12"
                                     android:textStyle="bold"
                                     app:customFont="@string/roboto_regular" />
+
                                 <com.icuapp.customesViews.CustomTextView
                                     android:id="@+id/hr80"
                                     android:layout_width="wrap_content"
@@ -159,6 +164,7 @@
                                     android:textStyle="bold"
                                     app:customFont="@string/roboto_regular" />
                             </LinearLayout>
+
                             <com.icuapp.customesViews.CustomTextView
                                 android:id="@+id/countPulse"
                                 android:layout_width="wrap_content"
@@ -396,11 +402,12 @@
                             app:customFont="@string/roboto_bold" />
 
                     </LinearLayout>
+
                     <LinearLayout
-                        android:visibility="invisible"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical">
+                        android:orientation="vertical"
+                        android:visibility="invisible">
 
                         <com.icuapp.customesViews.CustomTextView
                             android:layout_width="wrap_content"
